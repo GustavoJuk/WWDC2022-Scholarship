@@ -1,6 +1,6 @@
 import SpriteKit
 
-public class GameScene: SKScene {
+public class IntroScene: SKScene {
     
     public override init(size: CGSize) {
         super.init(size: size)
@@ -17,8 +17,8 @@ public class GameScene: SKScene {
     
     func addSeratoninView() {
         let seratoninView = SKSpriteNode(imageNamed: "seratonin.png")
-
-        seratoninView.position = CGPoint(x: frame.midX - 75, y: frame.midY - 14)
+        
+        seratoninView.position = CGPoint(x: frame.midX, y: frame.midY)
         seratoninView.zPosition = 1
         
         
@@ -28,8 +28,8 @@ public class GameScene: SKScene {
     
     func addDopamineView() {
         let dopamineView = SKSpriteNode(imageNamed: "dopamine.png")
-
-        dopamineView.position = CGPoint(x: frame.midX + 65, y: frame.midY - 60)
+        
+        dopamineView.position = CGPoint(x: frame.midX, y: frame.midY)
         dopamineView.zPosition = 2
         
         addChild(dopamineView)
@@ -38,15 +38,15 @@ public class GameScene: SKScene {
     
     func addNoradrenalineView() {
         let noradrenalineView = SKSpriteNode(imageNamed: "noradrenaline.png")
-
-        noradrenalineView.position = CGPoint(x: frame.midX + 22, y: frame.midY + 70)
+        
+        noradrenalineView.position = CGPoint(x: frame.midX, y: frame.midY)
         noradrenalineView.zPosition = 3
         
         addChild(noradrenalineView)
         
     }
     
-    func addBraiinFrontView() {
+    func addBrainFrontView() {
         let frontBrainSide = SKSpriteNode(imageNamed: "frontBrain.png")
         
         frontBrainSide.position = CGPoint(x: frame.midX, y: frame.midY)
@@ -63,7 +63,13 @@ public class GameScene: SKScene {
         addSeratoninView()
         addDopamineView()
         addNoradrenalineView()
-        addBraiinFrontView()
+        addBrainFrontView()
+    }
+    
+    public override func mouseUp(with event: NSEvent) {
+        let newScene = SecondScene(size: CGSize(width: 700, height: 500))
+        
+        self.view?.presentScene(newScene, transition: SKTransition.fade(withDuration: 1.0))
     }
     
     required init?(coder aDecoder: NSCoder) {
