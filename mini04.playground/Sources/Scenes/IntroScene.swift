@@ -9,17 +9,14 @@ public class IntroScene: SKScene {
     }
     
     public override func didMove(to view: SKView) {
-        self.backgroundColor = .cyan
+        self.backgroundColor = backGroundColor
         brainParts.addBrain(skScene: self)
-        brainParts.addSeratotin(skScene: self)
-        brainParts.addDopamine(skScene: self)
-        brainParts.addNoradrenaline(skScene: self)
     }
     
     public override func mouseUp(with event: NSEvent) {
         let newScene = SecondScene(size: skView.frame.size)
         
-        self.view?.presentScene(newScene)
+        self.view?.presentScene(newScene, transition: .fade(with: backGroundColor, duration: 1.5))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -27,3 +24,4 @@ public class IntroScene: SKScene {
     }
     
 }
+//tiamu muitão

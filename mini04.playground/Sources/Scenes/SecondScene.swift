@@ -8,8 +8,7 @@ public class SecondScene: SKScene {
     }
     
     public override func didMove(to view: SKView) {
-        self.backgroundColor  = .cyan
-        brain.addBrain(skScene: self)
+        self.backgroundColor  = backGroundColor
     }
     
     required init?(coder aDecoder: NSCoder) {
