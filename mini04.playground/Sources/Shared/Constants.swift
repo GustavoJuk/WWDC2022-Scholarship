@@ -14,3 +14,6 @@ public let seratoninSpriteName = "seratonin"
 public let dopamineSpriteName = "dopamine"
 public let noradrenalineSpriteName = "noradrenaline"
 public let frontBrainSpriteName = "frontBrain"
+
+//Font
+public let mainFontName = "SF Symbool"

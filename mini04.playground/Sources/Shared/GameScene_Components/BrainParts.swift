@@ -1,13 +1,13 @@
 import SpriteKit
 
-public class Brain {
+public class Brain: SKNode {
     
     //Attributes
     public var backBrainNode: SKSpriteNode {
         let backBrain = SKSpriteNode(imageNamed: backBrainSpriteName)
         backBrain.position = CGPoint(x: skView.frame.midX, y: skView.frame.midY * 1.25)
         backBrain.scale(to: CGSize(width: backBrain.frame.width / 1.5, height: backBrain.frame.height / 1.5))
-        backBrain.zPosition = 0
+        backBrain.zPosition = -5
     
         return backBrain
     }
@@ -16,7 +16,7 @@ public class Brain {
         let serotonin = SKSpriteNode(imageNamed: seratoninSpriteName)
         serotonin.position = CGPoint(x: backBrainNode.frame.midX, y: backBrainNode.frame.midY)
         serotonin.scale(to: CGSize(width: backBrainNode.frame.width, height: backBrainNode.frame.height))
-        serotonin.zPosition = 1
+        serotonin.zPosition = -4
         
         return serotonin
     }
@@ -25,7 +25,7 @@ public class Brain {
         let dopamine = SKSpriteNode(imageNamed: dopamineSpriteName)
         dopamine.position = CGPoint(x: backBrainNode.frame.midX, y: backBrainNode.frame.midY)
         dopamine.scale(to: CGSize(width: backBrainNode.frame.width, height: backBrainNode.frame.height))
-        dopamine.zPosition = 2
+        dopamine.zPosition = -3
         
         return dopamine
     }
@@ -34,7 +34,7 @@ public class Brain {
         let noradrenaline = SKSpriteNode(imageNamed: noradrenalineSpriteName)
         noradrenaline.position = CGPoint(x: backBrainNode.frame.midX, y: backBrainNode.frame.midY)
         noradrenaline.scale(to: CGSize(width: backBrainNode.frame.width, height: backBrainNode.frame.height))
-        noradrenaline.zPosition = 3
+        noradrenaline.zPosition = -2
         
         return noradrenaline
     }
@@ -44,7 +44,7 @@ public class Brain {
         let frontBrain = SKSpriteNode(imageNamed: frontBrainSpriteName)
         frontBrain.position = CGPoint(x: backBrainNode.frame.midX, y: backBrainNode.frame.midY)
         frontBrain.scale(to: CGSize(width: backBrainNode.frame.width, height: backBrainNode.frame.height))
-        frontBrain.zPosition = 4
+        frontBrain.zPosition = -1
         
         return frontBrain
     }
