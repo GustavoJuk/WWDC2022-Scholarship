@@ -3,67 +3,64 @@ import SpriteKit
 public class Brain: SKNode {
     
     //Attributes
-    public var backBrainNode: SKSpriteNode {
-        let backBrain = SKSpriteNode(imageNamed: backBrainSpriteName)
-        backBrain.position = CGPoint(x: skView.frame.midX, y: skView.frame.midY * 1.25)
-        backBrain.scale(to: CGSize(width: backBrain.frame.width / 1.5, height: backBrain.frame.height / 1.5))
-        backBrain.zPosition = -5
-    
-        return backBrain
-    }
-    
-    public var serotoninNode: SKSpriteNode {
-        let serotonin = SKSpriteNode(imageNamed: seratoninSpriteName)
-        serotonin.position = CGPoint(x: backBrainNode.frame.midX, y: backBrainNode.frame.midY)
-        serotonin.scale(to: CGSize(width: backBrainNode.frame.width, height: backBrainNode.frame.height))
-        serotonin.zPosition = -4
-        
-        return serotonin
-    }
-    
-    public var dopamineNode: SKSpriteNode {
-        let dopamine = SKSpriteNode(imageNamed: dopamineSpriteName)
-        dopamine.position = CGPoint(x: backBrainNode.frame.midX, y: backBrainNode.frame.midY)
-        dopamine.scale(to: CGSize(width: backBrainNode.frame.width, height: backBrainNode.frame.height))
-        dopamine.zPosition = -3
-        
-        return dopamine
-    }
-    
-    public var noradrenalineNode: SKSpriteNode {
-        let noradrenaline = SKSpriteNode(imageNamed: noradrenalineSpriteName)
-        noradrenaline.position = CGPoint(x: backBrainNode.frame.midX, y: backBrainNode.frame.midY)
-        noradrenaline.scale(to: CGSize(width: backBrainNode.frame.width, height: backBrainNode.frame.height))
-        noradrenaline.zPosition = -2
-        
-        return noradrenaline
-    }
-    
-    
-    public var frontBrainNode: SKSpriteNode {
-        let frontBrain = SKSpriteNode(imageNamed: frontBrainSpriteName)
-        frontBrain.position = CGPoint(x: backBrainNode.frame.midX, y: backBrainNode.frame.midY)
-        frontBrain.scale(to: CGSize(width: backBrainNode.frame.width, height: backBrainNode.frame.height))
-        frontBrain.zPosition = -1
-        
-        return frontBrain
-    }
+    public var backBrainNode = SKSpriteNode()
+    public var serotoninNode = SKSpriteNode()
+    public var dopamineNode = SKSpriteNode()
+    public var noradrenalineNode = SKSpriteNode()
+    public var frontBrainNode = SKSpriteNode()
        
+    //Initializers
+    private func createBrain() {
+        backBrainNode = SKSpriteNode(imageNamed: backBrainSpriteName)
+        backBrainNode.position = CGPoint(x: skView.frame.midX, y: skView.frame.midY * 1.25)
+        backBrainNode.scale(to: CGSize(width: backBrainNode.frame.width / 1.5, height: backBrainNode.frame.height / 1.5))
+        backBrainNode.zPosition = -5
+        frontBrainNode = SKSpriteNode(imageNamed: frontBrainSpriteName)
+        frontBrainNode.position = CGPoint(x: backBrainNode.frame.midX, y: backBrainNode.frame.midY)
+        frontBrainNode.scale(to: CGSize(width: backBrainNode.frame.width, height: backBrainNode.frame.height))
+        frontBrainNode.zPosition = -1
+    }
+    
+    private func createSerotonin() {
+        serotoninNode = SKSpriteNode(imageNamed: seratoninSpriteName)
+        serotoninNode.position = CGPoint(x: backBrainNode.frame.midX, y: backBrainNode.frame.midY)
+        serotoninNode.scale(to: CGSize(width: backBrainNode.frame.width, height: backBrainNode.frame.height))
+        serotoninNode.zPosition = -4
+    }
+    
+    private func createDopamine() {
+        dopamineNode = SKSpriteNode(imageNamed: dopamineSpriteName)
+        dopamineNode.position = CGPoint(x: backBrainNode.frame.midX, y: backBrainNode.frame.midY)
+        dopamineNode.scale(to: CGSize(width: backBrainNode.frame.width, height: backBrainNode.frame.height))
+        dopamineNode.zPosition = -3
+    }
+    
+    private func createNoradrenaline() {
+        noradrenalineNode = SKSpriteNode(imageNamed: noradrenalineSpriteName)
+        noradrenalineNode.position = CGPoint(x: backBrainNode.frame.midX, y: backBrainNode.frame.midY)
+        noradrenalineNode.scale(to: CGSize(width: backBrainNode.frame.width, height: backBrainNode.frame.height))
+        noradrenalineNode.zPosition = -2
+    }
+    
     //Methods
     public func addBrain(skScene: SKScene) {
+        createBrain()
         skScene.addChild(self.backBrainNode)
         skScene.addChild(self.frontBrainNode)
     }
     
     public func addSeratotin(skScene: SKScene) {
+        createSerotonin()
         skScene.addChild(self.serotoninNode)
     }
     
     public func addDopamine(skScene: SKScene) {
+        createDopamine()
         skScene.addChild(self.dopamineNode)
     }
     
     public func addNoradrenaline(skScene: SKScene) {
+        createNoradrenaline()
         skScene.addChild(self.noradrenalineNode)
     }
 }

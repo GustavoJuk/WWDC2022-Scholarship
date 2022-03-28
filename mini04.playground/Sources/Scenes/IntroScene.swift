@@ -2,19 +2,43 @@ import SpriteKit
 
 public class IntroScene: SKScene {
     
-    private var brainParts = Brain()
+    private var brain = Brain()
     private var title = SKLabelNode(fontNamed: "\(mainFontName) - Bold")
     private var footer = SKLabelNode(fontNamed: "\(mainFontName) - Regular")
+    private var text = SKLabelNode(fontNamed: "\(mainFontName) - Regular")
     
     public override init(size: CGSize) {
         super.init(size: size)
     }
     
+    public override func mouseUp(with event: NSEvent) {
+        let touchDetector = skView.scene?.name
+        let scaleUp = SKAction.scale(by: 1.5, duration: 0.25)
+        let fadeOut = SKAction.fadeOut(withDuration: 0.25)
+        let fadeIn = SKAction.fadeIn(withDuration: 0.25)
+        
+        if touchDetector != "Next scene" {
+            title.run(fadeOut)
+            footer.run(fadeOut)
+            brain.backBrainNode.run(scaleUp)
+            brain.frontBrainNode.run(scaleUp)
+            text.run(fadeIn)
+            
+            skView.scene?.name = "Next scene"
+        } else {
+            let newScene = SecondScene(size: skView.frame.size)
+            self.view?.presentScene(newScene, transition: .fade(with: backGroundColor, duration: 1.5))
+        }
+        
+    }
+
     public override func didMove(to view: SKView) {
         self.backgroundColor = backGroundColor
-        brainParts.addBrain(skScene: self)
+        brain.addBrain(skScene: self)
         addTitleText()
         addFooterText()
+        text.alpha = 0
+        addText()
     }
     
     private func addTitleText() {
@@ -32,10 +56,13 @@ public class IntroScene: SKScene {
         addChild(footer)
     }
     
-    public override func mouseUp(with event: NSEvent) {
-        let newScene = SecondScene(size: skView.frame.size)
-        
-        self.view?.presentScene(newScene, transition: .fade(with: backGroundColor, duration: 1.5))
+    private func addText() {
+        text.text = "Have you ever thought what could happen if mental health was not properly cared for and monitored?\n\nSo... Let's talk about Depression?"
+        text.position = CGPoint(x: skView.frame.midX, y: skView.frame.midY / 4)
+        text.fontSize = 20
+        text.preferredMaxLayoutWidth = skView.frame.size.width - 30
+        text.numberOfLines = 4
+        addChild(text)
     }
     
     required init?(coder aDecoder: NSCoder) {
