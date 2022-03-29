@@ -3,15 +3,13 @@ import SpriteKit
 public class SerotoninGraphic: SKNode {
     
     //Attributes
-    private let serotonin = SKLabelNode(fontNamed: "\(mainFontName) - Semi Bold")
+    private let serotonin = serotoninNameTitle
     private let sGraphic = SKSpriteNode(color: serotoninColor, size: CGSize(width: 30, height: 200))
     
     //Initializers
     private func createSerotoninGraphic() {
-        let scaleDown = SKAction.scale(by: 0.5, duration: 1.0)
         
-        serotonin.text = serotoninSpriteName
-        serotonin.fontColor = serotoninColor
+        let scaleDown = SKAction.scale(by: 0.5, duration: 1.0)
         serotonin.position = CGPoint(x: skView.frame.midX - (serotonin.frame.width * 1.5), y: skView.frame.midY / 3)
         sGraphic.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         sGraphic.position = CGPoint(x: serotonin.frame.midX, y: serotonin.frame.maxY + 10)
