@@ -1,6 +1,6 @@
 import SpriteKit
 
-public class IntroScene: SKScene {
+public class FirstScene: SKScene {
     
     private var brain = Brain()
     private var title = SKLabelNode(fontNamed: "\(mainFontName) - Bold")
@@ -13,21 +13,22 @@ public class IntroScene: SKScene {
     
     public override func mouseUp(with event: NSEvent) {
         let touchDetector = skView.scene?.name
-        let scaleUp = SKAction.scale(by: 1.5, duration: 0.25)
-        let fadeOut = SKAction.fadeOut(withDuration: 0.25)
+        let scaleUp = SKAction.scale(by: 1.5, duration: 0.5)
+        let fadeOut = SKAction.fadeOut(withDuration: 0.5)
         let fadeIn = SKAction.fadeIn(withDuration: 0.25)
         
-        if touchDetector != "Next scene" {
+        if touchDetector != "Second scene" {
             title.run(fadeOut)
             footer.run(fadeOut)
             brain.backBrainNode.run(scaleUp)
             brain.frontBrainNode.run(scaleUp)
-            text.run(fadeIn)
+            delay(0.5, closure: {
+                self.text.run(fadeIn)
+            })
             
-            skView.scene?.name = "Next scene"
+            skView.scene?.name = "Second scene"
         } else {
-            let newScene = SecondScene(size: skView.frame.size)
-            self.view?.presentScene(newScene, transition: .fade(with: backGroundColor, duration: 1.5))
+            transition(nextScene: SecondScene(size: skView.frame.size), currentScene: self)
         }
         
     }
@@ -37,7 +38,6 @@ public class IntroScene: SKScene {
         brain.addBrain(skScene: self)
         addTitleText()
         addFooterText()
-        text.alpha = 0
         addText()
     }
     
@@ -62,6 +62,7 @@ public class IntroScene: SKScene {
         text.fontSize = 20
         text.preferredMaxLayoutWidth = skView.frame.size.width - 30
         text.numberOfLines = 4
+        text.alpha = 0
         addChild(text)
     }
     

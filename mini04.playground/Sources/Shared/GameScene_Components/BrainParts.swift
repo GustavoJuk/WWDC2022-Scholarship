@@ -22,7 +22,7 @@ public class Brain: SKNode {
     }
     
     private func createSerotonin() {
-        serotoninNode = SKSpriteNode(imageNamed: seratoninSpriteName)
+        serotoninNode = SKSpriteNode(imageNamed: serotoninSpriteName)
         serotoninNode.position = CGPoint(x: backBrainNode.frame.midX, y: backBrainNode.frame.midY)
         serotoninNode.scale(to: CGSize(width: backBrainNode.frame.width, height: backBrainNode.frame.height))
         serotoninNode.zPosition = -4
