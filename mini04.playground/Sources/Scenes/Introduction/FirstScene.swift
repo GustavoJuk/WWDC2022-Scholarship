@@ -22,7 +22,7 @@ public class FirstScene: SKScene {
             footer.run(fadeOut)
             brain.backBrainNode.run(scaleUp)
             brain.frontBrainNode.run(scaleUp)
-            delay(0.5, closure: {
+            delay(scaleUp.duration, closure: {
                 self.text.run(fadeIn)
             })
             

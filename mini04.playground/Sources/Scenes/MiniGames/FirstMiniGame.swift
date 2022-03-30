@@ -3,12 +3,13 @@ import SpriteKit
 public class FirstMiniGameScene: SKScene {
     private let title = SKLabelNode(fontNamed: "\(mainFontName) - Bold")
     private let text = SKLabelNode(fontNamed: "\(mainFontName) - Regular")
-    private let brain = Brain()
     private let tutorialText = SKLabelNode(fontNamed: "\(mainFontName) - Regular")
+    private let brain = Brain()
+    private let button = ExerciseButton()
     
     public override func didMove(to view: SKView) {
         self.backgroundColor = backGroundColor
-        addBrainNodes()
+        addAllBrainNodes()
         createTitle()
         createText()
     }
@@ -17,13 +18,15 @@ public class FirstMiniGameScene: SKScene {
         let touchDetector = skView.scene?.name
         let fadeOut = SKAction.fadeOut(withDuration: 0.25)
         let fadeIn = SKAction.fadeIn(withDuration: 0.25)
-        let move = SKAction.move(to: CGPoint(x: skView.frame.midX, y: skView.frame.maxY - (brain.backBrainNode.frame.size.width / 1.5)), duration: 0.5)
+        let fadeAlphaHalf = SKAction.fadeAlpha(by: 0.5, duration: 0.25)
+        let scaleUp = SKAction.scale(by: 2.0, duration: 0.25)
+        let moveUp = SKAction.move(to: CGPoint(x: skView.frame.maxX - (brain.backBrainNode.frame.size.width / 4), y: skView.frame.maxY - (brain.backBrainNode.frame.size.height / 2)), duration: 0.5)
         
         if touchDetector != "Second Game Scene" {
             brain.serotoninNode.run(fadeOut)
             brain.dopamineNode.run(fadeOut)
             brain.noradrenalineNode.run(fadeOut)
-            delay(0.25, closure: {
+            delay(fadeOut.duration, closure: {
                 self.brain.serotoninNode.alpha = 0
                 self.brain.dopamineNode.alpha = 0
                 self.brain.noradrenalineNode.alpha = 0
@@ -33,34 +36,47 @@ public class FirstMiniGameScene: SKScene {
         } else {
             title.run(fadeOut)
             text.run(fadeOut)
-            delay(0.25, closure: {
+            delay(fadeOut.duration, closure: {
                 self.title.removeFromParent()
                 self.text.removeFromParent()
             })
-            brain.backBrainNode.run(move)
-            brain.frontBrainNode.run(move)
-            brain.serotoninNode.run(move)
-            brain.dopamineNode.run(move)
-            brain.noradrenalineNode.run(move)
-            createTutorialText()
-            delay(0.25, closure: {
-                
-                self.tutorialText.run(fadeIn)
+            brain.backBrainNode.run(moveUp)
+            brain.frontBrainNode.run(moveUp)
+            brain.serotoninNode.run(moveUp)
+            delay(moveUp.duration, closure: {
+                self.brain.backBrainNode.run(scaleUp)
+                self.brain.frontBrainNode.run(scaleUp)
+                self.brain.serotoninNode.run(scaleUp)
+                self.createTutorialText()
+                delay(scaleUp.duration, closure: {
+                    self.brain.serotoninNode.run(fadeAlphaHalf)
+                    self.tutorialText.run(fadeIn)
+                    self.brain.addBrain(skScene: self)
+                    self.brain.backBrainNode.scale(to: CGSize(width: self.brain.backBrainNode.frame.width / 2, height: self.brain.backBrainNode.frame.height / 2))
+                    self.brain.backBrainNode.position = CGPoint(x: skView.frame.midX - (skView.frame.midX / 1.5), y: skView.frame.midY - (skView.frame.midY / 1.5))
+                    self.brain.frontBrainNode.scale(to: CGSize(width: self.brain.backBrainNode.frame.width, height: self.brain.backBrainNode.frame.height))
+                    self.brain.frontBrainNode.position = self.brain.backBrainNode.position
+                    self.addButtonNode()
+                })
             })
         }
     }
     
-    private func addBrainNodes() {
+    private func addButtonNode() {
+        button.addButton(skScene: self)
+    }
+    
+    private func addAllBrainNodes() {
         brain.addBrain(skScene: self)
         brain.addSeratotin(skScene: self)
         brain.addDopamine(skScene: self)
         brain.addNoradrenaline(skScene: self)
         
         brain.backBrainNode.position = CGPoint(x: skView.frame.midX, y: skView.frame.midY / 1.5)
-        brain.frontBrainNode.position = CGPoint(x: brain.backBrainNode.position.x, y: brain.backBrainNode.position.y)
-        brain.serotoninNode.position = CGPoint(x: brain.backBrainNode.position.x, y: brain.backBrainNode.position.y)
-        brain.dopamineNode.position = CGPoint(x: brain.backBrainNode.position.x, y: brain.backBrainNode.position.y)
-        brain.noradrenalineNode.position = CGPoint(x: brain.backBrainNode.position.x, y: brain.backBrainNode.position.y)
+        brain.frontBrainNode.position = brain.backBrainNode.position
+        brain.serotoninNode.position = brain.backBrainNode.position
+        brain.dopamineNode.position = brain.backBrainNode.position
+        brain.noradrenalineNode.position = brain.backBrainNode.position
     }
     
     private func createTitle() {
@@ -81,10 +97,10 @@ public class FirstMiniGameScene: SKScene {
     private func createTutorialText() {
         tutorialText.text = "The level of Serotonin in Brunos's brains is very low!\nQuick! Help him by doing some Exercise"
         tutorialText.alpha = 0
-        tutorialText.preferredMaxLayoutWidth = skView.frame.size.width - 30
-        tutorialText.numberOfLines = 2
+        tutorialText.preferredMaxLayoutWidth = skView.frame.size.width - 50
+        tutorialText.numberOfLines = 3
         tutorialText.fontSize = 20
-        tutorialText.position = CGPoint(x: skView.frame.midX, y: skView.frame.midY * 1.005)
+        tutorialText.position = CGPoint(x: skView.frame.minX + (tutorialText.frame.size.width / 2), y: skView.frame.maxY - (brain.backBrainNode.frame.size.height / 2))
         addChild(tutorialText)
     }
 }
