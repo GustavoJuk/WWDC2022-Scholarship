@@ -3,7 +3,7 @@ import SpriteKit
 public class FirstScene: SKScene {
     
     private var brain = Brain()
-    private var nextSceneButton = NextSceneButton()
+    private let nextSceneButton = NextSceneButton()
     private var title = SKLabelNode(fontNamed: "\(mainFontName) - Bold")
     private var footer = SKLabelNode(fontNamed: "\(mainFontName) - Regular")
     private var text = SKLabelNode(fontNamed: "\(mainFontName) - Regular")

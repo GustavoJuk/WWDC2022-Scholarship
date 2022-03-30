@@ -1,7 +1,9 @@
 import SpriteKit
 
 public class ThirdScene: SKScene {
+    
     private let article = SKLabelNode(fontNamed: "\(mainFontName) - Bold")
+    private let nextSceneButton = NextSceneButton()
     private let seratonin = SerotoninGraphic()
     private let dopamine = DopamineGraphic()
     private let noradrenaline = NoradrenalineGraphic()
@@ -9,6 +11,7 @@ public class ThirdScene: SKScene {
     public override func didMove(to view: SKView) {
         self.backgroundColor  = backGroundColor
         addText()
+        nextSceneButton.addButton(skScene: self)
         seratonin.addSerotoninGraphic(skScene: self)
         dopamine.addDopamineGraphic(skScene: self)
         noradrenaline.addNoradrenalineGraphic(skScene: self)

@@ -1,15 +1,18 @@
 import SpriteKit
 
 public class FirstMiniGameScene: SKScene {
+    
     private let title = SKLabelNode(fontNamed: "\(mainFontName) - Bold")
     private let text = SKLabelNode(fontNamed: "\(mainFontName) - Regular")
     private let tutorialText = SKLabelNode(fontNamed: "\(mainFontName) - Regular")
     private let brain = Brain()
-    private let button = ExerciseButton()
+    private let nextSceneButton = NextSceneButton()
+    private let exerciseButton = ExerciseButton()
     
     public override func didMove(to view: SKView) {
         self.backgroundColor = backGroundColor
         addAllBrainNodes()
+        nextSceneButton.addButton(skScene: self)
         createTitle()
         createText()
     }
@@ -18,24 +21,20 @@ public class FirstMiniGameScene: SKScene {
         let touchDetector = skView.scene?.name
         let fadeOut = SKAction.fadeOut(withDuration: 0.25)
         let fadeIn = SKAction.fadeIn(withDuration: 0.25)
-        let fadeAlphaHalf = SKAction.fadeAlpha(by: 0.5, duration: 0.25)
+        let fadeAlphaHalf = SKAction.fadeAlpha(to: 0.5, duration: 0.25)
         let scaleUp = SKAction.scale(by: 2.0, duration: 0.25)
         let moveUp = SKAction.move(to: CGPoint(x: skView.frame.maxX - (brain.backBrainNode.frame.size.width / 4), y: skView.frame.maxY - (brain.backBrainNode.frame.size.height / 2)), duration: 0.5)
         
         if touchDetector != "Second Game Scene" {
-            brain.serotoninNode.run(fadeOut)
-            brain.dopamineNode.run(fadeOut)
-            brain.noradrenalineNode.run(fadeOut)
-            delay(fadeOut.duration, closure: {
-                self.brain.serotoninNode.alpha = 0
-                self.brain.dopamineNode.alpha = 0
-                self.brain.noradrenalineNode.alpha = 0
-            })
+            brain.serotoninNode.run(fadeAlphaHalf)
+            brain.dopamineNode.run(fadeAlphaHalf)
+            brain.noradrenalineNode.run(fadeAlphaHalf)
             
             skView.scene?.name = "Second Game Scene"
         } else {
             title.run(fadeOut)
             text.run(fadeOut)
+            nextSceneButton.circle.run(fadeOut)
             delay(fadeOut.duration, closure: {
                 self.title.removeFromParent()
                 self.text.removeFromParent()
@@ -43,10 +42,14 @@ public class FirstMiniGameScene: SKScene {
             brain.backBrainNode.run(moveUp)
             brain.frontBrainNode.run(moveUp)
             brain.serotoninNode.run(moveUp)
+            brain.dopamineNode.run(moveUp)
+            brain.noradrenalineNode.run(moveUp)
             delay(moveUp.duration, closure: {
                 self.brain.backBrainNode.run(scaleUp)
                 self.brain.frontBrainNode.run(scaleUp)
                 self.brain.serotoninNode.run(scaleUp)
+                self.brain.dopamineNode.run(scaleUp)
+                self.brain.noradrenalineNode.run(scaleUp)
                 self.createTutorialText()
                 delay(scaleUp.duration, closure: {
                     self.brain.serotoninNode.run(fadeAlphaHalf)
@@ -63,7 +66,7 @@ public class FirstMiniGameScene: SKScene {
     }
     
     private func addButtonNode() {
-        button.addButton(skScene: self)
+        exerciseButton.addButton(skScene: self)
     }
     
     private func addAllBrainNodes() {

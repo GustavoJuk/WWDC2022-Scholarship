@@ -1,7 +1,10 @@
 import SpriteKit
 
 public class SecondScene: SKScene {
+    
     private var article = SKLabelNode(fontNamed: "\(mainFontName) - Regular")
+    private let nextSceneButton = NextSceneButton()
+    
     public override init(size: CGSize) {
         super.init(size: size)
     }
@@ -9,6 +12,7 @@ public class SecondScene: SKScene {
     public override func didMove(to view: SKView) {
         self.backgroundColor  = backGroundColor
         addText()
+        nextSceneButton.addButton(skScene: self)
     }
     
     public override func mouseUp(with event: NSEvent) {

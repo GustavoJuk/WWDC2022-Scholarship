@@ -4,7 +4,7 @@ import PlaygroundSupport
 import SpriteKit
 import CoreGraphics
 
-let gameScene = FirstScene(size: skView.frame.size)
+let gameScene = FirstMiniGameScene(size: skView.frame.size)
 
 skView.presentScene(gameScene)
 
