@@ -18,7 +18,12 @@ public class ThirdScene: SKScene {
     }
     
     public override func mouseUp(with event: NSEvent) {
-        transition(nextScene: FirstMiniGameScene(size: skView.frame.size), currentScene: self)
+        let location = event.location(in: self)
+        for clickNode in nodes(at: location) {
+            if clickNode.name == buttonNodeName {
+                transition(nextScene: FirstMiniGameScene(size: skView.frame.size), currentScene: self)
+            }
+        }
     }
     
     private func addText() {

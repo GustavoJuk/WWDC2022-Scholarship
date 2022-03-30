@@ -67,6 +67,11 @@ public var sleepNameTitle: SKLabelNode {
     
     return title
 }
+public let buttonNodeName = "Next page"
+public let buttonSpriteName = "arrow"
+public let exerciseButtonNodeName = "Exercise Button"
+public let dietButtonNodeName = "Diet button"
+public let sleepButtonNodeName = "Sleep button"
 
 //Font
 public let mainFontName = "SF Symbool"

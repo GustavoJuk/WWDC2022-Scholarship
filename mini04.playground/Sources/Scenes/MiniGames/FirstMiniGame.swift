@@ -6,6 +6,7 @@ public class FirstMiniGameScene: SKScene {
     private let text = SKLabelNode(fontNamed: "\(mainFontName) - Regular")
     private let tutorialText = SKLabelNode(fontNamed: "\(mainFontName) - Regular")
     private let brain = Brain()
+    private let secondBrain = Brain()
     private let nextSceneButton = NextSceneButton()
     private let exerciseButton = ExerciseButton()
     
@@ -17,51 +18,69 @@ public class FirstMiniGameScene: SKScene {
         createText()
     }
     
-    public override func mouseUp(with event: NSEvent) {
-        let touchDetector = skView.scene?.name
+    public override func mouseDown(with event: NSEvent) {
+        
+        let location = event.location(in: self)
         let fadeOut = SKAction.fadeOut(withDuration: 0.25)
         let fadeIn = SKAction.fadeIn(withDuration: 0.25)
         let fadeAlphaHalf = SKAction.fadeAlpha(to: 0.5, duration: 0.25)
         let scaleUp = SKAction.scale(by: 2.0, duration: 0.25)
         let moveUp = SKAction.move(to: CGPoint(x: skView.frame.maxX - (brain.backBrainNode.frame.size.width / 4), y: skView.frame.maxY - (brain.backBrainNode.frame.size.height / 2)), duration: 0.5)
         
-        if touchDetector != "Second Game Scene" {
-            brain.serotoninNode.run(fadeAlphaHalf)
-            brain.dopamineNode.run(fadeAlphaHalf)
-            brain.noradrenalineNode.run(fadeAlphaHalf)
-            
-            skView.scene?.name = "Second Game Scene"
-        } else {
-            title.run(fadeOut)
-            text.run(fadeOut)
-            nextSceneButton.circle.run(fadeOut)
-            delay(fadeOut.duration, closure: {
-                self.title.removeFromParent()
-                self.text.removeFromParent()
-            })
-            brain.backBrainNode.run(moveUp)
-            brain.frontBrainNode.run(moveUp)
-            brain.serotoninNode.run(moveUp)
-            brain.dopamineNode.run(moveUp)
-            brain.noradrenalineNode.run(moveUp)
-            delay(moveUp.duration, closure: {
-                self.brain.backBrainNode.run(scaleUp)
-                self.brain.frontBrainNode.run(scaleUp)
-                self.brain.serotoninNode.run(scaleUp)
-                self.brain.dopamineNode.run(scaleUp)
-                self.brain.noradrenalineNode.run(scaleUp)
-                self.createTutorialText()
-                delay(scaleUp.duration, closure: {
-                    self.brain.serotoninNode.run(fadeAlphaHalf)
-                    self.tutorialText.run(fadeIn)
-                    self.brain.addBrain(skScene: self)
-                    self.brain.backBrainNode.scale(to: CGSize(width: self.brain.backBrainNode.frame.width / 2, height: self.brain.backBrainNode.frame.height / 2))
-                    self.brain.backBrainNode.position = CGPoint(x: skView.frame.midX - (skView.frame.midX / 1.5), y: skView.frame.midY - (skView.frame.midY / 1.5))
-                    self.brain.frontBrainNode.scale(to: CGSize(width: self.brain.backBrainNode.frame.width, height: self.brain.backBrainNode.frame.height))
-                    self.brain.frontBrainNode.position = self.brain.backBrainNode.position
-                    self.addButtonNode()
+        
+        for clickNode in nodes(at: location) {
+            if clickNode.name == nextSceneButton.buttonNode.name {
+                brain.serotoninNode.run(fadeAlphaHalf)
+                brain.dopamineNode.run(fadeAlphaHalf)
+                brain.noradrenalineNode.run(fadeAlphaHalf)
+                title.run(fadeOut)
+                text.run(fadeOut)
+                nextSceneButton.buttonNode.run(fadeOut)
+                delay(fadeOut.duration, closure: {
+                    self.title.removeFromParent()
+                    self.text.removeFromParent()
+                    delay(fadeOut.duration, closure: {
+                        self.brain.backBrainNode.run(moveUp)
+                        self.brain.frontBrainNode.run(moveUp)
+                        self.brain.serotoninNode.run(moveUp)
+                        self.brain.dopamineNode.run(moveUp)
+                        self.brain.noradrenalineNode.run(moveUp)
+                        delay(moveUp.duration, closure: {
+                            self.brain.backBrainNode.run(scaleUp)
+                            self.brain.frontBrainNode.run(scaleUp)
+                            self.brain.serotoninNode.run(scaleUp)
+                            self.brain.dopamineNode.run(scaleUp)
+                            self.brain.noradrenalineNode.run(scaleUp)
+                            self.createTutorialText()
+                            delay(scaleUp.duration, closure: {
+                                self.tutorialText.run(fadeIn)
+                                self.addButtonNode()
+                                self.exerciseButton.alpha = 0
+                                self.exerciseButton.node.run(fadeIn)
+                                self.secondBrain.addBrain(skScene: self)
+                                self.secondBrain.backBrainNode.scale(to: CGSize(width: self.secondBrain.backBrainNode.frame.width / 2, height: self.secondBrain.backBrainNode.frame.height / 2))
+                                self.secondBrain.backBrainNode.position = CGPoint(x: skView.frame.midX - (skView.frame.midX / 1.5), y: skView.frame.midY - (skView.frame.midY / 1.5))
+                                self.secondBrain.backBrainNode.alpha = 0
+                                self.secondBrain.backBrainNode.physicsBody = SKPhysicsBody(texture: self.secondBrain.backBrainNode.texture!, size: self.secondBrain.backBrainNode.size)
+                                self.secondBrain.backBrainNode.physicsBody?.affectedByGravity = false
+                                self.secondBrain.backBrainNode.physicsBody?.allowsRotation = false
+                                self.secondBrain.backBrainNode.run(fadeIn)
+                                self.secondBrain.frontBrainNode.scale(to: CGSize(width: self.secondBrain.backBrainNode.frame.width, height: self.secondBrain.backBrainNode.frame.height))
+                                self.secondBrain.frontBrainNode.position = self.secondBrain.backBrainNode.position
+                                self.secondBrain.frontBrainNode.alpha = 0
+                                self.secondBrain.frontBrainNode.physicsBody = SKPhysicsBody(texture: self.secondBrain.frontBrainNode.texture!, size: self.secondBrain.frontBrainNode.size)
+                                self.secondBrain.frontBrainNode.physicsBody?.affectedByGravity = false
+                                self.secondBrain.frontBrainNode.physicsBody?.allowsRotation = false
+                                self.secondBrain.frontBrainNode.run(fadeIn)
+                            })
+                        })
+                    })
                 })
-            })
+            }
+            if clickNode.name == exerciseButton.node.name {
+                secondBrain.backBrainNode.physicsBody?.applyImpulse(CGVector(dx: 10, dy: 0))
+                secondBrain.frontBrainNode.physicsBody?.applyImpulse(CGVector(dx: 10, dy: 0))
+            }
         }
     }
     

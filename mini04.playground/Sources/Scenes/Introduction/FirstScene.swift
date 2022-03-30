@@ -12,28 +12,30 @@ public class FirstScene: SKScene {
         super.init(size: size)
     }
     
-    public override func mouseUp(with event: NSEvent) {
-        let touchDetector = skView.scene?.name
+    public override func mouseDown(with event: NSEvent) {
+        
+        let location = event.location(in: self)
         let scaleUp = SKAction.scale(by: 1.5, duration: 0.5)
         let fadeOut = SKAction.fadeOut(withDuration: 0.5)
         let fadeIn = SKAction.fadeIn(withDuration: 0.25)
         
-        if touchDetector != "Second scene" {
-            title.run(fadeOut)
-            footer.run(fadeOut)
-            brain.backBrainNode.run(scaleUp)
-            brain.frontBrainNode.run(scaleUp)
-            delay(scaleUp.duration, closure: {
-                self.text.run(fadeIn)
-            })
-            
-            skView.scene?.name = "Second scene"
-        } else {
-            transition(nextScene: SecondScene(size: skView.frame.size), currentScene: self)
-        }
         
+        for clickNode in nodes(at: location) {
+            if clickNode.name == nextSceneButton.node.name {
+                title.run(fadeOut)
+                footer.run(fadeOut)
+                brain.backBrainNode.run(scaleUp)
+                brain.frontBrainNode.run(scaleUp)
+                delay(scaleUp.duration, closure: {
+                    self.text.run(fadeIn)
+                })
+            }
+            if event.clickCount == 2 && clickNode.name == nextSceneButton.node.name {
+                transition(nextScene: SecondScene(size: skView.frame.size), currentScene: self)
+            }
+        }
     }
-
+    
     public override func didMove(to view: SKView) {
         self.backgroundColor = backGroundColor
         brain.addBrain(skScene: self)
