@@ -3,6 +3,7 @@ import SpriteKit
 public class FirstScene: SKScene {
     
     private var brain = Brain()
+    private var nextSceneButton = NextSceneButton()
     private var title = SKLabelNode(fontNamed: "\(mainFontName) - Bold")
     private var footer = SKLabelNode(fontNamed: "\(mainFontName) - Regular")
     private var text = SKLabelNode(fontNamed: "\(mainFontName) - Regular")
@@ -36,6 +37,7 @@ public class FirstScene: SKScene {
     public override func didMove(to view: SKView) {
         self.backgroundColor = backGroundColor
         brain.addBrain(skScene: self)
+        nextSceneButton.addButton(skScene: self)
         addTitleText()
         addFooterText()
         addText()
