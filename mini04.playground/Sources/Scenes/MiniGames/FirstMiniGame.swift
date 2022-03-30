@@ -5,6 +5,7 @@ public class FirstMiniGameScene: SKScene {
     private let title = SKLabelNode(fontNamed: "\(mainFontName) - Bold")
     private let text = SKLabelNode(fontNamed: "\(mainFontName) - Regular")
     private let tutorialText = SKLabelNode(fontNamed: "\(mainFontName) - Regular")
+    private let finishLine = SKShapeNode(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 15, height: 100)))
     private let brain = Brain()
     private let secondBrain = Brain()
     private let nextSceneButton = NextSceneButton()
@@ -72,6 +73,8 @@ public class FirstMiniGameScene: SKScene {
                                 self.secondBrain.frontBrainNode.physicsBody?.affectedByGravity = false
                                 self.secondBrain.frontBrainNode.physicsBody?.allowsRotation = false
                                 self.secondBrain.frontBrainNode.run(fadeIn)
+                                self.addFinishLine()
+                                self.finishLine.run(fadeIn)
                             })
                         })
                     })
@@ -86,6 +89,18 @@ public class FirstMiniGameScene: SKScene {
     
     private func addButtonNode() {
         exerciseButton.addButton(skScene: self)
+    }
+    
+    private func addFinishLine() {
+        finishLine.name = "Finish line"
+        finishLine.position = CGPoint(x: skView.frame.midX + (skView.frame.midX / 1.5), y: (skView.frame.midY - (skView.frame.midY / 1.5)) - (finishLine.frame.height / 2))
+        finishLine.fillColor = .white
+        finishLine.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: finishLine.frame.width, height: finishLine.frame.height))
+        finishLine.physicsBody?.isDynamic = false
+        finishLine.physicsBody?.allowsRotation = false
+        finishLine.physicsBody?.affectedByGravity = false
+        
+        addChild(finishLine)
     }
     
     private func addAllBrainNodes() {
