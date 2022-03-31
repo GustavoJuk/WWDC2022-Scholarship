@@ -110,7 +110,7 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
                         self.brain.noradrenalineNode.run(moveToCenter)
                         delay(moveToCenter.duration + 0.5, closure: {
                             self.brain.serotoninNode.run(fadeAlphaHalf)
-                            delay(fadeAlphaHalf.duration, closure: {
+                            delay(fadeAlphaHalf.duration + 0.5, closure: {
                                 transition(nextScene: SecondMiniGameScene(size: skView.frame.size), currentScene: self)
                             })
                         })
