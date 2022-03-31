@@ -36,7 +36,7 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
                 brain.noradrenalineNode.run(fadeAlphaHalf)
                 title.run(fadeOut)
                 text.run(fadeOut)
-                nextSceneButton.buttonNode.run(fadeOut)
+                nextSceneButton.node.run(fadeOut)
                 delay(fadeOut.duration, closure: {
                     self.title.removeFromParent()
                     self.text.removeFromParent()
@@ -152,7 +152,6 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
     
     private func addFinishLine() {
         finishLine.name = "Finish line"
-//        finishLine.position = CGPoint(x: skView.frame.midX + (skView.frame.midX / 1.5), y: (skView.frame.midY - (skView.frame.midY / 1.5)) - (finishLine.frame.height / 2))
         finishLine.fillColor = .white
         finishLine.physicsBody = SKPhysicsBody(rectangleOf: finishLine.frame.size, center: CGPoint(x: finishLine.frame.midX, y: finishLine.frame.midY))
         finishLine.physicsBody?.allowsRotation = false
