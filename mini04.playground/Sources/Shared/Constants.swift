@@ -25,6 +25,7 @@ public let serotoninSpriteName = "Serotonin"
 public let dopamineSpriteName = "Dopamine"
 public let noradrenalineSpriteName = "Noradrenaline"
 public let frontBrainSpriteName = "frontBrain"
+public let fullBrainSpriteName = "fullBrain"
 public var serotoninNameTitle: SKLabelNode {
     let title = SKLabelNode(fontNamed: "\(mainFontName) - Semi Bold")
     title.text = serotoninSpriteName
@@ -80,4 +81,12 @@ public let mainFontName = "SF Symbool"
 public func delay(_ delay: Double, closure: @escaping() -> ()) {
     let test = DispatchTime.now() + delay
     DispatchQueue.main.asyncAfter(deadline: test, execute: closure)
+}
+
+//Collision Types
+public enum CollisionType: UInt32 {
+    public typealias RawValue = UInt32
+    
+    case brain = 0
+    case finishLine = 1
 }

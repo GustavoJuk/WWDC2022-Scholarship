@@ -10,15 +10,12 @@ public protocol ButtonNode: SKNode {
     func addButton(skScene: SKScene)
 }
 
-public class NextSceneButton: SKNode, ButtonNode {
-    public var node: SKShapeNode = SKShapeNode(rect: CGRect(x: skView.frame.midX + (skView.frame.midX / 1.25), y: skView.frame.midY - (skView.frame.midY / 1.1), width: 50, height: 55))
-    public var color: NSColor = .clear
-    public var strokeSize: CGFloat = 0
+public class NextSceneButton: SKNode {
     public let buttonNode = SKSpriteNode(imageNamed: buttonSpriteName)
     
     public func createButton() {
         buttonNode.name = buttonNodeName
-        buttonNode.position = CGPoint(x: node.frame.midX, y: node.frame.midY)
+        buttonNode.position = CGPoint(x: skView.frame.midX + (skView.frame.midX / 1.25), y: skView.frame.midY - (skView.frame.midY / 1.25))
     }
     
     public func addButton(skScene: SKScene) {

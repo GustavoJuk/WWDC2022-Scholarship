@@ -1,18 +1,19 @@
 import SpriteKit
 
-public class FirstMiniGameScene: SKScene {
+public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
     
     private let title = SKLabelNode(fontNamed: "\(mainFontName) - Bold")
     private let text = SKLabelNode(fontNamed: "\(mainFontName) - Regular")
     private let tutorialText = SKLabelNode(fontNamed: "\(mainFontName) - Regular")
-    private let finishLine = SKShapeNode(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 15, height: 100)))
+    private let finishLine = SKShapeNode(rect: CGRect(origin: CGPoint(x: skView.frame.midX * 1.75, y: (skView.frame.midY - (skView.frame.midY / 1.5) - 50)), size: CGSize(width: 15, height: 100)))
     private let brain = Brain()
-    private let secondBrain = Brain()
+    private let secondBrain = SKSpriteNode(imageNamed: fullBrainSpriteName)
     private let nextSceneButton = NextSceneButton()
     private let exerciseButton = ExerciseButton()
     
     public override func didMove(to view: SKView) {
         self.backgroundColor = backGroundColor
+        physicsWorld.contactDelegate = self
         addAllBrainNodes()
         nextSceneButton.addButton(skScene: self)
         createTitle()
@@ -30,7 +31,7 @@ public class FirstMiniGameScene: SKScene {
         
         
         for clickNode in nodes(at: location) {
-            if clickNode.name == nextSceneButton.buttonNode.name {
+            if clickNode.name == buttonNodeName {
                 brain.serotoninNode.run(fadeAlphaHalf)
                 brain.dopamineNode.run(fadeAlphaHalf)
                 brain.noradrenalineNode.run(fadeAlphaHalf)
@@ -56,23 +57,9 @@ public class FirstMiniGameScene: SKScene {
                             delay(scaleUp.duration, closure: {
                                 self.tutorialText.run(fadeIn)
                                 self.addButtonNode()
-                                self.exerciseButton.alpha = 0
                                 self.exerciseButton.node.run(fadeIn)
-                                self.secondBrain.addBrain(skScene: self)
-                                self.secondBrain.backBrainNode.scale(to: CGSize(width: self.secondBrain.backBrainNode.frame.width / 2, height: self.secondBrain.backBrainNode.frame.height / 2))
-                                self.secondBrain.backBrainNode.position = CGPoint(x: skView.frame.midX - (skView.frame.midX / 1.5), y: skView.frame.midY - (skView.frame.midY / 1.5))
-                                self.secondBrain.backBrainNode.alpha = 0
-                                self.secondBrain.backBrainNode.physicsBody = SKPhysicsBody(texture: self.secondBrain.backBrainNode.texture!, size: self.secondBrain.backBrainNode.size)
-                                self.secondBrain.backBrainNode.physicsBody?.affectedByGravity = false
-                                self.secondBrain.backBrainNode.physicsBody?.allowsRotation = false
-                                self.secondBrain.backBrainNode.run(fadeIn)
-                                self.secondBrain.frontBrainNode.scale(to: CGSize(width: self.secondBrain.backBrainNode.frame.width, height: self.secondBrain.backBrainNode.frame.height))
-                                self.secondBrain.frontBrainNode.position = self.secondBrain.backBrainNode.position
-                                self.secondBrain.frontBrainNode.alpha = 0
-                                self.secondBrain.frontBrainNode.physicsBody = SKPhysicsBody(texture: self.secondBrain.frontBrainNode.texture!, size: self.secondBrain.frontBrainNode.size)
-                                self.secondBrain.frontBrainNode.physicsBody?.affectedByGravity = false
-                                self.secondBrain.frontBrainNode.physicsBody?.allowsRotation = false
-                                self.secondBrain.frontBrainNode.run(fadeIn)
+                                self.addFullBrainNode()
+                                self.secondBrain.run(fadeIn)
                                 self.addFinishLine()
                                 self.finishLine.run(fadeIn)
                             })
@@ -80,25 +67,81 @@ public class FirstMiniGameScene: SKScene {
                     })
                 })
             }
-            if clickNode.name == exerciseButton.node.name {
-                secondBrain.backBrainNode.physicsBody?.applyImpulse(CGVector(dx: 10, dy: 0))
-                secondBrain.frontBrainNode.physicsBody?.applyImpulse(CGVector(dx: 10, dy: 0))
+            
+            if clickNode.name == exerciseButtonNodeName {
+                exerciseButton.node.setScale(0.75)
+                secondBrain.physicsBody?.applyImpulse(CGVector(dx: 10, dy: 0))
             }
         }
     }
     
+    public override func mouseUp(with event: NSEvent) {
+        let location = event.location(in: self)
+        
+        
+        for clickNode in nodes(at: location) {
+            if clickNode.name == exerciseButtonNodeName {
+                exerciseButton.node.setScale(1.0)
+            }
+        }
+    }
+    
+    public func didBegin(_ contact: SKPhysicsContact) {
+        let fadeOut = SKAction.fadeOut(withDuration: 0.5)
+
+        if contact.bodyA.node?.name == fullBrainSpriteName {
+            secondBrain.physicsBody?.isDynamic = false
+            secondBrain.run(fadeOut)
+            finishLine.run(fadeOut)
+            delay(fadeOut.duration + 0.5, closure: {
+                self.secondBrain.removeFromParent()
+                self.finishLine.removeFromParent()
+                self.exerciseButton.node.run(fadeOut)
+                delay(fadeOut.duration, closure: {
+                    self.exerciseButton.node.removeFromParent()
+                })
+            })
+        }
+    }
+    
+    public override func mouseEntered(with event: NSEvent) {
+        let location = event.location(in: self)
+        
+        for clickedNode in nodes(at: location) {
+            if clickedNode.name == exerciseButtonNodeName {
+                exerciseButton.node.setScale(1.15)
+            }
+        }
+    }
+    
+    private func addFullBrainNode() {
+        secondBrain.name = fullBrainSpriteName
+        secondBrain.scale(to: CGSize(width: secondBrain.frame.width / 2, height: secondBrain.frame.height / 2))
+        secondBrain.position = CGPoint(x: skView.frame.midX - (skView.frame.midX / 1.5), y: skView.frame.midY - (skView.frame.midY / 1.5))
+        secondBrain.alpha = 0
+        secondBrain.physicsBody = SKPhysicsBody(texture: secondBrain.texture!, size: secondBrain.size)
+        secondBrain.physicsBody?.affectedByGravity = false
+        secondBrain.physicsBody?.allowsRotation = false
+        secondBrain.physicsBody?.categoryBitMask = CollisionType.brain.rawValue
+        secondBrain.physicsBody?.collisionBitMask = CollisionType.finishLine.rawValue
+        secondBrain.physicsBody?.contactTestBitMask = CollisionType.finishLine.rawValue
+        
+        addChild(secondBrain)
+    }
+    
     private func addButtonNode() {
         exerciseButton.addButton(skScene: self)
+        exerciseButton.alpha = 0
     }
     
     private func addFinishLine() {
         finishLine.name = "Finish line"
-        finishLine.position = CGPoint(x: skView.frame.midX + (skView.frame.midX / 1.5), y: (skView.frame.midY - (skView.frame.midY / 1.5)) - (finishLine.frame.height / 2))
+//        finishLine.position = CGPoint(x: skView.frame.midX + (skView.frame.midX / 1.5), y: (skView.frame.midY - (skView.frame.midY / 1.5)) - (finishLine.frame.height / 2))
         finishLine.fillColor = .white
-        finishLine.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: finishLine.frame.width, height: finishLine.frame.height))
-        finishLine.physicsBody?.isDynamic = false
+        finishLine.physicsBody = SKPhysicsBody(rectangleOf: finishLine.frame.size, center: CGPoint(x: finishLine.frame.midX, y: finishLine.frame.midY))
         finishLine.physicsBody?.allowsRotation = false
         finishLine.physicsBody?.affectedByGravity = false
+        finishLine.physicsBody?.categoryBitMask = CollisionType.finishLine.rawValue
         
         addChild(finishLine)
     }

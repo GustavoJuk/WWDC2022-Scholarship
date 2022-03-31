@@ -21,7 +21,7 @@ public class FirstScene: SKScene {
         
         
         for clickNode in nodes(at: location) {
-            if clickNode.name == nextSceneButton.node.name {
+            if clickNode.name == buttonNodeName {
                 title.run(fadeOut)
                 footer.run(fadeOut)
                 brain.backBrainNode.run(scaleUp)
@@ -30,7 +30,7 @@ public class FirstScene: SKScene {
                     self.text.run(fadeIn)
                 })
             }
-            if event.clickCount == 2 && clickNode.name == nextSceneButton.node.name {
+            if event.clickCount == 2 && clickNode.name == buttonNodeName {
                 transition(nextScene: SecondScene(size: skView.frame.size), currentScene: self)
             }
         }
