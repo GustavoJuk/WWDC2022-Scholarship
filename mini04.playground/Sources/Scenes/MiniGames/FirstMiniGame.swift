@@ -25,10 +25,9 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
         let location = event.location(in: self)
         let fadeOut = SKAction.fadeOut(withDuration: 0.25)
         let fadeIn = SKAction.fadeIn(withDuration: 0.25)
-        let fadeAlphaHalf = SKAction.fadeAlpha(to: 0.5, duration: 0.25)
+        let fadeAlphaHalf = SKAction.fadeAlpha(to: 0.25, duration: 0.25)
         let scaleUp = SKAction.scale(by: 2.0, duration: 0.25)
         let moveUp = SKAction.move(to: CGPoint(x: skView.frame.maxX - (brain.backBrainNode.frame.size.width / 4), y: skView.frame.maxY - (brain.backBrainNode.frame.size.height / 2)), duration: 0.5)
-        
         
         for clickNode in nodes(at: location) {
             if clickNode.name == buttonNodeName {
@@ -88,6 +87,8 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
     
     public func didBegin(_ contact: SKPhysicsContact) {
         let fadeOut = SKAction.fadeOut(withDuration: 0.5)
+        let moveToCenter = SKAction.move(to: CGPoint(x: skView.frame.midX, y: skView.frame.midY), duration: 0.5)
+        let fadeAlphaHalf = SKAction.fadeAlpha(to: 1.0, duration: 0.25)
 
         if contact.bodyA.node?.name == fullBrainSpriteName {
             secondBrain.physicsBody?.isDynamic = false
@@ -97,8 +98,23 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
                 self.secondBrain.removeFromParent()
                 self.finishLine.removeFromParent()
                 self.exerciseButton.node.run(fadeOut)
+                self.tutorialText.run(fadeOut)
                 delay(fadeOut.duration, closure: {
                     self.exerciseButton.node.removeFromParent()
+                    self.tutorialText.removeFromParent()
+                    delay(fadeOut.duration, closure: {
+                        self.brain.backBrainNode.run(moveToCenter)
+                        self.brain.frontBrainNode.run(moveToCenter)
+                        self.brain.serotoninNode.run(moveToCenter)
+                        self.brain.dopamineNode.run(moveToCenter)
+                        self.brain.noradrenalineNode.run(moveToCenter)
+                        delay(moveToCenter.duration + 0.5, closure: {
+                            self.brain.serotoninNode.run(fadeAlphaHalf)
+                            delay(fadeAlphaHalf.duration, closure: {
+                                transition(nextScene: SecondMiniGameScene(size: skView.frame.size), currentScene: self)
+                            })
+                        })
+                    })
                 })
             })
         }
