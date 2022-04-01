@@ -6,11 +6,6 @@ public class SecondMiniGameScene: SKScene {
     private let nextButtonScene = NextSceneButton()
     private let tutorialText = SKLabelNode(fontNamed: "\(mainFontName) - Regular")
     private let dietNode1 = DietButton()
-    private let dietNode2 = DietButton()
-    private let dietNode3 = DietButton()
-    private let dietNode4 = DietButton()
-    private let dietNode5 = DietButton()
-    private let dietNode6 = DietButton()
     
     public override func didMove(to view: SKView) {
         self.backgroundColor = backGroundColor
@@ -37,11 +32,6 @@ public class SecondMiniGameScene: SKScene {
                     self.nextButtonScene.node.run(fadeOut)
                     self.tutorialText.run(fadeIn)
                     self.dietNode1.node.run(fadeIn)
-                    self.dietNode2.node.run(fadeIn)
-                    self.dietNode3.node.run(fadeIn)
-                    self.dietNode4.node.run(fadeIn)
-                    self.dietNode5.node.run(fadeIn)
-                    self.dietNode6.node.run(fadeIn)
                 })
             }
         }
@@ -82,27 +72,8 @@ public class SecondMiniGameScene: SKScene {
     
     private func addButtonsNodes() {
         dietNode1.addButton(skScene: self)
-        dietNode2.addButton(skScene: self)
-        dietNode3.addButton(skScene: self)
-        dietNode4.addButton(skScene: self)
-        dietNode5.addButton(skScene: self)
-        dietNode6.addButton(skScene: self)
         
         dietNode1.node.position = CGPoint(x: skView.frame.midX, y: skView.frame.midY / 1.5)
         dietNode1.node.alpha = 0
-        dietNode2.node.position = CGPoint(x: skView.frame.midX / 2, y: skView.frame.midY / 1.5)
-        dietNode2.node.alpha = 0
-        dietNode2.node.fillColor = .red
-        dietNode3.node.position = CGPoint(x: skView.frame.midX * 1.5, y: skView.frame.midY / 1.5)
-        dietNode3.node.alpha = 0
-        dietNode3.node.fillColor = .blue
-        dietNode4.node.position = CGPoint(x: skView.frame.midX, y: skView.frame.midY / 4)
-        dietNode4.node.alpha = 0
-        dietNode5.node.position = CGPoint(x: skView.frame.midX / 2, y: skView.frame.midY / 4)
-        dietNode5.node.alpha = 0
-        dietNode5.node.fillColor = .red
-        dietNode6.node.position = CGPoint(x: skView.frame.midX * 1.5, y: skView.frame.midY / 4)
-        dietNode6.node.alpha = 0
-        dietNode6.node.fillColor = .blue
     }
 }

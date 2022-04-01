@@ -20,12 +20,19 @@ public let dietColor = NSColor(red: 0, green: 130 / 255, blue: 121 / 255, alpha:
 public let sleepColor = NSColor(red: 213 / 255, green: 140 / 255, blue: 72 / 255, alpha: 1)
 
 //Names
-public let backBrainSpriteName = "backBrain"
-public let serotoninSpriteName = "Serotonin"
-public let dopamineSpriteName = "Dopamine"
-public let noradrenalineSpriteName = "Noradrenaline"
-public let frontBrainSpriteName = "frontBrain"
-public let fullBrainSpriteName = "fullBrain"
+public let backBrainSpriteName = "scene_components/Brain/backBrain"
+public let serotoninSpriteName = "scene_components/Brain/Serotonin"
+public let dopamineSpriteName = "scene_components/Brain/Dopamine"
+public let noradrenalineSpriteName = "scene_components/Brain/Noradrenaline"
+public let frontBrainSpriteName = "scene_components/Brain/frontBrain"
+public let fullBrainSpriteName = "scene_components/Brain/fullBrain"
+public let shelfSpriteName = "scene_components/Food/shelf"
+public let baconSpriteName = "scene_components/Food/bacon"
+public let chocolateSpriteName = "scene_components/Food/chocolate"
+public let donutSpriteName = "scene_components/Food/donut"
+public let eggsSpriteName = "scene_components/Food/eggs"
+public let firesSpriteName = "scene_components/Food/fries"
+public let sodaSpriteName = "scene_components/Food/soda"
 public var serotoninNameTitle: SKLabelNode {
     let title = SKLabelNode(fontNamed: "\(mainFontName) - Semi Bold")
     title.text = serotoninSpriteName
@@ -69,7 +76,7 @@ public var sleepNameTitle: SKLabelNode {
     return title
 }
 public let buttonNodeName = "Next page"
-public let buttonSpriteName = "arrow"
+public let buttonSpriteName = "scene_components/arrow"
 public let exerciseButtonNodeName = "Exercise Button"
 public let dietButtonNodeName = "Diet button"
 public let sleepButtonNodeName = "Sleep button"

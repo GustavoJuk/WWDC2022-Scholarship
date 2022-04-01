@@ -39,15 +39,15 @@ public class ExerciseButton: SKNode, ButtonNode {
 }
 
 public class DietButton: SKNode, ButtonNode {
-    public var node: SKShapeNode = SKShapeNode(circleOfRadius: 30)
+    public var node: SKShapeNode = SKShapeNode(rect: CGRect(x: 0, y: 0, width: 200, height: 100))
     public var color: NSColor = dietColor
-    public var strokeSize: CGFloat = 30
+    public var strokeSize: CGFloat = 0
     
     public func addButton(skScene: SKScene) {
         node.position = CGPoint(x: skView.frame.midX, y: skView.frame.midY)
         node.name = dietButtonNodeName
         node.fillColor = color
-        node.strokeColor = color.withAlphaComponent(0.5)
+        node.fillTexture = SKTexture(imageNamed: eggsSpriteName)
         node.lineWidth = strokeSize
         skScene.addChild(node)
     }
