@@ -8,64 +8,47 @@ public class Brain: SKNode {
     public var dopamineNode = SKSpriteNode()
     public var noradrenalineNode = SKSpriteNode()
     public var frontBrainNode = SKSpriteNode()
-       
-    //Initializers
-    private func createBrain() {
-        backBrainNode = SKSpriteNode(imageNamed: backBrainSpriteName)
-        backBrainNode.position = CGPoint(x: skView.frame.midX, y: skView.frame.midY * 1.25)
+                
+    //Methods
+    public func addBrain(skScene: SKScene) {
+        backBrainNode = SKSpriteNode(imageNamed: BACK_BRAIN_NODE_TX)
+        backBrainNode.position = CGPoint(x: SKVIEW.frame.midX, y: SKVIEW.frame.midY * 1.25)
         backBrainNode.scale(to: CGSize(width: backBrainNode.frame.width / 1.5, height: backBrainNode.frame.height / 1.5))
         backBrainNode.zPosition = -5
-        backBrainNode.name = backBrainSpriteName
-        frontBrainNode = SKSpriteNode(imageNamed: frontBrainSpriteName)
+        backBrainNode.name = BACK_BRAIN_NODE_TX
+        frontBrainNode = SKSpriteNode(imageNamed: FRONT_BRAIN_NODE_TX)
         frontBrainNode.position = backBrainNode.position
         frontBrainNode.scale(to: CGSize(width: backBrainNode.frame.width, height: backBrainNode.frame.height))
         frontBrainNode.zPosition = -1
-        frontBrainNode.name = frontBrainSpriteName
-    }
-    
-    private func createSerotonin() {
-        serotoninNode = SKSpriteNode(imageNamed: serotoninSpriteName)
-        serotoninNode.position = backBrainNode.position
-        serotoninNode.scale(to: CGSize(width: backBrainNode.frame.width, height: backBrainNode.frame.height))
-        serotoninNode.zPosition = -4
-        serotoninNode.name = serotoninSpriteName
-    }
-    
-    private func createDopamine() {
-        dopamineNode = SKSpriteNode(imageNamed: dopamineSpriteName)
-        dopamineNode.position = backBrainNode.position
-        dopamineNode.scale(to: CGSize(width: backBrainNode.frame.width, height: backBrainNode.frame.height))
-        dopamineNode.zPosition = -3
-        dopamineNode.name = dopamineSpriteName
-    }
-    
-    private func createNoradrenaline() {
-        noradrenalineNode = SKSpriteNode(imageNamed: noradrenalineSpriteName)
-        noradrenalineNode.position = backBrainNode.position
-        noradrenalineNode.scale(to: CGSize(width: backBrainNode.frame.width, height: backBrainNode.frame.height))
-        noradrenalineNode.zPosition = -2
-        noradrenalineNode.name = noradrenalineSpriteName
-    }
-    
-    //Methods
-    public func addBrain(skScene: SKScene) {
-        createBrain()
+        frontBrainNode.name = FRONT_BRAIN_NODE_TX
         skScene.addChild(self.backBrainNode)
         skScene.addChild(self.frontBrainNode)
     }
     
     public func addSeratotin(skScene: SKScene) {
-        createSerotonin()
+        serotoninNode = SKSpriteNode(imageNamed: SEROTONIN_NODE_TX)
+        serotoninNode.position = backBrainNode.position
+        serotoninNode.scale(to: CGSize(width: backBrainNode.frame.width, height: backBrainNode.frame.height))
+        serotoninNode.zPosition = -4
+        serotoninNode.name = SEROTONIN_NODE_TX
         skScene.addChild(self.serotoninNode)
     }
     
     public func addDopamine(skScene: SKScene) {
-        createDopamine()
+        dopamineNode = SKSpriteNode(imageNamed: DOPAMINE_NODE_TX)
+        dopamineNode.position = backBrainNode.position
+        dopamineNode.scale(to: CGSize(width: backBrainNode.frame.width, height: backBrainNode.frame.height))
+        dopamineNode.zPosition = -3
+        dopamineNode.name = DOPAMINE_NODE_TX
         skScene.addChild(self.dopamineNode)
     }
     
     public func addNoradrenaline(skScene: SKScene) {
-        createNoradrenaline()
+        noradrenalineNode = SKSpriteNode(imageNamed: NORADRENALINE_NODE_TX)
+        noradrenalineNode.position = backBrainNode.position
+        noradrenalineNode.scale(to: CGSize(width: backBrainNode.frame.width, height: backBrainNode.frame.height))
+        noradrenalineNode.zPosition = -2
+        noradrenalineNode.name = NORADRENALINE_NODE_TX
         skScene.addChild(self.noradrenalineNode)
     }
 }

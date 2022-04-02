@@ -2,17 +2,17 @@ import SpriteKit
 
 public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
     
-    private let title = SKLabelNode(fontNamed: "\(mainFontName) - Bold")
-    private let text = SKLabelNode(fontNamed: "\(mainFontName) - Regular")
-    private let tutorialText = SKLabelNode(fontNamed: "\(mainFontName) - Regular")
-    private let finishLine = SKShapeNode(rect: CGRect(origin: CGPoint(x: skView.frame.midX * 1.75, y: (skView.frame.midY - (skView.frame.midY / 1.5) - 50)), size: CGSize(width: 15, height: 100)))
+    private let title = SKLabelNode(fontNamed: "\(MAIN_FONT) - Bold")
+    private let text = SKLabelNode(fontNamed: "\(MAIN_FONT) - Regular")
+    private let tutorialText = SKLabelNode(fontNamed: "\(MAIN_FONT) - Regular")
+    private let finishLine = SKShapeNode(rect: CGRect(origin: CGPoint(x: SKVIEW.frame.midX * 1.75, y: (SKVIEW.frame.midY - (SKVIEW.frame.midY / 1.5) - 50)), size: CGSize(width: 15, height: 100)))
     private let brain = Brain()
-    private let secondBrain = SKSpriteNode(imageNamed: fullBrainSpriteName)
+    private let secondBrain = SKSpriteNode(imageNamed: FULL_BRAIN_NODE_TX)
     private let nextSceneButton = NextSceneButton()
     private let exerciseButton = ExerciseButton()
     
     public override func didMove(to view: SKView) {
-        self.backgroundColor = backGroundColor
+        self.backgroundColor = BACKGROUND_COLOR
         physicsWorld.contactDelegate = self
         addAllBrainNodes()
         nextSceneButton.addButton(skScene: self)
@@ -27,10 +27,12 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
         let fadeIn = SKAction.fadeIn(withDuration: 0.25)
         let fadeAlphaHalf = SKAction.fadeAlpha(to: 0.25, duration: 0.25)
         let scaleUp = SKAction.scale(by: 2.0, duration: 0.25)
-        let moveUp = SKAction.move(to: CGPoint(x: skView.frame.maxX - (brain.backBrainNode.frame.size.width / 4), y: skView.frame.maxY - (brain.backBrainNode.frame.size.height / 2)), duration: 0.5)
+        let moveUp = SKAction.move(to: CGPoint(x: SKVIEW.frame.maxX - (brain.backBrainNode.frame.size.width / 4), y: SKVIEW.frame.maxY - (brain.backBrainNode.frame.size.height / 2)), duration: 0.5)
         
         for clickNode in nodes(at: location) {
-            if clickNode.name == buttonNodeName {
+            if clickNode.name == nextSceneButton.node.name {
+                nextSceneButton.node.setScale(0.75)
+                nextSceneButton.node.alpha = 0.5
                 brain.serotoninNode.run(fadeAlphaHalf)
                 brain.dopamineNode.run(fadeAlphaHalf)
                 brain.noradrenalineNode.run(fadeAlphaHalf)
@@ -67,7 +69,7 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
                 })
             }
             
-            if clickNode.name == exerciseButtonNodeName {
+            if clickNode.name == exerciseButton.node.name {
                 exerciseButton.node.setScale(0.75)
                 secondBrain.physicsBody?.applyImpulse(CGVector(dx: 10, dy: 0))
             }
@@ -79,7 +81,11 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
         
         
         for clickNode in nodes(at: location) {
-            if clickNode.name == exerciseButtonNodeName {
+            if clickNode.name == nextSceneButton.node.name {
+                nextSceneButton.node.setScale(1.0)
+                nextSceneButton.node.alpha = 1.0
+            }
+            if clickNode.name == exerciseButton.node.name {
                 exerciseButton.node.setScale(1.0)
             }
         }
@@ -87,10 +93,10 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
     
     public func didBegin(_ contact: SKPhysicsContact) {
         let fadeOut = SKAction.fadeOut(withDuration: 0.5)
-        let moveToCenter = SKAction.move(to: CGPoint(x: skView.frame.midX, y: skView.frame.midY), duration: 0.5)
+        let moveToCenter = SKAction.move(to: CGPoint(x: SKVIEW.frame.midX, y: SKVIEW.frame.midY), duration: 0.5)
         let fadeAlphaHalf = SKAction.fadeAlpha(to: 1.0, duration: 0.25)
 
-        if contact.bodyA.node?.name == fullBrainSpriteName {
+        if contact.bodyA.node?.name == FULL_BRAIN_NODE_TX {
             secondBrain.physicsBody?.isDynamic = false
             secondBrain.run(fadeOut)
             finishLine.run(fadeOut)
@@ -111,7 +117,7 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
                         delay(moveToCenter.duration + 0.5, closure: {
                             self.brain.serotoninNode.run(fadeAlphaHalf)
                             delay(fadeAlphaHalf.duration + 0.5, closure: {
-                                transition(nextScene: SecondMiniGameScene(size: skView.frame.size), currentScene: self)
+                                transition(nextScene: SecondMiniGameScene(size: SKVIEW.frame.size), currentScene: self)
                             })
                         })
                     })
@@ -124,16 +130,16 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
         let location = event.location(in: self)
         
         for clickedNode in nodes(at: location) {
-            if clickedNode.name == exerciseButtonNodeName {
+            if clickedNode.name == EXERCISE_BUTTON_NODE_NM {
                 exerciseButton.node.setScale(1.15)
             }
         }
     }
     
     private func addFullBrainNode() {
-        secondBrain.name = fullBrainSpriteName
+        secondBrain.name = FULL_BRAIN_NODE_TX
         secondBrain.scale(to: CGSize(width: secondBrain.frame.width / 2, height: secondBrain.frame.height / 2))
-        secondBrain.position = CGPoint(x: skView.frame.midX - (skView.frame.midX / 1.5), y: skView.frame.midY - (skView.frame.midY / 1.5))
+        secondBrain.position = CGPoint(x: SKVIEW.frame.midX - (SKVIEW.frame.midX / 1.5), y: SKVIEW.frame.midY - (SKVIEW.frame.midY / 1.5))
         secondBrain.alpha = 0
         secondBrain.physicsBody = SKPhysicsBody(texture: secondBrain.texture!, size: secondBrain.size)
         secondBrain.physicsBody?.affectedByGravity = false
@@ -167,7 +173,7 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
         brain.addDopamine(skScene: self)
         brain.addNoradrenaline(skScene: self)
         
-        brain.backBrainNode.position = CGPoint(x: skView.frame.midX, y: skView.frame.midY / 1.5)
+        brain.backBrainNode.position = CGPoint(x: SKVIEW.frame.midX, y: SKVIEW.frame.midY / 1.5)
         brain.frontBrainNode.position = brain.backBrainNode.position
         brain.serotoninNode.position = brain.backBrainNode.position
         brain.dopamineNode.position = brain.backBrainNode.position
@@ -176,15 +182,15 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
     
     private func createTitle() {
         title.text = "With this in mind, let's help Bruno?"
-        title.position = CGPoint(x: skView.frame.midX, y: skView.frame.midY * 1.7)
+        title.position = CGPoint(x: SKVIEW.frame.midX, y: SKVIEW.frame.midY * 1.7)
         addChild(title)
     }
     
     private func createText() {
         text.text = "Bruno has a serious depression history in his family and some of the symptoms manifested recently."
-        text.position = CGPoint(x: skView.frame.midX, y: skView.frame.midY * 1.25)
+        text.position = CGPoint(x: SKVIEW.frame.midX, y: SKVIEW.frame.midY * 1.25)
         text.fontSize = 20
-        text.preferredMaxLayoutWidth = skView.frame.size.width - 30
+        text.preferredMaxLayoutWidth = SKVIEW.frame.size.width - 30
         text.numberOfLines = 2
         addChild(text)
     }
@@ -192,10 +198,10 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
     private func createTutorialText() {
         tutorialText.text = "The level of Serotonin in Brunos's brains is very low!\nQuick! Help him by doing some Exercise"
         tutorialText.alpha = 0
-        tutorialText.preferredMaxLayoutWidth = skView.frame.size.width - 50
+        tutorialText.preferredMaxLayoutWidth = SKVIEW.frame.size.width - 50
         tutorialText.numberOfLines = 3
         tutorialText.fontSize = 20
-        tutorialText.position = CGPoint(x: skView.frame.minX + (tutorialText.frame.size.width / 2), y: skView.frame.maxY - (brain.backBrainNode.frame.size.height / 2))
+        tutorialText.position = CGPoint(x: SKVIEW.frame.minX + (tutorialText.frame.size.width / 2), y: SKVIEW.frame.maxY - (brain.backBrainNode.frame.size.height / 2))
         addChild(tutorialText)
     }
 }

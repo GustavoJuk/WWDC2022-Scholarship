@@ -4,8 +4,8 @@ import PlaygroundSupport
 import SpriteKit
 import CoreGraphics
 
-let gameScene = SecondMiniGameScene(size: skView.frame.size)
+let gameScene = FirstScene(size:SKVIEW.frame.size)
 
-skView.presentScene(gameScene)
+SKVIEW.presentScene(gameScene)
 
-PlaygroundSupport.PlaygroundPage.current.liveView = skView
+PlaygroundSupport.PlaygroundPage.current.liveView = SKVIEW
