@@ -5,19 +5,26 @@ public class SecondMiniGameScene: SKScene {
     private let brain = Brain()
     private let nextButtonScene = NextSceneButton()
     private let tutorialText = SKLabelNode(fontNamed: "\(MAIN_FONT) - Regular")
-    private let dietNode1 = DietButton()
+    private let bacon = DietButton()
+    private let chocolate = DietButton()
+    private let donut = DietButton()
+    private let eggs = DietButton()
+    private let fries = DietButton()
+    private let soda = DietButton()
+    private let shelf = SKSpriteNode(imageNamed: SHELF_NODE_TX)
+    
     
     public override func didMove(to view: SKView) {
         self.backgroundColor = BACKGROUND_COLOR
         addAllBrainNodes()
         nextButtonScene.addButton(skScene: self)
         addTutorialText()
-        addButtonsNodes()
+        addFoodNodes()
     }
     
     public override func mouseDown(with event: NSEvent) {
         let location = event.location(in: self)
-        let moveUp = SKAction.move(to: CGPoint(x: SKVIEW.frame.minX + 50, y: SKVIEW.frame.maxY - 50), duration: 0.5)
+        let moveUp = SKAction.move(to: CGPoint(x: SKVIEW.frame.minX + 20, y: SKVIEW.frame.maxY - 50), duration: 0.5)
         let fadeOut = SKAction.fadeOut(withDuration: 0.25)
         let fadeIn = SKAction.fadeIn(withDuration: 0.25)
         
@@ -33,7 +40,8 @@ public class SecondMiniGameScene: SKScene {
                 delay(moveUp.duration, closure: {
                     self.nextButtonScene.node.run(fadeOut)
                     self.tutorialText.run(fadeIn)
-                    self.dietNode1.node.run(fadeIn)
+                    self.eggs.node.run(fadeIn)
+                    self.shelf.run(fadeIn)
                 })
             }
         }
@@ -75,19 +83,26 @@ public class SecondMiniGameScene: SKScene {
     }
     
     private func addTutorialText() {
-        tutorialText.text = "Now let's the Dopamine that Bruno needs!\nLet's get a balanced Diet"
+        tutorialText.text = "Now let's get the Dopamine that Bruno needs!\nHe must have a balanced Diet"
         tutorialText.alpha = 0
         tutorialText.preferredMaxLayoutWidth = SKVIEW.frame.size.width - 50
         tutorialText.numberOfLines = 2
-        tutorialText.fontSize = 20
-        tutorialText.position = CGPoint(x: SKVIEW.frame.midX * 1.35 , y: SKVIEW.frame.midY * 1.5)
+        tutorialText.fontSize = MAIN_SUBTITLE_SIZE_FONT
+        tutorialText.position = CGPoint(x: (SKVIEW.frame.midX * 1.35) - 30 , y: SKVIEW.frame.midY * 1.5)
         addChild(tutorialText)
     }
     
-    private func addButtonsNodes() {
-        dietNode1.addButton(skScene: self)
-        
-        dietNode1.node.position = CGPoint(x: SKVIEW.frame.midX, y: SKVIEW.frame.midY / 1.5)
-        dietNode1.node.alpha = 0
+    private func addFoodNodes() {
+        addShelves()
+
+        eggs.addButton(skScene: self)
+        eggs.node.position = CGPoint(x: SKVIEW.frame.midX, y: SKVIEW.frame.midY / 1.5)
+        eggs.node.alpha = 0
+    }
+    
+    private func addShelves() {
+        shelf.position = CGPoint(x: SKVIEW.frame.midX, y: SKVIEW.frame.midY / 1.5)
+        shelf.alpha = 0
+        addChild(shelf)
     }
 }

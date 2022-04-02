@@ -43,6 +43,7 @@ public let SLEEP_BUTTON_NODE_NM = "Sleep button"
 
 //FONT
 public let MAIN_FONT = "SF Symbool"
+public let MAIN_SUBTITLE_SIZE_FONT: CGFloat = 23
 public let MAIN_BODY_SIZE_FONT: CGFloat = 20
 
 //TEXT

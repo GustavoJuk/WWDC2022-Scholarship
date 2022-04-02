@@ -96,7 +96,7 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
         let moveToCenter = SKAction.move(to: CGPoint(x: SKVIEW.frame.midX, y: SKVIEW.frame.midY), duration: 0.5)
         let fadeAlphaHalf = SKAction.fadeAlpha(to: 1.0, duration: 0.25)
 
-        if contact.bodyA.node?.name == FULL_BRAIN_NODE_TX {
+        if contact.bodyA.node?.name == secondBrain.name {
             secondBrain.physicsBody?.isDynamic = false
             secondBrain.run(fadeOut)
             finishLine.run(fadeOut)
@@ -130,7 +130,7 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
         let location = event.location(in: self)
         
         for clickedNode in nodes(at: location) {
-            if clickedNode.name == EXERCISE_BUTTON_NODE_NM {
+            if clickedNode.name == exerciseButton.node.name {
                 exerciseButton.node.setScale(1.15)
             }
         }
