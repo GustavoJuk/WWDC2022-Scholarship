@@ -4,12 +4,17 @@ public class ThirdMiniGameScene: SKScene {
     
     private let brain = Brain()
     private let nextButtonScene = NextSceneButton()
-    
+    private let tutorialText = SKLabelNode(fontNamed: "\(MAIN_FONT) - Regular")
+    private let sleepButton = SleepButton()
+    private let sleepGraphic = SleepGraphic()
     
     public override func didMove(to view: SKView) {
         self.backgroundColor = BACKGROUND_COLOR
         addAllBrainNodes()
         nextButtonScene.addButton(skScene: self)
+        addTutorialText()
+        sleepButton.addButton(skScene: self)
+        sleepGraphic.addGraphic(skScene: self)
     }
     
     public override func mouseDown(with event: NSEvent) {
@@ -24,6 +29,14 @@ public class ThirdMiniGameScene: SKScene {
                 brain.serotoninNode.run(moveToNoradrenalineSide)
                 brain.dopamineNode.run(moveToNoradrenalineSide)
                 brain.noradrenalineNode.run(moveToNoradrenalineSide)
+                nextButtonScene.node.run(fadeOut)
+                delay(moveToNoradrenalineSide.duration, closure: {
+                    self.tutorialText.run(fadeIn)
+                    self.sleepButton.node.run(fadeIn)
+                    self.sleepGraphic.graphic.run(fadeIn)
+                    self.sleepGraphic.safeArea.run(fadeIn)
+                    self.sleepGraphic.graphBackground.run(fadeAlphaInHalf)
+                })
             }
         }
     }
@@ -61,5 +74,15 @@ public class ThirdMiniGameScene: SKScene {
         brain.serotoninNode.position = brain.backBrainNode.position
         brain.dopamineNode.position = brain.backBrainNode.position
         brain.noradrenalineNode.position = brain.backBrainNode.position
+    }
+    
+    private func addTutorialText() {
+        tutorialText.text = "The last part is Bruno's Noradrenaline.\nHelp him getting a good amount of Sleep!"
+        tutorialText.alpha = 0
+        tutorialText.preferredMaxLayoutWidth = SKVIEW.frame.size.width - 50
+        tutorialText.numberOfLines = 2
+        tutorialText.fontSize = MAIN_BODY_SIZE_FONT
+        tutorialText.position = CGPoint(x: SKVIEW.frame.maxX - (tutorialText.frame.width / 2) - 30, y: SKVIEW.frame.minY + (tutorialText.frame.height / 2))
+        addChild(tutorialText)
     }
 }

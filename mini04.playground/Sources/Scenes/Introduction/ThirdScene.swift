@@ -12,9 +12,9 @@ public class ThirdScene: SKScene {
         self.backgroundColor  = BACKGROUND_COLOR
         addText()
         nextSceneButton.addButton(skScene: self)
-        seratonin.addSerotoninGraphic(skScene: self)
-        dopamine.addDopamineGraphic(skScene: self)
-        noradrenaline.addNoradrenalineGraphic(skScene: self)
+        seratonin.addGraphic(skScene: self)
+        dopamine.addGraphic(skScene: self)
+        noradrenaline.addGraphic(skScene: self)
     }
     
     public override func mouseDown(with event: NSEvent) {

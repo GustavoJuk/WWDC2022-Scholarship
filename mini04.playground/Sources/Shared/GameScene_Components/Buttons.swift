@@ -35,13 +35,14 @@ public class ExerciseButton: SKNode, ButtonNode {
 }
 
 public class SleepButton: SKNode, ButtonNode {
-    public var node: SKShapeNode = SKShapeNode(circleOfRadius: 30)
+    public var node: SKShapeNode = SKShapeNode(circleOfRadius: 75)
     public var color: NSColor = SLEEP_COLOR
-    public var strokeSize: CGFloat = 30
+    public var strokeSize: CGFloat = 75
     
     public func addButton(skScene: SKScene) {
         node.position = CGPoint(x: SKVIEW.frame.midX, y: SKVIEW.frame.midY)
         node.name = SLEEP_BUTTON_NODE_NM
+        node.alpha = 0
         node.fillColor = color
         node.strokeColor = color.withAlphaComponent(0.5)
         node.lineWidth = strokeSize

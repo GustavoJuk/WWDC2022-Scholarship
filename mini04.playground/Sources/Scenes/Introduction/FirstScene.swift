@@ -25,9 +25,6 @@ public class FirstScene: SKScene {
         
         let location = event.location(in: self)
         let scaleUp = SKAction.scale(by: 1.5, duration: 0.5)
-        let fadeOut = SKAction.fadeOut(withDuration: 0.5)
-        let fadeIn = SKAction.fadeIn(withDuration: 0.25)
-        
         
         for clickNode in nodes(at: location) {
             if clickNode.name == nextSceneButton.node.name {
@@ -45,7 +42,6 @@ public class FirstScene: SKScene {
     }
     
     public override func mouseUp(with event: NSEvent) {
-        
         let location = event.location(in: self)
         
         for clickedNode in nodes(at: location) {
@@ -88,5 +84,4 @@ public class FirstScene: SKScene {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
