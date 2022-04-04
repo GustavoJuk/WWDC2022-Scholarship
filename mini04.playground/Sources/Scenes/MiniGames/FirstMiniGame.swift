@@ -21,21 +21,15 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     public override func mouseDown(with event: NSEvent) {
-        
         let location = event.location(in: self)
-        let fadeOut = SKAction.fadeOut(withDuration: 0.25)
-        let fadeIn = SKAction.fadeIn(withDuration: 0.25)
-        let fadeAlphaHalf = SKAction.fadeAlpha(to: 0.25, duration: 0.25)
-        let scaleUp = SKAction.scale(by: 2.0, duration: 0.25)
-        let moveUp = SKAction.move(to: CGPoint(x: SKVIEW.frame.maxX - (brain.backBrainNode.frame.size.width / 4), y: SKVIEW.frame.maxY - (brain.backBrainNode.frame.size.height / 2)), duration: 0.5)
         
         for clickNode in nodes(at: location) {
             if clickNode.name == nextSceneButton.node.name {
                 nextSceneButton.node.setScale(0.75)
                 nextSceneButton.node.alpha = 0.5
-                brain.serotoninNode.run(fadeAlphaHalf)
-                brain.dopamineNode.run(fadeAlphaHalf)
-                brain.noradrenalineNode.run(fadeAlphaHalf)
+                brain.serotoninNode.run(fadeAlphaOut)
+                brain.dopamineNode.run(fadeAlphaOut)
+                brain.noradrenalineNode.run(fadeAlphaOut)
                 title.run(fadeOut)
                 text.run(fadeOut)
                 nextSceneButton.node.run(fadeOut)
@@ -43,12 +37,12 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
                     self.title.removeFromParent()
                     self.text.removeFromParent()
                     delay(fadeOut.duration, closure: {
-                        self.brain.backBrainNode.run(moveUp)
-                        self.brain.frontBrainNode.run(moveUp)
-                        self.brain.serotoninNode.run(moveUp)
-                        self.brain.dopamineNode.run(moveUp)
-                        self.brain.noradrenalineNode.run(moveUp)
-                        delay(moveUp.duration, closure: {
+                        self.brain.backBrainNode.run(moveToSerotoninSide)
+                        self.brain.frontBrainNode.run(moveToSerotoninSide)
+                        self.brain.serotoninNode.run(moveToSerotoninSide)
+                        self.brain.dopamineNode.run(moveToSerotoninSide)
+                        self.brain.noradrenalineNode.run(moveToSerotoninSide)
+                        delay(moveToSerotoninSide.duration, closure: {
                             self.brain.backBrainNode.run(scaleUp)
                             self.brain.frontBrainNode.run(scaleUp)
                             self.brain.serotoninNode.run(scaleUp)
@@ -79,7 +73,6 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
     public override func mouseUp(with event: NSEvent) {
         let location = event.location(in: self)
         
-        
         for clickNode in nodes(at: location) {
             if clickNode.name == nextSceneButton.node.name {
                 nextSceneButton.node.setScale(1.0)
@@ -93,8 +86,6 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
     
     public func didBegin(_ contact: SKPhysicsContact) {
         let fadeOut = SKAction.fadeOut(withDuration: 0.5)
-        let moveToCenter = SKAction.move(to: CGPoint(x: SKVIEW.frame.midX, y: SKVIEW.frame.midY), duration: 0.5)
-        let fadeAlphaHalf = SKAction.fadeAlpha(to: 1.0, duration: 0.25)
 
         if contact.bodyA.node?.name == secondBrain.name {
             secondBrain.physicsBody?.isDynamic = false
@@ -115,8 +106,8 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
                         self.brain.dopamineNode.run(moveToCenter)
                         self.brain.noradrenalineNode.run(moveToCenter)
                         delay(moveToCenter.duration + 0.5, closure: {
-                            self.brain.serotoninNode.run(fadeAlphaHalf)
-                            delay(fadeAlphaHalf.duration + 0.5, closure: {
+                            self.brain.serotoninNode.run(fadeAlphaUp)
+                            delay(fadeAlphaUp.duration + 0.5, closure: {
                                 transition(nextScene: SecondMiniGameScene(size: SKVIEW.frame.size), currentScene: self)
                             })
                         })
@@ -131,7 +122,7 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
         
         for clickedNode in nodes(at: location) {
             if clickedNode.name == exerciseButton.node.name {
-                exerciseButton.node.setScale(1.15)
+                exerciseButton.node.setScale(1.0)
             }
         }
     }
@@ -201,7 +192,7 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
         tutorialText.preferredMaxLayoutWidth = SKVIEW.frame.size.width - 50
         tutorialText.numberOfLines = 3
         tutorialText.fontSize = 20
-        tutorialText.position = CGPoint(x: SKVIEW.frame.minX + (tutorialText.frame.size.width / 2), y: SKVIEW.frame.maxY - (brain.backBrainNode.frame.size.height / 2))
+        tutorialText.position = CGPoint(x: SKVIEW.frame.minX + (tutorialText.frame.size.width / 2) + 30, y: SKVIEW.frame.maxY - (brain.backBrainNode.frame.size.height / 2))
         addChild(tutorialText)
     }
 }

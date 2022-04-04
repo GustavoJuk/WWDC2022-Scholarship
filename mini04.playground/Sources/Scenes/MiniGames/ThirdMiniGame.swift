@@ -14,19 +14,16 @@ public class ThirdMiniGameScene: SKScene {
     
     public override func mouseDown(with event: NSEvent) {
         let location = event.location(in: self)
-        let moveUp = SKAction.move(to: CGPoint(x: SKVIEW.frame.midX / 2, y: SKVIEW.frame.minY - 30), duration: 0.5)
-        let fadeOut = SKAction.fadeOut(withDuration: 0.25)
-        let fadeIn = SKAction.fadeIn(withDuration: 0.25)
         
         for clickNode in nodes(at: location) {
             if clickNode.name == nextButtonScene.node.name {
                 nextButtonScene.node.setScale(0.75)
                 nextButtonScene.node.alpha = 0.5
-                brain.backBrainNode.run(moveUp)
-                brain.frontBrainNode.run(moveUp)
-                brain.serotoninNode.run(moveUp)
-                brain.dopamineNode.run(moveUp)
-                brain.noradrenalineNode.run(moveUp)
+                brain.backBrainNode.run(moveToNoradrenalineSide)
+                brain.frontBrainNode.run(moveToNoradrenalineSide)
+                brain.serotoninNode.run(moveToNoradrenalineSide)
+                brain.dopamineNode.run(moveToNoradrenalineSide)
+                brain.noradrenalineNode.run(moveToNoradrenalineSide)
             }
         }
     }

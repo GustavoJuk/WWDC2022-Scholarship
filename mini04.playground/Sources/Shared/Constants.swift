@@ -121,3 +121,16 @@ extension SKAction {
         return SKAction.sequence(actionsArray)
     }
 }
+
+public let scaleUp = SKAction.scale(by: 2.0, duration: 0.25)
+public let scaleSerotoninDown = SKAction.scale(by: 0.5, duration: 1.0)
+public let scaleDopamineDown = SKAction.scale(by: 0.2, duration: 1.0)
+public let scaleNoradrenalineDown = SKAction.scale(by: 0.3, duration: 1.0)
+public let fadeOut = SKAction.fadeOut(withDuration: 0.25)
+public let fadeIn = SKAction.fadeIn(withDuration: 0.25)
+public let fadeAlphaUp = SKAction.fadeAlpha(to: 1.0, duration: 0.25)
+public let fadeAlphaOut = SKAction.fadeAlpha(to: 0.25, duration: 0.25)
+public let moveToCenter = SKAction.move(to: CGPoint(x: SKVIEW.frame.midX, y: SKVIEW.frame.midY), duration: 0.5)
+public let moveToSerotoninSide = SKAction.move(to: CGPoint(x: SKVIEW.frame.maxX - 10, y: SKVIEW.frame.maxY - 70), duration: 0.75)
+public let moveToDopamineSide = SKAction.move(to: CGPoint(x: SKVIEW.frame.minX + 20, y: SKVIEW.frame.maxY - 50), duration: 0.75)
+public let moveToNoradrenalineSide = SKAction.move(to: CGPoint(x: SKVIEW.frame.midX / 3, y: SKVIEW.frame.minY - 20), duration: 0.75)

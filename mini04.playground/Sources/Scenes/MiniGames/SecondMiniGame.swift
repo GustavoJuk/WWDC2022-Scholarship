@@ -25,7 +25,6 @@ public class SecondMiniGameScene: SKScene {
     
     public override func mouseDown(with event: NSEvent) {
         let location = event.location(in: self)
-        let moveUp = SKAction.move(to: CGPoint(x: SKVIEW.frame.minX + 20, y: SKVIEW.frame.maxY - 50), duration: 0.5)
         let fadeOut = SKAction.fadeOut(withDuration: 0.25)
         let fadeIn = SKAction.fadeIn(withDuration: 0.25)
         
@@ -33,12 +32,12 @@ public class SecondMiniGameScene: SKScene {
             if clickNode.name == nextButtonScene.node.name {
                 nextButtonScene.node.setScale(0.75)
                 nextButtonScene.node.alpha = 0.5
-                brain.backBrainNode.run(moveUp)
-                brain.frontBrainNode.run(moveUp)
-                brain.serotoninNode.run(moveUp)
-                brain.dopamineNode.run(moveUp)
-                brain.noradrenalineNode.run(moveUp)
-                delay(moveUp.duration, closure: {
+                brain.backBrainNode.run(moveToDopamineSide)
+                brain.frontBrainNode.run(moveToDopamineSide)
+                brain.serotoninNode.run(moveToDopamineSide)
+                brain.dopamineNode.run(moveToDopamineSide)
+                brain.noradrenalineNode.run(moveToDopamineSide)
+                delay(moveToDopamineSide.duration, closure: {
                     self.nextButtonScene.node.run(fadeOut)
                     self.tutorialText.run(fadeIn)
                     self.bacon.node.run(fadeIn)
