@@ -25,7 +25,6 @@ public class ThirdScene: SKScene {
             if clickNode.name == nextSceneButton.node.name {
                 nextSceneButton.node.setScale(0.75)
                 nextSceneButton.node.alpha = 0.5
-                transition(nextScene: FirstMiniGameScene(size: SKVIEW.frame.size), currentScene: self)
             }
         }
     }
@@ -38,6 +37,7 @@ public class ThirdScene: SKScene {
             if clickNode.name == nextSceneButton.node.name {
                 nextSceneButton.node.setScale(1.0)
                 nextSceneButton.node.alpha = 1.0
+                transition(nextScene: FirstMiniGameScene(size: SKVIEW.frame.size), currentScene: self)
             }
         }
     }

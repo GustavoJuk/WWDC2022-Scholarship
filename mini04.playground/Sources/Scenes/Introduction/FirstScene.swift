@@ -41,9 +41,6 @@ public class FirstScene: SKScene {
                     self.text.run(fadeIn)
                 })
             }
-            if event.clickCount == 2 && clickNode.name == BUTTON_NODE_NM {
-                transition(nextScene: SecondScene(size: SKVIEW.frame.size), currentScene: self)
-            }
         }
     }
     
@@ -55,6 +52,10 @@ public class FirstScene: SKScene {
             if clickedNode.name == nextSceneButton.node.name {
                 nextSceneButton.node.setScale(1.0)
                 nextSceneButton.node.alpha = 1.0
+            }
+            
+            if event.clickCount == 2 && clickedNode.name == nextSceneButton.node.name {
+                transition(nextScene: SecondScene(size: SKVIEW.frame.size), currentScene: self)
             }
         }
     }

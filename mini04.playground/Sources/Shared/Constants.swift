@@ -38,8 +38,9 @@ public let ARROW_BUTTON_NODE_TX = "scene_components/arrow"
 //NODE NAMES
 public let BUTTON_NODE_NM = "Next page"
 public let EXERCISE_BUTTON_NODE_NM = "Exercise Button"
-public let DIET_BUTTON_NODE_NM = "Diet button"
 public let SLEEP_BUTTON_NODE_NM = "Sleep button"
+public let HEALTHY_FOOD_NODE_NM = "Healthy food"
+public let UNHEALTHY_FOOD_NODE_NM = "Unhealthy food"
 
 //FONT
 public let MAIN_FONT = "SF Symbool"
@@ -102,4 +103,21 @@ public enum CollisionType: UInt32 {
     
     case brain = 0
     case finishLine = 1
+}
+
+//ANIMATIONS
+extension SKAction {
+    class func shake(initialPosition:CGPoint, duration:Float, amplitudeX:Int = 12, amplitudeY:Int = 3) -> SKAction {
+        let startingX = initialPosition.x
+        let startingY = initialPosition.y
+        let numberOfShakes = duration / 0.015
+        var actionsArray:[SKAction] = []
+        for _ in 1...Int(numberOfShakes) {
+            let newXPos = startingX + CGFloat(arc4random_uniform(UInt32(amplitudeX))) - CGFloat(amplitudeX / 2)
+            let newYPos = startingY + CGFloat(arc4random_uniform(UInt32(amplitudeY))) - CGFloat(amplitudeY / 2)
+            actionsArray.append(SKAction.move(to: CGPoint(x: newXPos, y: newYPos), duration: 0.015))
+        }
+        actionsArray.append(SKAction.move(to: initialPosition, duration: 0.015))
+        return SKAction.sequence(actionsArray)
+    }
 }
