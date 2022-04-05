@@ -15,7 +15,7 @@ public class SerotoninGraphic: SKNode, Graph {
         
     //Methods
     public func addGraphic(skScene: SKScene) {
-        node.position = CGPoint(x: SKVIEW.frame.midX - (node.frame.width * 1.5), y: SKVIEW.frame.midY / 3)
+        node.position = CGPoint(x: MYVIEW.frame.midX - (node.frame.width * 1.5), y: MYVIEW.frame.midY / 3)
         graphic.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         graphic.position = CGPoint(x: node.frame.midX, y: node.frame.maxY + 10)
         graphic.run(scaleSerotoninDown)
@@ -32,7 +32,7 @@ public class DopamineGraphic: SKNode, Graph {
         
     //Methods
     public func addGraphic(skScene: SKScene) {        
-        node.position = CGPoint(x: SKVIEW.frame.midX, y: SKVIEW.frame.midY / 3)
+        node.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY / 3)
         graphic.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         graphic.position = CGPoint(x: node.frame.midX, y: node.frame.maxY + 10)
         graphic.run(scaleDopamineDown)
@@ -49,7 +49,7 @@ public class NoradrenalineGraphic: SKNode, Graph {
     
     //Methods
     public func addGraphic(skScene: SKScene) {
-        node.position = CGPoint(x: SKVIEW.frame.midX + node.frame.width, y: SKVIEW.frame.midY / 3)
+        node.position = CGPoint(x: MYVIEW.frame.midX + node.frame.width, y: MYVIEW.frame.midY / 3)
         graphic.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         graphic.position = CGPoint(x: node.frame.midX, y: node.frame.maxY + 10)
         graphic.run(scaleNoradrenalineDown)
@@ -64,11 +64,11 @@ public class SleepGraphic: SKNode, Graph {
     public var node = SLEEP_TITLE_TEXT
     public var graphic = SKSpriteNode(color: SLEEP_COLOR, size: CGSize(width: 20, height: 45))
     public var safeArea = SKSpriteNode(color: .green, size: CGSize(width: 120, height: 45))
-    public var graphBackground = SKSpriteNode(color: SLEEP_COLOR, size: CGSize(width: SKVIEW.frame.width - 100, height: 60))
+    public var graphBackground = SKSpriteNode(color: SLEEP_COLOR, size: CGSize(width: MYVIEW.frame.width - 100, height: 60))
     
     //Methods
     public func addGraphic(skScene: SKScene) {
-        graphBackground.position = CGPoint(x: SKVIEW.frame.midX, y: SKVIEW.frame.maxY - (graphic.frame.height / 2) - 30)
+        graphBackground.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.maxY - (graphic.frame.height / 2) - 30)
         graphBackground.alpha = 0
         graphBackground.zPosition = -2
         graphic.position = CGPoint(x: graphBackground.frame.minX + 20, y: graphBackground.frame.midY)

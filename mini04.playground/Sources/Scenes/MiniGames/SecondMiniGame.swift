@@ -76,7 +76,7 @@ public class SecondMiniGameScene: SKScene {
     }
     
     private func correctOption(with node: SKNode) {
-        let moveToCenter = SKAction.move(to: CGPoint(x: SKVIEW.frame.midX, y: SKVIEW.frame.midY), duration: 0.5)
+        let moveToCenter = SKAction.move(to: CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY), duration: 0.5)
         let fadeOut = SKAction.fadeOut(withDuration: 0.25)
         let fadeHalfAlhpa = SKAction.fadeAlpha(by: 1.0, duration: 0.25)
         
@@ -100,7 +100,7 @@ public class SecondMiniGameScene: SKScene {
                 delay(moveToCenter.duration + 0.5, closure: {
                     self.brain.dopamineNode.run(fadeHalfAlhpa)
                     delay(fadeHalfAlhpa.duration + 0.5, closure: {
-                        transition(nextScene: ThirdMiniGameScene(size: SKVIEW.frame.size), currentScene: self)
+                        transition(nextScene: ThirdMiniGameScene(size: MYVIEW.frame.size), currentScene: self)
                     })
                 })
             })
@@ -129,7 +129,7 @@ public class SecondMiniGameScene: SKScene {
         brain.dopamineNode.alpha = 0.25
         brain.noradrenalineNode.alpha = 0.25
         
-        brain.backBrainNode.position = CGPoint(x: SKVIEW.frame.midX, y: SKVIEW.frame.midY)
+        brain.backBrainNode.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY)
         brain.frontBrainNode.position = brain.backBrainNode.position
         brain.serotoninNode.position = brain.backBrainNode.position
         brain.dopamineNode.position = brain.backBrainNode.position
@@ -139,16 +139,16 @@ public class SecondMiniGameScene: SKScene {
     private func addTutorialText() {
         tutorialText.text = "Now let's get the Dopamine that Bruno needs!\nHe must have a balanced Diet"
         tutorialText.alpha = 0
-        tutorialText.preferredMaxLayoutWidth = SKVIEW.frame.size.width - 50
+        tutorialText.preferredMaxLayoutWidth = MYVIEW.frame.size.width - 50
         tutorialText.numberOfLines = 2
         tutorialText.fontSize = MAIN_SUBTITLE_SIZE_FONT
-        tutorialText.position = CGPoint(x: (SKVIEW.frame.midX * 1.35) - 30 , y: SKVIEW.frame.midY * 1.5)
+        tutorialText.position = CGPoint(x: (MYVIEW.frame.midX * 1.35) - 30 , y: MYVIEW.frame.midY * 1.5)
         addChild(tutorialText)
     }
     
     private func addFoodNodes() {
         //Top shelf
-        addTopShelf(at_X: SKVIEW.frame.midX, at_Y: SKVIEW.frame.midY / 1.5)
+        addTopShelf(at_X: MYVIEW.frame.midX, at_Y: MYVIEW.frame.midY / 1.5)
         
         eggs.addFood(skScene: self)
         eggs.node.alpha = 0
@@ -163,7 +163,7 @@ public class SecondMiniGameScene: SKScene {
         soda.node.position = CGPoint(x: shelfTop.frame.midX * 1.5, y: eggs.node.frame.minY)
         
         //Bottom shelf
-        addBottomShelf(at_X: SKVIEW.frame.midX, at_Y: SKVIEW.frame.midY / 4.5)
+        addBottomShelf(at_X: MYVIEW.frame.midX, at_Y: MYVIEW.frame.midY / 4.5)
         
         bacon.addFood(skScene: self)
         bacon.node.alpha = 0

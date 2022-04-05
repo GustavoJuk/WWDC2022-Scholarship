@@ -51,31 +51,31 @@ public class FirstScene: SKScene {
             }
             
             if event.clickCount == 2 && clickedNode.name == nextSceneButton.node.name {
-                transition(nextScene: SecondScene(size: SKVIEW.frame.size), currentScene: self)
+                transition(nextScene: SecondScene(size: MYVIEW.frame.size), currentScene: self)
             }
         }
     }
     
     private func addTitleText() {
         title.text = "That's the human brain"
-        title.position = CGPoint(x: SKVIEW.frame.midX, y: SKVIEW.frame.midY * 1.7)
+        title.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY * 1.7)
         addChild(title)
     }
     
     private func addFooterText() {
         footer.text = "It is here where we process the main functions of the body and maintaining the health of this organ is extremely important."
-        footer.position = CGPoint(x: SKVIEW.frame.midX, y: SKVIEW.frame.midY / 2.5)
+        footer.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY / 2.5)
         footer.fontSize = MAIN_BODY_SIZE_FONT
-        footer.preferredMaxLayoutWidth = SKVIEW.frame.size.width - 30
+        footer.preferredMaxLayoutWidth = MYVIEW.frame.size.width - 30
         footer.numberOfLines = 2
         addChild(footer)
     }
     
     private func addText() {
         text.text = "Have you ever thought what could happen if mental health was not properly cared for and monitored?\n\nSo... Let's talk about Depression?"
-        text.position = CGPoint(x: SKVIEW.frame.midX, y: SKVIEW.frame.midY / 4)
+        text.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY / 4)
         text.fontSize = MAIN_BODY_SIZE_FONT
-        text.preferredMaxLayoutWidth = SKVIEW.frame.size.width - 30
+        text.preferredMaxLayoutWidth = MYVIEW.frame.size.width - 30
         text.numberOfLines = 4
         text.alpha = 0
         addChild(text)

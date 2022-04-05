@@ -12,7 +12,7 @@ public class Brain: SKNode {
     //Methods
     public func addBrain(skScene: SKScene) {
         backBrainNode = SKSpriteNode(imageNamed: BACK_BRAIN_NODE_TX)
-        backBrainNode.position = CGPoint(x: SKVIEW.frame.midX, y: SKVIEW.frame.midY * 1.25)
+        backBrainNode.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY * 1.25)
         backBrainNode.scale(to: CGSize(width: backBrainNode.frame.width / 1.5, height: backBrainNode.frame.height / 1.5))
         backBrainNode.zPosition = -5
         backBrainNode.name = BACK_BRAIN_NODE_TX

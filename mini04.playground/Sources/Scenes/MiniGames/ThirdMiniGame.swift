@@ -53,6 +53,14 @@ public class ThirdMiniGameScene: SKScene {
         }
     }
     
+    public override func mouseEntered(with event: NSEvent) {
+        print("Entered \(event)")
+    }
+    
+    public override func mouseExited(with event: NSEvent) {
+        print("Exited \(event)")
+    }
+    
     private func addAllBrainNodes() {
         brain.addBrain(skScene: self)
         brain.addSeratotin(skScene: self)
@@ -69,7 +77,7 @@ public class ThirdMiniGameScene: SKScene {
         brain.dopamineNode.alpha = 1.0
         brain.noradrenalineNode.alpha = 0.25
         
-        brain.backBrainNode.position = CGPoint(x: SKVIEW.frame.midX, y: SKVIEW.frame.midY)
+        brain.backBrainNode.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY)
         brain.frontBrainNode.position = brain.backBrainNode.position
         brain.serotoninNode.position = brain.backBrainNode.position
         brain.dopamineNode.position = brain.backBrainNode.position
@@ -79,10 +87,10 @@ public class ThirdMiniGameScene: SKScene {
     private func addTutorialText() {
         tutorialText.text = "The last part is Bruno's Noradrenaline.\nHelp him getting a good amount of Sleep!"
         tutorialText.alpha = 0
-        tutorialText.preferredMaxLayoutWidth = SKVIEW.frame.size.width - 50
+        tutorialText.preferredMaxLayoutWidth = MYVIEW.frame.size.width - 50
         tutorialText.numberOfLines = 2
         tutorialText.fontSize = MAIN_BODY_SIZE_FONT
-        tutorialText.position = CGPoint(x: SKVIEW.frame.maxX - (tutorialText.frame.width / 2) - 30, y: SKVIEW.frame.minY + (tutorialText.frame.height / 2))
+        tutorialText.position = CGPoint(x: MYVIEW.frame.maxX - (tutorialText.frame.width / 2) - 30, y: MYVIEW.frame.minY + (tutorialText.frame.height / 2))
         addChild(tutorialText)
     }
 }
