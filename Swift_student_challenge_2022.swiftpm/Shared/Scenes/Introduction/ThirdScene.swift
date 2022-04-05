@@ -1,3 +1,10 @@
+//
+//  File.swift
+//  
+//
+//  Created by Gustavo Juk Ferreira Cruz on 05/04/22.
+//
+
 import SpriteKit
 
 public class ThirdScene: SKScene {
@@ -10,7 +17,7 @@ public class ThirdScene: SKScene {
     
     public override func sceneDidLoad() {
         super.sceneDidLoad()
-        self.backgroundColor  = BACKGROUND_COLOR
+        self.backgroundColor = BACKGROUND_COLOR
         addText()
         nextSceneButton.addButton(skScene: self)
         seratonin.addGraphic(skScene: self)

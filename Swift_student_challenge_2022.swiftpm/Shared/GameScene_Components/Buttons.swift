@@ -1,3 +1,10 @@
+//
+//  File.swift
+//  
+//
+//  Created by Gustavo Juk Ferreira Cruz on 05/04/22.
+//
+
 import SpriteKit
 
 //TODO: Documentation
@@ -49,3 +56,4 @@ public class SleepButton: SKNode, ButtonNode {
         skScene.addChild(node)
     }
 }
+

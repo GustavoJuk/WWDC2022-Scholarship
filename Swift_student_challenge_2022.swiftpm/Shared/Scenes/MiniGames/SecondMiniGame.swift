@@ -1,3 +1,10 @@
+//
+//  File.swift
+//  
+//
+//  Created by Gustavo Juk Ferreira Cruz on 05/04/22.
+//
+
 import SpriteKit
 
 public class SecondMiniGameScene: SKScene {
@@ -47,8 +54,8 @@ public class SecondMiniGameScene: SKScene {
                     self.shelfBottom.run(fadeIn)
                 })
             }
-            
-//            switch //TODO {
+            //TODO: Switch-case
+//            switch  {
 //            case HEALTHY_FOOD_NODE_NM:
 //                correctOption(with: clickNode)
 //

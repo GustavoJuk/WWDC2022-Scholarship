@@ -1,3 +1,12 @@
+//
+//  File.swift
+//  
+//
+//  Created by Gustavo Juk Ferreira Cruz on 05/04/22.
+//
+
+import Foundation
+import CoreGraphics
 import SpriteKit
 
 //SCENE TRANSITION
@@ -6,7 +15,7 @@ public func transition(nextScene: SKScene, currentScene: SKScene) {
 }
 
 //SKVIEW
-public let MYVIEW = SKView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+public let MYVIEW = SKView(frame: CGRect(x: 0, y: 0, width: 700, height: 500))
 
 //COLORS
 public let BACKGROUND_COLOR = SKColor(red: 9 / 255, green: 206 / 255, blue: 194 / 255, alpha: 1)
@@ -133,3 +142,4 @@ public let moveToCenter = SKAction.move(to: CGPoint(x: MYVIEW.frame.midX, y: MYV
 public let moveToSerotoninSide = SKAction.move(to: CGPoint(x: MYVIEW.frame.maxX - 10, y: MYVIEW.frame.maxY - 70), duration: 0.75)
 public let moveToDopamineSide = SKAction.move(to: CGPoint(x: MYVIEW.frame.minX + 20, y: MYVIEW.frame.maxY - 50), duration: 0.75)
 public let moveToNoradrenalineSide = SKAction.move(to: CGPoint(x: MYVIEW.frame.midX / 3, y: MYVIEW.frame.minY - 20), duration: 0.75)
+

@@ -1,3 +1,10 @@
+//
+//  File.swift
+//  
+//
+//  Created by Gustavo Juk Ferreira Cruz on 05/04/22.
+//
+
 import SpriteKit
 
 public protocol Graph: SKNode {
@@ -31,7 +38,7 @@ public class DopamineGraphic: SKNode, Graph {
     public var graphic = SKSpriteNode(color: DOPAMINE_COLOR, size: CGSize(width: 30, height: 200))
         
     //Methods
-    public func addGraphic(skScene: SKScene) {        
+    public func addGraphic(skScene: SKScene) {
         node.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY / 3)
         graphic.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         graphic.position = CGPoint(x: node.frame.midX, y: node.frame.maxY + 10)
@@ -80,3 +87,4 @@ public class SleepGraphic: SKNode, Graph {
         skScene.addChild(graphBackground)
     }
 }
+
