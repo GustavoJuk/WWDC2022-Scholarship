@@ -11,7 +11,7 @@ public class SecondMiniGameScene: SKScene {
     
     private let brain = Brain()
     private let nextSceneButton = NextSceneButton()
-    private let tutorialText = SKLabelNode(fontNamed: "\(MAIN_FONT) - Regular")
+    private let tutorialText = SKLabelNode(fontNamed: "\(MAIN_FONT)")
     private let bacon = Bacon()
     private let chocolate = Chocolate()
     private let donut = Donut()
@@ -35,7 +35,7 @@ public class SecondMiniGameScene: SKScene {
             let clickedNode = self.nodes(at: location)
 
             if nextSceneButton.node.contains(location) {
-                nextSceneButton.node.setScale(0.75)
+                nextSceneButton.node.setScale(0.9)
                 nextSceneButton.node.alpha = 0.5
                 brain.backBrainNode.run(moveToDopamineSide)
                 brain.frontBrainNode.run(moveToDopamineSide)
@@ -55,8 +55,7 @@ public class SecondMiniGameScene: SKScene {
                     self.shelfBottom.run(fadeIn)
                 })
             }
-            //TODO: Switch-case
-
+            
             switch clickedNode.first?.name {
             case HEALTHY_FOOD_NODE_NM:
                 correctOption(with: clickedNode.first!)
@@ -186,6 +185,8 @@ public class SecondMiniGameScene: SKScene {
     private func addTopShelf(at_X xPosition: CGFloat, at_Y yPosition: CGFloat) {
         shelfTop.position = CGPoint(x: xPosition, y: yPosition)
         shelfTop.alpha = 0
+        shelfTop.scale(to: CGSize(width: MYVIEW.frame.width / 1.5, height: MYVIEW.frame.height / shelfTop.frame.height))
+        
         shelfTop.zPosition = -1
         addChild(shelfTop)
     }
@@ -193,6 +194,7 @@ public class SecondMiniGameScene: SKScene {
     private func addBottomShelf(at_X xPosition: CGFloat, at_Y yPosition: CGFloat) {
         shelfBottom.position = CGPoint(x: xPosition, y: yPosition)
         shelfBottom.alpha = 0
+        shelfBottom.scale(to: CGSize(width: MYVIEW.frame.width / 1.5, height: MYVIEW.frame.height / shelfBottom.frame.height))
         shelfBottom.zPosition = -1
         addChild(shelfBottom)
     }

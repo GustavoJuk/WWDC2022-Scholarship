@@ -9,9 +9,9 @@ import SpriteKit
 
 public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
     
-    private let title = SKLabelNode(fontNamed: "\(MAIN_FONT) - Bold")
-    private let text = SKLabelNode(fontNamed: "\(MAIN_FONT) - Regular")
-    private let tutorialText = SKLabelNode(fontNamed: "\(MAIN_FONT) - Regular")
+    private let title = SKLabelNode(fontNamed: "\(MAIN_FONT)")
+    private let text = SKLabelNode(fontNamed: "\(MAIN_FONT)")
+    private let tutorialText = SKLabelNode(fontNamed: "\(MAIN_FONT)")
     private let finishLine = SKShapeNode(rect: CGRect(origin: CGPoint(x: MYVIEW.frame.midX * 1.75, y: MYVIEW.frame.midY - (MYVIEW.frame.midY / 1.15)), size: CGSize(width: MYVIEW.frame.width / 48, height: MYVIEW.frame.height / 5)))
     private let brain = Brain()
     private let secondBrain = SKSpriteNode(imageNamed: FULL_BRAIN_NODE_TX)
@@ -33,7 +33,7 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
             let location = touch.location(in: self)
         
             if nextSceneButton.node.contains(location) {
-                nextSceneButton.node.setScale(0.75)
+                nextSceneButton.node.setScale(0.9)
                 nextSceneButton.node.alpha = 0.5
                 brain.serotoninNode.run(fadeAlphaOut)
                 brain.dopamineNode.run(fadeAlphaOut)
@@ -94,8 +94,6 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     public func didBegin(_ contact: SKPhysicsContact) {
-        let fadeOut = SKAction.fadeOut(withDuration: 0.5)
-
         if contact.bodyA.node?.name == secondBrain.name {
             secondBrain.physicsBody?.isDynamic = false
             secondBrain.run(fadeOut)

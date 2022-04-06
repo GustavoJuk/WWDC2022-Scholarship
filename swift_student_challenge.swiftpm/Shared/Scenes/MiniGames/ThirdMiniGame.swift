@@ -11,7 +11,7 @@ public class ThirdMiniGameScene: SKScene {
     
     private let brain = Brain()
     private let nextSceneButton = NextSceneButton()
-    private let tutorialText = SKLabelNode(fontNamed: "\(MAIN_FONT) - Regular")
+    private let tutorialText = SKLabelNode(fontNamed: "\(MAIN_FONT)")
     private let sleepButton = SleepButton()
     private let sleepGraphic = SleepGraphic()
     
@@ -22,7 +22,7 @@ public class ThirdMiniGameScene: SKScene {
         nextSceneButton.addButton(skScene: self)
         addTutorialText()
         sleepButton.addButton(skScene: self)
-        sleepGraphic.addGraphic(skScene: self)
+        addGraphic()
     }
     
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -30,7 +30,7 @@ public class ThirdMiniGameScene: SKScene {
             let location = touch.location(in: self)
 
             if nextSceneButton.node.contains(location) {
-                nextSceneButton.node.setScale(0.75)
+                nextSceneButton.node.setScale(0.9)
                 nextSceneButton.node.alpha = 0.5
                 brain.backBrainNode.run(moveToNoradrenalineSide)
                 brain.frontBrainNode.run(moveToNoradrenalineSide)
@@ -42,9 +42,15 @@ public class ThirdMiniGameScene: SKScene {
                     self.tutorialText.run(fadeIn)
                     self.sleepButton.node.run(fadeIn)
                     self.sleepGraphic.graphic.run(fadeIn)
-                    self.sleepGraphic.safeArea.run(fadeIn)
+                    self.sleepGraphic.safeArea.run(fadeAlphaInHalf)
                     self.sleepGraphic.graphBackground.run(fadeAlphaInHalf)
                 })
+            }
+            
+            if sleepButton.node.contains(location) {
+                sleepButton.node.setScale(0.8)
+                sleepButton.node.alpha = 0.5
+                //TODO: Progress bar system
             }
         }
     }
@@ -56,6 +62,30 @@ public class ThirdMiniGameScene: SKScene {
             if nextSceneButton.node.contains(location) {
                 nextSceneButton.node.setScale(1.25)
                 nextSceneButton.node.alpha = 1.0
+            }
+            
+            if sleepButton.node.contains(location) {
+                sleepButton.node.setScale(1.0)
+                sleepButton.node.alpha = 1.0
+                if sleepGraphic.cropNode.maskNode!.frame.maxX >= sleepGraphic.safeArea.frame.minX && sleepGraphic.cropNode.maskNode!.frame.maxX <= sleepGraphic.safeArea.frame.maxX {
+                    tutorialText.run(fadeOut)
+                    sleepButton.node.run(fadeOut)
+                    sleepGraphic.graphic.run(fadeOut)
+                    sleepGraphic.safeArea.run(fadeOut)
+                    sleepGraphic.graphBackground.run(fadeOut)
+                    delay(fadeOut.duration + 0.5, closure: {
+                        self.brain.backBrainNode.run(moveToCenter)
+                        self.brain.frontBrainNode.run(moveToCenter)
+                        self.brain.serotoninNode.run(moveToCenter)
+                        self.brain.dopamineNode.run(moveToCenter)
+                        self.brain.noradrenalineNode.run(moveToCenter)
+                        delay(moveToCenter.duration + 0.5, closure: {
+                            self.brain.noradrenalineNode.run(fadeAlphaUp)
+                        })
+                    })
+                } else {
+                    sleepGraphic.cropNode.maskNode?.xScale = 10
+                }
             }
         }
     }
@@ -91,5 +121,10 @@ public class ThirdMiniGameScene: SKScene {
         tutorialText.fontSize = MAIN_BODY_SIZE_FONT
         tutorialText.position = CGPoint(x: MYVIEW.frame.maxX - (tutorialText.frame.width / 2) - 30, y: MYVIEW.frame.minY + (tutorialText.frame.height / 2))
         addChild(tutorialText)
+    }
+    
+    private func addGraphic() {
+        sleepGraphic.addGraphic(skScene: self)
+        sleepGraphic.cropNode.maskNode?.xScale = 42
     }
 }

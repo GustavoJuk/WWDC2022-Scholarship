@@ -9,7 +9,7 @@ import SpriteKit
 
 public class ThirdScene: SKScene {
     
-    private let article = SKLabelNode(fontNamed: "\(MAIN_FONT) - Bold")
+    private let article = SKLabelNode(fontNamed: "\(MAIN_FONT)")
     private let nextSceneButton = NextSceneButton()
     private let seratonin = SerotoninGraphic()
     private let dopamine = DopamineGraphic()
@@ -30,7 +30,7 @@ public class ThirdScene: SKScene {
             let location = touch.location(in: self)
 
             if nextSceneButton.node.contains(location) {
-                nextSceneButton.node.setScale(0.75)
+                nextSceneButton.node.setScale(0.9)
                 nextSceneButton.node.alpha = 0.5
             }
         }

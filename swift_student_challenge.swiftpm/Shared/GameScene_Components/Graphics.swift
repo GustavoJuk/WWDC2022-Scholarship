@@ -8,7 +8,7 @@
 import SpriteKit
 
 public protocol Graph: SKNode {
-    var node: SKLabelNode { get set }
+    var title: SKLabelNode { get set }
     var graphic: SKSpriteNode { get set }
     
     func addGraphic(skScene: SKScene)
@@ -17,18 +17,19 @@ public protocol Graph: SKNode {
 public class SerotoninGraphic: SKNode, Graph {
     
     //Attributes
-    public var node = SEROTONIN_TITLE_TEXT
+    public var title = SEROTONIN_TITLE_TEXT
     public var graphic = SKSpriteNode(color: SEROTONIN_COLOR, size: CGSize(width: MYVIEW.frame.width / 12, height: MYVIEW.frame.height / 2.5))
         
     //Methods
     public func addGraphic(skScene: SKScene) {
-        node.position = CGPoint(x: MYVIEW.frame.minX + (graphic.frame.height / 1.5), y: MYVIEW.frame.midY / 3)
+        title.position = CGPoint(x: MYVIEW.frame.minX + (graphic.frame.height / 1.5), y: MYVIEW.frame.midY / 3)
+        
         graphic.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-        graphic.position = CGPoint(x: node.frame.midX, y: node.frame.maxY + 10)
+        graphic.position = CGPoint(x: title.frame.midX, y: title.frame.maxY + (title.frame.height / 2))
         delay(0.5, closure: {
             self.graphic.run(scaleSerotoninDown)
         })
-        skScene.addChild(node)
+        skScene.addChild(title)
         skScene.addChild(graphic)
     }
 }
@@ -36,18 +37,18 @@ public class SerotoninGraphic: SKNode, Graph {
 public class DopamineGraphic: SKNode, Graph {
     
     //Attributes
-    public var node = DOPAMINE_TITLE_TEXT
+    public var title = DOPAMINE_TITLE_TEXT
     public var graphic = SKSpriteNode(color: DOPAMINE_COLOR, size: CGSize(width: UIScreen.main.bounds.width / 12, height: UIScreen.main.bounds.height / 2.5))
         
     //Methods
     public func addGraphic(skScene: SKScene) {
-        node.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY / 3)
+        title.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY / 3)
         graphic.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-        graphic.position = CGPoint(x: node.frame.midX, y: node.frame.maxY + 10)
+        graphic.position = CGPoint(x: title.frame.midX, y: title.frame.maxY + (title.frame.height / 2))
         delay(0.5, closure: {
             self.graphic.run(scaleDopamineDown)
         })
-        skScene.addChild(node)
+        skScene.addChild(title)
         skScene.addChild(graphic)
     }
 }
@@ -55,18 +56,18 @@ public class DopamineGraphic: SKNode, Graph {
 public class NoradrenalineGraphic: SKNode, Graph {
     
     //Attributes
-    public var node = NORADRENALINE_TITLE_TEXT
+    public var title = NORADRENALINE_TITLE_TEXT
     public var graphic = SKSpriteNode(color: NORADRENALINE_COLOR, size: CGSize(width: UIScreen.main.bounds.width / 12, height: UIScreen.main.bounds.height / 2.5))
     
     //Methods
     public func addGraphic(skScene: SKScene) {
-        node.position = CGPoint(x: MYVIEW.frame.maxX - (graphic.frame.height / 1.5), y: MYVIEW.frame.midY / 3)
+        title.position = CGPoint(x: MYVIEW.frame.maxX - (graphic.frame.height / 1.5), y: MYVIEW.frame.midY / 3)
         graphic.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-        graphic.position = CGPoint(x: node.frame.midX, y: node.frame.maxY + 10)
+        graphic.position = CGPoint(x: title.frame.midX, y: title.frame.maxY + (title.frame.height / 2))
         delay(0.5, closure: {
             self.graphic.run(scaleNoradrenalineDown)
         })
-        skScene.addChild(node)
+        skScene.addChild(title)
         skScene.addChild(graphic)
     }
 }
@@ -74,21 +75,25 @@ public class NoradrenalineGraphic: SKNode, Graph {
 public class SleepGraphic: SKNode, Graph {
     
     //Attributes
-    public var node = SLEEP_TITLE_TEXT
-    public var graphic = SKSpriteNode(color: SLEEP_COLOR, size: CGSize(width: MYVIEW.frame.width / 50, height: MYVIEW.frame.height / 10 - 20))
-    public var safeArea = SKSpriteNode(color: .green, size: CGSize(width: MYVIEW.frame.width / 6, height: MYVIEW.frame.height / 10 - 20))
+    public var title = SLEEP_TITLE_TEXT
+    public var graphic = SKSpriteNode(color: SLEEP_COLOR, size: CGSize(width: MYVIEW.frame.width / 50, height: MYVIEW.frame.height / 10 - 25))
+    public var safeArea = SKSpriteNode(color: .green, size: CGSize(width: MYVIEW.frame.width / 6, height: MYVIEW.frame.height / 10 - 25))
     public var graphBackground = SKSpriteNode(color: SLEEP_COLOR, size: CGSize(width: MYVIEW.frame.width - 100, height: MYVIEW.frame.height / 10))
+    public var cropNode = SKCropNode()
     
     //Methods
     public func addGraphic(skScene: SKScene) {
         graphBackground.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.maxY - (graphic.frame.height / 2) - 50)
         graphBackground.alpha = 0
         graphBackground.zPosition = -2
-        graphic.position = CGPoint(x: graphBackground.frame.minX + (graphic.frame.width / 2) + 15, y: graphBackground.frame.midY)
+        graphic.position = CGPoint(x: graphBackground.frame.minX + (graphic.frame.width / 2) + 5, y: graphBackground.frame.midY)
         graphic.alpha = 0
+        graphic.anchorPoint = CGPoint(x: 0.0, y: 0.5)
         safeArea.position = CGPoint(x: graphBackground.frame.maxX - safeArea.frame.height * 3, y: graphBackground.frame.midY)
         safeArea.alpha = 0
-        skScene.addChild(graphic)
+        cropNode.maskNode = graphic
+        cropNode.addChild(graphic)
+        skScene.addChild(cropNode)
         skScene.addChild(safeArea)
         skScene.addChild(graphBackground)
     }

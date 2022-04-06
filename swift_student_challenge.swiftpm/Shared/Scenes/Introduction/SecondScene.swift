@@ -9,7 +9,7 @@ import SpriteKit
 
 public class SecondScene: SKScene {
     
-    private var article = SKLabelNode(fontNamed: "\(MAIN_FONT) - Regular")
+    private var article = SKLabelNode(fontNamed: "\(MAIN_FONT)")
     private let nextSceneButton = NextSceneButton()
     
     public override init(size: CGSize) {
@@ -28,7 +28,7 @@ public class SecondScene: SKScene {
             let location = touch.location(in: self)
 
             if nextSceneButton.node.contains(location) {
-                nextSceneButton.node.setScale(0.75)
+                nextSceneButton.node.setScale(0.9)
                 nextSceneButton.node.alpha = 0.5
             }
         }

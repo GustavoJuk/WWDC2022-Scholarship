@@ -11,9 +11,9 @@ public class FirstScene: SKScene {
     
     private var brain = Brain()
     private let nextSceneButton = NextSceneButton()
-    private var title = SKLabelNode(fontNamed: "\(MAIN_FONT) - Bold")
-    private var footer = SKLabelNode(fontNamed: "\(MAIN_FONT) - Regular")
-    private var text = SKLabelNode(fontNamed: "\(MAIN_FONT) - Regular")
+    private var title = SKLabelNode(fontNamed: "\(MAIN_FONT)")
+    private var footer = SKLabelNode(fontNamed: "\(MAIN_FONT)")
+    private var text = SKLabelNode(fontNamed: "\(MAIN_FONT)")
     
     public override init(size: CGSize) {
         super.init(size: size)
@@ -34,7 +34,7 @@ public class FirstScene: SKScene {
             let location = touch.location(in: self)
 
             if nextSceneButton.node.contains(location) {
-                nextSceneButton.node.setScale(0.75)
+                nextSceneButton.node.setScale(0.9)
                 nextSceneButton.node.alpha = 0.5
                 title.run(fadeOut)
                 footer.run(fadeOut)

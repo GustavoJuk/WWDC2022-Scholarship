@@ -9,17 +9,18 @@ import SpriteKit
 
 //SCENE TRANSITION
 public func transition(nextScene: SKScene, currentScene: SKScene) {
-    currentScene.view?.presentScene(nextScene, transition: .fade(with: BACKGROUND_COLOR, duration: 1.5))
+//    currentScene.view?.presentScene(nextScene, transition: .fade(with: BACKGROUND_COLOR, duration: 1.5))
+    currentScene.view?.presentScene(nextScene)
 }
 
 //SKVIEW
 public let MYVIEW = SKView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
 
 //COLORS
-public let BACKGROUND_COLOR = SKColor(red: 9 / 255, green: 206 / 255, blue: 194 / 255, alpha: 1)
-public let SEROTONIN_COLOR = SKColor(red: 226 / 255, green: 205 / 255, blue: 14 / 255, alpha: 1)
-public let DOPAMINE_COLOR = SKColor(red: 207 / 255, green: 88 / 255, blue: 29 / 255, alpha: 1)
-public let NORADRENALINE_COLOR = SKColor(red: 19 / 255, green: 119 / 255, blue: 207 / 255, alpha: 1)
+public let BACKGROUND_COLOR = SKColor(red: 0 / 255, green: 169 / 255, blue: 159 / 255, alpha: 1)
+public let SEROTONIN_COLOR = SKColor(red: 255 / 255, green: 184 / 255, blue: 0 / 255, alpha: 1)
+public let DOPAMINE_COLOR = SKColor(red: 216 / 255, green: 71 / 255, blue: 0 / 255, alpha: 1)
+public let NORADRENALINE_COLOR = SKColor(red: 8 / 255, green: 85 / 255, blue: 201 / 255, alpha: 1)
 public let EXERCISE_COLOR = SKColor(red: 121 / 255, green: 19 / 255, blue: 207 / 255, alpha: 1)
 public let DIET_COLOR = SKColor(red: 0, green: 130 / 255, blue: 121 / 255, alpha: 1)
 public let SLEEP_COLOR = SKColor(red: 213 / 255, green: 140 / 255, blue: 72 / 255, alpha: 1)
@@ -53,57 +54,18 @@ public let HEALTHY_FOOD_NODE_NM = "Healthy food"
 public let UNHEALTHY_FOOD_NODE_NM = "Unhealthy food"
 
 //FONT
-public let MAIN_FONT = "SF Symbool"
+public let MAIN_FONT = "SF Pro Text"
 public let MAIN_TITLE_SIZE_FONT: CGFloat = 50
 public let MAIN_SUBTITLE_SIZE_FONT: CGFloat = 40
 public let MAIN_BODY_SIZE_FONT: CGFloat = 35
 
 //TEXT
-public var SEROTONIN_TITLE_TEXT: SKLabelNode {
-    let title = SKLabelNode(fontNamed: "\(MAIN_FONT) - Semi Bold")
-    title.text = "Serotonin"
-    title.fontColor = SEROTONIN_COLOR
-    title.fontSize = MAIN_SUBTITLE_SIZE_FONT
-    
-    return title
-}
-public var DOPAMINE_TITLE_TEXT: SKLabelNode {
-    let title = SKLabelNode(fontNamed: "\(MAIN_FONT) - Semi Bold")
-    title.text = "Dopamine"
-    title.fontColor = DOPAMINE_COLOR
-    title.fontSize = MAIN_SUBTITLE_SIZE_FONT
-    
-    return title
-}
-public var NORADRENALINE_TITLE_TEXT: SKLabelNode {
-    let title = SKLabelNode(fontNamed: "\(MAIN_FONT) - Semi Bold")
-    title.text = "Noradrenaline"
-    title.fontColor = NORADRENALINE_COLOR
-    title.fontSize = MAIN_SUBTITLE_SIZE_FONT
-    
-    return title
-}
-public var EXERCISE_TITLE_TEXT: SKLabelNode {
-    let title = SKLabelNode(fontNamed: "\(MAIN_FONT) - Semi Bold")
-    title.text = "Exercices"
-    title.fontColor = EXERCISE_COLOR
-    
-    return title
-}
-public var DIET_TITLE_TEXT: SKLabelNode {
-    let title = SKLabelNode(fontNamed: "\(MAIN_FONT) - Semi Bold")
-    title.text = "Diet"
-    title.fontColor = DIET_COLOR
-    
-    return title
-}
-public var SLEEP_TITLE_TEXT: SKLabelNode {
-    let title = SKLabelNode(fontNamed: "\(MAIN_FONT) - Semi Bold")
-    title.text = "Sleep"
-    title.fontColor = SLEEP_COLOR
-    
-    return title
-}
+public var SEROTONIN_TITLE_TEXT = SKLabelNode(attributedText: NSAttributedString(string: "Serotonin", attributes: [.font: UIFont.systemFont(ofSize: MAIN_SUBTITLE_SIZE_FONT, weight: .bold), .foregroundColor: SEROTONIN_COLOR]))
+public var DOPAMINE_TITLE_TEXT = SKLabelNode(attributedText: NSAttributedString(string: "Dopamine", attributes: [.font: UIFont.systemFont(ofSize: MAIN_SUBTITLE_SIZE_FONT, weight: .bold), .foregroundColor: DOPAMINE_COLOR]))
+public var NORADRENALINE_TITLE_TEXT = SKLabelNode(attributedText: NSAttributedString(string: "Noradrenaline", attributes: [.font: UIFont.systemFont(ofSize: MAIN_SUBTITLE_SIZE_FONT, weight: .bold), .foregroundColor: NORADRENALINE_COLOR]))
+public var EXERCISE_TITLE_TEXT = SKLabelNode(attributedText: NSAttributedString(string: "Exercise", attributes: [.font: UIFont.systemFont(ofSize: MAIN_SUBTITLE_SIZE_FONT, weight: .bold), .foregroundColor: EXERCISE_COLOR]))
+public var DIET_TITLE_TEXT = SKLabelNode(attributedText: NSAttributedString(string: "Diet", attributes: [.font: UIFont.systemFont(ofSize: MAIN_SUBTITLE_SIZE_FONT, weight: .bold), .foregroundColor: DIET_COLOR]))
+public var SLEEP_TITLE_TEXT = SKLabelNode(attributedText: NSAttributedString(string: "Sleep", attributes: [.font: UIFont.systemFont(ofSize: MAIN_SUBTITLE_SIZE_FONT, weight: .bold), .foregroundColor: SLEEP_COLOR]))
 
 //Delay
 public func delay(_ delay: Double, closure: @escaping() -> ()) {
@@ -137,9 +99,9 @@ extension SKAction {
 }
 
 public let scaleUp = SKAction.scale(by: 2.0, duration: 0.25)
-public let scaleSerotoninDown = SKAction.scale(by: 0.5, duration: 1.0)
-public let scaleDopamineDown = SKAction.scale(by: 0.2, duration: 1.0)
-public let scaleNoradrenalineDown = SKAction.scale(by: 0.3, duration: 1.0)
+public let scaleSerotoninDown = SKAction.scaleY(to: 0.5, duration: 1.0)
+public let scaleDopamineDown = SKAction.scaleY(to: 0.2, duration: 1.0)
+public let scaleNoradrenalineDown = SKAction.scaleY(to: 0.3, duration: 1.0)
 public let fadeOut = SKAction.fadeOut(withDuration: 0.25)
 public let fadeIn = SKAction.fadeIn(withDuration: 0.25)
 public let fadeAlphaUp = SKAction.fadeAlpha(to: 1.0, duration: 0.25)
