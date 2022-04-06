@@ -3,7 +3,7 @@ import SpriteKit
 
 struct ContentView: View {
     var gameScene: SKScene {
-        let gameScene = FirstScene(size: MYVIEW.frame.size)
+        let gameScene = ThirdMiniGameScene(size: MYVIEW.frame.size)
         gameScene.scaleMode = .fill
         return gameScene
     }

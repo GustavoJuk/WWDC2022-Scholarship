@@ -32,6 +32,7 @@ public class SecondMiniGameScene: SKScene {
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
+            let clickedNode = self.nodes(at: location)
 
             if nextSceneButton.node.contains(location) {
                 nextSceneButton.node.setScale(0.75)
@@ -55,15 +56,16 @@ public class SecondMiniGameScene: SKScene {
                 })
             }
             //TODO: Switch-case
-//            switch  {
-//            case HEALTHY_FOOD_NODE_NM:
-//                correctOption(with: clickNode)
-//
-//            case UNHEALTHY_FOOD_NODE_NM:
-//                wrongOption(with: clickNode)
-//
-//            default: break
-//            }
+
+            switch clickedNode.first?.name {
+            case HEALTHY_FOOD_NODE_NM:
+                correctOption(with: clickedNode.first!)
+
+            case UNHEALTHY_FOOD_NODE_NM:
+                wrongOption(with: clickedNode.first!)
+
+            default: break
+            }
         }
     }
     

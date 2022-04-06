@@ -12,7 +12,7 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
     private let title = SKLabelNode(fontNamed: "\(MAIN_FONT) - Bold")
     private let text = SKLabelNode(fontNamed: "\(MAIN_FONT) - Regular")
     private let tutorialText = SKLabelNode(fontNamed: "\(MAIN_FONT) - Regular")
-    private let finishLine = SKShapeNode(rect: CGRect(origin: CGPoint(x: MYVIEW.frame.midX * 1.75, y: (MYVIEW.frame.midY - (MYVIEW.frame.midY / 1.5) - 50)), size: CGSize(width: 15, height: 100)))
+    private let finishLine = SKShapeNode(rect: CGRect(origin: CGPoint(x: MYVIEW.frame.midX * 1.75, y: MYVIEW.frame.midY - (MYVIEW.frame.midY / 1.15)), size: CGSize(width: MYVIEW.frame.width / 48, height: MYVIEW.frame.height / 5)))
     private let brain = Brain()
     private let secondBrain = SKSpriteNode(imageNamed: FULL_BRAIN_NODE_TX)
     private let nextSceneButton = NextSceneButton()
@@ -73,7 +73,7 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
             
             if exerciseButton.node.contains(location) {
                 exerciseButton.node.setScale(0.75)
-                secondBrain.physicsBody?.applyImpulse(CGVector(dx: 10, dy: 0))
+                secondBrain.physicsBody?.applyImpulse(CGVector(dx: secondBrain.frame.width / 8, dy: 0))
             }
         }
     }
@@ -131,6 +131,7 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
         secondBrain.scale(to: CGSize(width: secondBrain.frame.width / 2, height: secondBrain.frame.height / 2))
         secondBrain.position = CGPoint(x: MYVIEW.frame.midX - (MYVIEW.frame.midX / 1.5), y: MYVIEW.frame.midY - (MYVIEW.frame.midY / 1.5))
         secondBrain.alpha = 0
+        secondBrain.scale(to: CGSize(width: MYVIEW.frame.width / 5, height: MYVIEW.frame.height / 5))
         secondBrain.physicsBody = SKPhysicsBody(texture: secondBrain.texture!, size: secondBrain.size)
         secondBrain.physicsBody?.affectedByGravity = false
         secondBrain.physicsBody?.allowsRotation = false
@@ -173,13 +174,14 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
     private func createTitle() {
         title.text = "With this in mind, let's help Bruno?"
         title.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY * 1.7)
+        title.fontSize = MAIN_TITLE_SIZE_FONT
         addChild(title)
     }
     
     private func createText() {
         text.text = "Bruno has a serious depression history in his family and some of the symptoms manifested recently."
-        text.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY * 1.25)
-        text.fontSize = 20
+        text.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY * 1.3)
+        text.fontSize = MAIN_SUBTITLE_SIZE_FONT
         text.preferredMaxLayoutWidth = MYVIEW.frame.size.width - 30
         text.numberOfLines = 2
         addChild(text)
@@ -190,7 +192,7 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
         tutorialText.alpha = 0
         tutorialText.preferredMaxLayoutWidth = MYVIEW.frame.size.width - 50
         tutorialText.numberOfLines = 3
-        tutorialText.fontSize = 20
+        tutorialText.fontSize = MAIN_BODY_SIZE_FONT
         tutorialText.position = CGPoint(x: MYVIEW.frame.minX + (tutorialText.frame.size.width / 2) + 30, y: MYVIEW.frame.maxY - (brain.backBrainNode.frame.size.height / 2))
         addChild(tutorialText)
     }

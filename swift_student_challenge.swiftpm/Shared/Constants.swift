@@ -31,7 +31,7 @@ public let DOPAMINE_NODE_TX = "scene_components/Brain/Dopamine"
 public let NORADRENALINE_NODE_TX = "scene_components/Brain/Noradrenaline"
 public let FRONT_BRAIN_NODE_TX = "scene_components/Brain/frontBrain"
 public let FULL_BRAIN_NODE_TX = "scene_components/Brain/fullBrain"
-public let SHELF_NODE_TX = "scene_components/Food/shelf"
+public let SHELF_NODE_TX = "scene_components/shelf"
 public let BACON_NODE_TX = "scene_components/Food/bacon"
 public let CHOCOLATE_NODE_TX = "scene_components/Food/chocolate"
 public let DONUT_NODE_TX = "scene_components/Food/donut"
@@ -42,6 +42,11 @@ public let ARROW_BUTTON_NODE_TX = "scene_components/arrow"
 
 //NODE NAMES
 public let BUTTON_NODE_NM = "Next page"
+public let BACK_BRAIN_NODE_NM = "Back Brain"
+public let FRONT_BRAIN_NODE_NM = "Front Brain"
+public let SEROTONIN_BRAIN_NODE_NM = "Serotonin"
+public let DOPAMINE_BRAIN_NODE_NM = "Dopamine"
+public let NORADRENALINE_BRAIN_NODE_NM = "Noradrenaline"
 public let EXERCISE_BUTTON_NODE_NM = "Exercise Button"
 public let SLEEP_BUTTON_NODE_NM = "Sleep button"
 public let HEALTHY_FOOD_NODE_NM = "Healthy food"
@@ -49,14 +54,16 @@ public let UNHEALTHY_FOOD_NODE_NM = "Unhealthy food"
 
 //FONT
 public let MAIN_FONT = "SF Symbool"
-public let MAIN_SUBTITLE_SIZE_FONT: CGFloat = 23
-public let MAIN_BODY_SIZE_FONT: CGFloat = 20
+public let MAIN_TITLE_SIZE_FONT: CGFloat = 50
+public let MAIN_SUBTITLE_SIZE_FONT: CGFloat = 40
+public let MAIN_BODY_SIZE_FONT: CGFloat = 35
 
 //TEXT
 public var SEROTONIN_TITLE_TEXT: SKLabelNode {
     let title = SKLabelNode(fontNamed: "\(MAIN_FONT) - Semi Bold")
     title.text = "Serotonin"
     title.fontColor = SEROTONIN_COLOR
+    title.fontSize = MAIN_SUBTITLE_SIZE_FONT
     
     return title
 }
@@ -64,6 +71,7 @@ public var DOPAMINE_TITLE_TEXT: SKLabelNode {
     let title = SKLabelNode(fontNamed: "\(MAIN_FONT) - Semi Bold")
     title.text = "Dopamine"
     title.fontColor = DOPAMINE_COLOR
+    title.fontSize = MAIN_SUBTITLE_SIZE_FONT
     
     return title
 }
@@ -71,6 +79,7 @@ public var NORADRENALINE_TITLE_TEXT: SKLabelNode {
     let title = SKLabelNode(fontNamed: "\(MAIN_FONT) - Semi Bold")
     title.text = "Noradrenaline"
     title.fontColor = NORADRENALINE_COLOR
+    title.fontSize = MAIN_SUBTITLE_SIZE_FONT
     
     return title
 }
@@ -136,6 +145,7 @@ public let fadeIn = SKAction.fadeIn(withDuration: 0.25)
 public let fadeAlphaUp = SKAction.fadeAlpha(to: 1.0, duration: 0.25)
 public let fadeAlphaInHalf = SKAction.fadeAlpha(by: 0.5, duration: 0.25)
 public let fadeAlphaOut = SKAction.fadeAlpha(to: 0.25, duration: 0.25)
+public let moveUp = SKAction.move(to: CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY + (MYVIEW.frame.midY / 3)), duration: 0.5)
 public let moveToCenter = SKAction.move(to: CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY), duration: 0.5)
 public let moveToSerotoninSide = SKAction.move(to: CGPoint(x: MYVIEW.frame.maxX - 10, y: MYVIEW.frame.maxY - 70), duration: 0.75)
 public let moveToDopamineSide = SKAction.move(to: CGPoint(x: MYVIEW.frame.minX + 20, y: MYVIEW.frame.maxY - 50), duration: 0.75)

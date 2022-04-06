@@ -30,8 +30,6 @@ public class FirstScene: SKScene {
     }
 
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let scaleThisUp = SKAction.scale(by: 1.5, duration: 0.5)
-        
         for touch in touches {
             let location = touch.location(in: self)
 
@@ -40,9 +38,9 @@ public class FirstScene: SKScene {
                 nextSceneButton.node.alpha = 0.5
                 title.run(fadeOut)
                 footer.run(fadeOut)
-                brain.backBrainNode.run(scaleThisUp)
-                brain.frontBrainNode.run(scaleThisUp)
-                delay(scaleUp.duration, closure: {
+                brain.backBrainNode.run(moveUp)
+                brain.frontBrainNode.run(moveUp)
+                delay(moveUp.duration, closure: {
                     self.text.run(fadeIn)
                 })
             }
@@ -67,12 +65,13 @@ public class FirstScene: SKScene {
     private func addTitleText() {
         title.text = "That's the human brain"
         title.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY * 1.7)
+        title.fontSize = MAIN_TITLE_SIZE_FONT
         addChild(title)
     }
     
     private func addFooterText() {
         footer.text = "It is here where we process the main functions of the body and maintaining the health of this organ is extremely important."
-        footer.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY / 2.5)
+        footer.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY / 3)
         footer.fontSize = MAIN_BODY_SIZE_FONT
         footer.preferredMaxLayoutWidth = MYVIEW.frame.size.width - 30
         footer.numberOfLines = 2

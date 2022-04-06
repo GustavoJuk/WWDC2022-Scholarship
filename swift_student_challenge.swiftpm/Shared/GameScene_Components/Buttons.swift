@@ -21,15 +21,15 @@ public class NextSceneButton: SKNode {
     
     public func addButton(skScene: SKScene) {
         node.name = BUTTON_NODE_NM
-        node.position = CGPoint(x: MYVIEW.frame.midX + (MYVIEW.frame.midX / 1.25), y: MYVIEW.frame.midY - (MYVIEW.frame.midY / 1.25))
+        node.position = CGPoint(x: MYVIEW.frame.maxX - (node.frame.width / 2) - 45, y: MYVIEW.frame.minY + (node.frame.height / 2) + 45)
         skScene.addChild(node)
     }
 }
 
 public class ExerciseButton: SKNode, ButtonNode {
-    public var node: SKShapeNode = SKShapeNode(circleOfRadius: 30)
+    public var node: SKShapeNode = SKShapeNode(ellipseOf: CGSize(width: MYVIEW.frame.height / 4, height: MYVIEW.frame.height / 4))
     public var color: SKColor = EXERCISE_COLOR
-    public var strokeSize: CGFloat = 30
+    public var strokeSize: CGFloat = MYVIEW.frame.width / 10
 
     public func addButton(skScene: SKScene) {
         node.name = EXERCISE_BUTTON_NODE_NM
@@ -42,12 +42,12 @@ public class ExerciseButton: SKNode, ButtonNode {
 }
 
 public class SleepButton: SKNode, ButtonNode {
-    public var node: SKShapeNode = SKShapeNode(circleOfRadius: 75)
+    public var node: SKShapeNode = SKShapeNode(ellipseOf: CGSize(width: MYVIEW.frame.height / 4, height: MYVIEW.frame.height / 4))
     public var color: SKColor = SLEEP_COLOR
     public var strokeSize: CGFloat = 75
     
     public func addButton(skScene: SKScene) {
-        node.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY)
+        node.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY * 1.15)
         node.name = SLEEP_BUTTON_NODE_NM
         node.alpha = 0
         node.fillColor = color
