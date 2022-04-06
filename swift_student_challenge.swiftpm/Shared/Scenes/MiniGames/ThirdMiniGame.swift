@@ -54,7 +54,7 @@ public class ThirdMiniGameScene: SKScene {
             let location = touch.location(in: self)
 
             if nextSceneButton.node.contains(location) {
-                nextSceneButton.node.setScale(1.0)
+                nextSceneButton.node.setScale(1.25)
                 nextSceneButton.node.alpha = 1.0
             }
         }

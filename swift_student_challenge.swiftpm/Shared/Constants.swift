@@ -9,7 +9,7 @@ import SpriteKit
 
 //SCENE TRANSITION
 public func transition(nextScene: SKScene, currentScene: SKScene) {
-    currentScene.scene?.view?.presentScene(nextScene, transition: .fade(with: BACKGROUND_COLOR, duration: 1.5))
+    currentScene.view?.presentScene(nextScene, transition: .fade(with: BACKGROUND_COLOR, duration: 1.5))
 }
 
 //SKVIEW

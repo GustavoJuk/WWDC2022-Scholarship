@@ -39,7 +39,7 @@ public class SecondScene: SKScene {
             let location = touch.location(in: self)
 
             if nextSceneButton.node.contains(location) {
-                nextSceneButton.node.setScale(1.0)
+                nextSceneButton.node.setScale(1.25)
                 nextSceneButton.node.alpha = 1.0
                 transition(nextScene: ThirdScene(size: MYVIEW.frame.size), currentScene: self)
             }

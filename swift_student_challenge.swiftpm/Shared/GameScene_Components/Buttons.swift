@@ -21,6 +21,7 @@ public class NextSceneButton: SKNode {
     
     public func addButton(skScene: SKScene) {
         node.name = BUTTON_NODE_NM
+        node.setScale(1.25)
         node.position = CGPoint(x: MYVIEW.frame.maxX - (node.frame.width / 2) - 45, y: MYVIEW.frame.minY + (node.frame.height / 2) + 45)
         skScene.addChild(node)
     }

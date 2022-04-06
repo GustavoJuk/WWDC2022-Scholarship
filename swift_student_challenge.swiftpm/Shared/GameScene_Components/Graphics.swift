@@ -81,7 +81,7 @@ public class SleepGraphic: SKNode, Graph {
     
     //Methods
     public func addGraphic(skScene: SKScene) {
-        graphBackground.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.maxY - (graphic.frame.height / 2) - 30)
+        graphBackground.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.maxY - (graphic.frame.height / 2) - 50)
         graphBackground.alpha = 0
         graphBackground.zPosition = -2
         graphic.position = CGPoint(x: graphBackground.frame.minX + (graphic.frame.width / 2) + 15, y: graphBackground.frame.midY)
