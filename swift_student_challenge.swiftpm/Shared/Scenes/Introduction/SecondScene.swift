@@ -16,8 +16,10 @@ public class SecondScene: SKScene {
         super.init(size: size)
     }
     
-    public override func sceneDidLoad() {
-        super.sceneDidLoad()
+    public override func didMove(to view: SKView) {
+        super.didMove(to: view)
+        self.alpha = 0
+        self.scene?.run(SKAction.fadeIn(withDuration: 0.75))
         self.backgroundColor  = BACKGROUND_COLOR
         addText()
         nextSceneButton.addButton(skScene: self)
@@ -41,16 +43,16 @@ public class SecondScene: SKScene {
             if nextSceneButton.node.contains(location) {
                 nextSceneButton.node.setScale(1.25)
                 nextSceneButton.node.alpha = 1.0
-                transition(nextScene: ThirdScene(size: MYVIEW.frame.size), currentScene: self)
+                transition(nextScene: ThirdScene(size: myScene.frame.size), currentScene: self)
             }
         }
     }
     
     private func addText() {
         article.text = "Much is discussed about depression and how terrible is... but, do you know what happens exactly?\n\nDepression is classified as a disease because of its symptoms, which affect not only the psychological area, but also the body, since chemical processes take place when a person feels this way.\n\nMost people have a stigma about this issue because it is not a visible thing. Also the same people who judge the victims do not know what is going on inside their minds and bodies."
-        article.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY / 2)
+        article.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY / 2)
         article.fontSize = MAIN_BODY_SIZE_FONT
-        article.preferredMaxLayoutWidth = MYVIEW.frame.size.width - 30
+        article.preferredMaxLayoutWidth = myScene.frame.size.width - 30
         article.numberOfLines = 10
         addChild(article)
     }

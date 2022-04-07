@@ -19,14 +19,15 @@ public class Brain: SKNode {
     //Methods
     public func addBrain(skScene: SKScene) {
         backBrainNode = SKSpriteNode(imageNamed: BACK_BRAIN_NODE_TX)
-        backBrainNode.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY * 1.15)        
-        backBrainNode.scene?.scaleMode = .resizeFill
-        backBrainNode.scale(to: CGSize(width: UIScreen.main.bounds.width / 2, height: UIScreen.main.bounds.height / 2))
+        backBrainNode.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY * 1.15)
+        backBrainNode.scale(to: CGSize(width: myScene.frame.width * 0.5, height: myScene.frame.height * 0.5))
+        backBrainNode.scene?.scaleMode = .aspectFit
         backBrainNode.zPosition = -5
         backBrainNode.name = BACK_BRAIN_NODE_NM
         frontBrainNode = SKSpriteNode(imageNamed: FRONT_BRAIN_NODE_TX)
         frontBrainNode.position = backBrainNode.position
         frontBrainNode.scale(to: CGSize(width: backBrainNode.frame.width, height: backBrainNode.frame.height))
+        frontBrainNode.scene?.scaleMode = backBrainNode.scene!.scaleMode
         frontBrainNode.zPosition = -1
         frontBrainNode.name = FRONT_BRAIN_NODE_NM
         skScene.addChild(self.backBrainNode)

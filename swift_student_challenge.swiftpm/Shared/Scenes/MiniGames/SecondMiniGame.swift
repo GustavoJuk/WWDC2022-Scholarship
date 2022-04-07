@@ -21,7 +21,10 @@ public class SecondMiniGameScene: SKScene {
     private let shelfTop = SKSpriteNode(imageNamed: SHELF_NODE_TX)
     private let shelfBottom = SKSpriteNode(imageNamed: SHELF_NODE_TX)
     
-    public override func sceneDidLoad() {
+    public override func didMove(to view: SKView) {
+        super.didMove(to: view)
+        self.alpha = 0
+        self.scene?.run(SKAction.fadeIn(withDuration: 0.75))
         self.backgroundColor = BACKGROUND_COLOR
         addAllBrainNodes()
         nextSceneButton.addButton(skScene: self)
@@ -111,9 +114,9 @@ public class SecondMiniGameScene: SKScene {
                 self.brain.dopamineNode.run(moveToCenter)
                 self.brain.noradrenalineNode.run(moveToCenter)
                 delay(moveToCenter.duration + 0.5, closure: {
-                    self.brain.dopamineNode.run(fadeAlphaInHalf)
-                    delay(fadeAlphaInHalf.duration + 0.5, closure: {
-                        transition(nextScene: ThirdMiniGameScene(size: MYVIEW.frame.size), currentScene: self)
+                    self.brain.dopamineNode.run(fadeIn)
+                    delay(fadeIn.duration + 0.5, closure: {
+                        transition(nextScene: ThirdMiniGameScene(size: myScene.frame.size), currentScene: self)
                     })
                 })
             })
@@ -140,7 +143,7 @@ public class SecondMiniGameScene: SKScene {
         brain.dopamineNode.alpha = 0.25
         brain.noradrenalineNode.alpha = 0.25
         
-        brain.backBrainNode.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY)
+        brain.backBrainNode.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY)
         brain.frontBrainNode.position = brain.backBrainNode.position
         brain.serotoninNode.position = brain.backBrainNode.position
         brain.dopamineNode.position = brain.backBrainNode.position
@@ -150,16 +153,16 @@ public class SecondMiniGameScene: SKScene {
     private func addTutorialText() {
         tutorialText.text = "Now let's get the Dopamine that Bruno needs!\nHe must have a balanced Diet"
         tutorialText.alpha = 0
-        tutorialText.preferredMaxLayoutWidth = MYVIEW.frame.size.width - 50
+        tutorialText.preferredMaxLayoutWidth = myScene.frame.size.width - 50
         tutorialText.numberOfLines = 2
         tutorialText.fontSize = MAIN_SUBTITLE_SIZE_FONT
-        tutorialText.position = CGPoint(x: (MYVIEW.frame.midX * 1.35) - 30 , y: MYVIEW.frame.midY * 1.5)
+        tutorialText.position = CGPoint(x: (myScene.frame.midX * 1.35) - 30 , y: myScene.frame.midY * 1.5)
         addChild(tutorialText)
     }
     
     private func addFoodNodes() {
         //Top shelf
-        addTopShelf(at_X: MYVIEW.frame.midX, at_Y: MYVIEW.frame.midY / 1.5)
+        addTopShelf(at_X: myScene.frame.midX, at_Y: myScene.frame.midY / 1.5)
         
         eggs.addFood(skScene: self)
         eggs.node.alpha = 0
@@ -174,7 +177,7 @@ public class SecondMiniGameScene: SKScene {
         soda.node.position = CGPoint(x: shelfTop.frame.midX * 1.5, y: eggs.node.frame.minY)
         
         //Bottom shelf
-        addBottomShelf(at_X: MYVIEW.frame.midX, at_Y: MYVIEW.frame.midY / 4.5)
+        addBottomShelf(at_X: myScene.frame.midX, at_Y: myScene.frame.midY / 4.5)
         
         bacon.addFood(skScene: self)
         bacon.node.alpha = 0
@@ -192,7 +195,7 @@ public class SecondMiniGameScene: SKScene {
     private func addTopShelf(at_X xPosition: CGFloat, at_Y yPosition: CGFloat) {
         shelfTop.position = CGPoint(x: xPosition, y: yPosition)
         shelfTop.alpha = 0
-        shelfTop.scale(to: CGSize(width: MYVIEW.frame.width / 1.5, height: MYVIEW.frame.height / shelfTop.frame.height))
+        shelfTop.scale(to: CGSize(width: myScene.frame.width / 1.5, height: myScene.frame.height / shelfTop.frame.height))
         
         shelfTop.zPosition = -1
         addChild(shelfTop)
@@ -201,7 +204,7 @@ public class SecondMiniGameScene: SKScene {
     private func addBottomShelf(at_X xPosition: CGFloat, at_Y yPosition: CGFloat) {
         shelfBottom.position = CGPoint(x: xPosition, y: yPosition)
         shelfBottom.alpha = 0
-        shelfBottom.scale(to: CGSize(width: MYVIEW.frame.width / 1.5, height: MYVIEW.frame.height / shelfBottom.frame.height))
+        shelfBottom.scale(to: CGSize(width: myScene.frame.width / 1.5, height: myScene.frame.height / shelfBottom.frame.height))
         shelfBottom.zPosition = -1
         addChild(shelfBottom)
     }

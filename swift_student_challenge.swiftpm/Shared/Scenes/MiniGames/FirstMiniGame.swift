@@ -12,14 +12,16 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
     private let title = SKLabelNode(fontNamed: "\(MAIN_FONT)")
     private let text = SKLabelNode(fontNamed: "\(MAIN_FONT)")
     private let tutorialText = SKLabelNode(fontNamed: "\(MAIN_FONT)")
-    private let finishLine = SKShapeNode(rect: CGRect(origin: CGPoint(x: MYVIEW.frame.midX * 1.75, y: MYVIEW.frame.midY - (MYVIEW.frame.midY / 1.15)), size: CGSize(width: MYVIEW.frame.width / 48, height: MYVIEW.frame.height / 5)))
+    private let finishLine = SKShapeNode(rect: CGRect(origin: CGPoint(x: myScene.frame.midX * 1.75, y: myScene.frame.midY - (myScene.frame.midY / 1.15)), size: CGSize(width: myScene.frame.width / 48, height: myScene.frame.height / 5)))
     private let brain = Brain()
     private let secondBrain = SKSpriteNode(imageNamed: FULL_BRAIN_NODE_TX)
     private let nextSceneButton = NextSceneButton()
     private let exerciseButton = ExerciseButton()
     
-    public override func sceneDidLoad() {
-        super.sceneDidLoad()
+    public override func didMove(to view: SKView) {
+        super.didMove(to: view)
+        self.alpha = 0
+        self.scene?.run(SKAction.fadeIn(withDuration: 0.75))
         self.backgroundColor = BACKGROUND_COLOR
         physicsWorld.contactDelegate = self
         addAllBrainNodes()
@@ -113,7 +115,7 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
                     delay(moveToCenter.duration + 0.5, closure: {
                         self.brain.serotoninNode.run(fadeAlphaUp)
                         delay(fadeAlphaUp.duration + 0.5, closure: {
-                            transition(nextScene: SecondMiniGameScene(size: MYVIEW.frame.size), currentScene: self)
+                            transition(nextScene: SecondMiniGameScene(size: myScene.frame.size), currentScene: self)
                         })
                     })
                 })
@@ -124,9 +126,9 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
     private func addFullBrainNode() {
         secondBrain.name = FULL_BRAIN_NODE_TX
         secondBrain.scale(to: CGSize(width: secondBrain.frame.width / 2, height: secondBrain.frame.height / 2))
-        secondBrain.position = CGPoint(x: MYVIEW.frame.midX - (MYVIEW.frame.midX / 1.5), y: MYVIEW.frame.midY - (MYVIEW.frame.midY / 1.5))
+        secondBrain.position = CGPoint(x: myScene.frame.midX - (myScene.frame.midX / 1.5), y: myScene.frame.midY - (myScene.frame.midY / 1.5))
         secondBrain.alpha = 0
-        secondBrain.scale(to: CGSize(width: MYVIEW.frame.width / 5, height: MYVIEW.frame.height / 5))
+        secondBrain.scale(to: CGSize(width: myScene.frame.width / 5, height: myScene.frame.height / 5))
         secondBrain.physicsBody = SKPhysicsBody(texture: secondBrain.texture!, size: secondBrain.size)
         secondBrain.physicsBody?.affectedByGravity = false
         secondBrain.physicsBody?.allowsRotation = false
@@ -159,7 +161,7 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
         brain.addDopamine(skScene: self)
         brain.addNoradrenaline(skScene: self)
         
-        brain.backBrainNode.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY / 1.5)
+        brain.backBrainNode.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY / 1.5)
         brain.frontBrainNode.position = brain.backBrainNode.position
         brain.serotoninNode.position = brain.backBrainNode.position
         brain.dopamineNode.position = brain.backBrainNode.position
@@ -168,16 +170,16 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
     
     private func createTitle() {
         title.text = "With this in mind, let's help Bruno?"
-        title.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY * 1.7)
+        title.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY * 1.7)
         title.fontSize = MAIN_TITLE_SIZE_FONT
         addChild(title)
     }
     
     private func createText() {
         text.text = "Bruno has a serious depression history in his family and some of the symptoms manifested recently."
-        text.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY * 1.3)
+        text.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY * 1.3)
         text.fontSize = MAIN_SUBTITLE_SIZE_FONT
-        text.preferredMaxLayoutWidth = MYVIEW.frame.size.width - 30
+        text.preferredMaxLayoutWidth = myScene.frame.size.width - 30
         text.numberOfLines = 2
         addChild(text)
     }
@@ -185,10 +187,10 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
     private func createTutorialText() {
         tutorialText.text = "The level of Serotonin in Brunos's brains is very low!\nQuick! Help him by doing some Exercise"
         tutorialText.alpha = 0
-        tutorialText.preferredMaxLayoutWidth = MYVIEW.frame.size.width - 50
+        tutorialText.preferredMaxLayoutWidth = myScene.frame.size.width - 50
         tutorialText.numberOfLines = 3
         tutorialText.fontSize = MAIN_BODY_SIZE_FONT
-        tutorialText.position = CGPoint(x: MYVIEW.frame.minX + (tutorialText.frame.size.width / 2) + 30, y: MYVIEW.frame.maxY - (brain.backBrainNode.frame.size.height / 2))
+        tutorialText.position = CGPoint(x: myScene.frame.minX + (tutorialText.frame.size.width / 2) + 30, y: myScene.frame.maxY - (brain.backBrainNode.frame.size.height / 2))
         addChild(tutorialText)
     }
 }

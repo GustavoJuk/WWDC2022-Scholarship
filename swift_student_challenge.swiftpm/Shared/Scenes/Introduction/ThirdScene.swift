@@ -15,8 +15,10 @@ public class ThirdScene: SKScene {
     private let dopamine = DopamineGraphic()
     private let noradrenaline = NoradrenalineGraphic()
     
-    public override func sceneDidLoad() {
-        super.sceneDidLoad()
+    public override func didMove(to view: SKView) {
+        super.didMove(to: view)
+        self.alpha = 0
+        self.scene?.run(SKAction.fadeIn(withDuration: 0.75))
         self.backgroundColor = BACKGROUND_COLOR
         addText()
         nextSceneButton.addButton(skScene: self)
@@ -43,16 +45,16 @@ public class ThirdScene: SKScene {
             if nextSceneButton.node.contains(location) {
                 nextSceneButton.node.setScale(1.25)
                 nextSceneButton.node.alpha = 1.0
-                transition(nextScene: FirstMiniGameScene(size: MYVIEW.frame.size), currentScene: self)
+                transition(nextScene: FirstMiniGameScene(size: myScene.frame.size), currentScene: self)
             }
         }
     }
     
     private func addText() {
         article.text = "To sum up, what happens in the brain of a deprressed person is the decrease of the neurotransmitters witch are responsable to funcitons like humor regulation, sleep, motivation and energy."
-        article.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY * 1.5)
+        article.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY * 1.5)
         article.fontSize = MAIN_BODY_SIZE_FONT
-        article.preferredMaxLayoutWidth = MYVIEW.frame.size.width - 30
+        article.preferredMaxLayoutWidth = myScene.frame.size.width - 30
         article.numberOfLines = 10
         addChild(article)
     }

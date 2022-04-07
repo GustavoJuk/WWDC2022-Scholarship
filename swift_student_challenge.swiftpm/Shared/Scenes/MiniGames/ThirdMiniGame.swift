@@ -15,8 +15,10 @@ public class ThirdMiniGameScene: SKScene {
     private let sleepButton = SleepButton()
     private let sleepGraphic = SleepGraphic()
     
-    public override func sceneDidLoad() {
-        super.sceneDidLoad()
+    public override func didMove(to view: SKView) {
+        super.didMove(to: view)
+        self.alpha = 0
+        self.scene?.run(SKAction.fadeIn(withDuration: 0.75))
         self.backgroundColor = BACKGROUND_COLOR
         addAllBrainNodes()
         nextSceneButton.addButton(skScene: self)
@@ -39,6 +41,7 @@ public class ThirdMiniGameScene: SKScene {
                 brain.noradrenalineNode.run(moveToNoradrenalineSide)
                 nextSceneButton.node.run(fadeOut)
                 delay(moveToNoradrenalineSide.duration, closure: {
+                    self.nextSceneButton.node.removeFromParent()
                     self.tutorialText.run(fadeIn)
                     self.sleepButton.node.run(fadeIn)
                     self.sleepGraphic.graphic.run(fadeIn)
@@ -114,7 +117,7 @@ public class ThirdMiniGameScene: SKScene {
         brain.dopamineNode.alpha = 1.0
         brain.noradrenalineNode.alpha = 0.25
         
-        brain.backBrainNode.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY)
+        brain.backBrainNode.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY)
         brain.frontBrainNode.position = brain.backBrainNode.position
         brain.serotoninNode.position = brain.backBrainNode.position
         brain.dopamineNode.position = brain.backBrainNode.position
@@ -124,10 +127,10 @@ public class ThirdMiniGameScene: SKScene {
     private func addTutorialText() {
         tutorialText.text = "The last part is Bruno's Noradrenaline.\nHelp him getting a good amount of Sleep!"
         tutorialText.alpha = 0
-        tutorialText.preferredMaxLayoutWidth = MYVIEW.frame.size.width - 50
+        tutorialText.preferredMaxLayoutWidth = myScene.frame.size.width - 50
         tutorialText.numberOfLines = 2
         tutorialText.fontSize = MAIN_BODY_SIZE_FONT
-        tutorialText.position = CGPoint(x: MYVIEW.frame.maxX - (tutorialText.frame.width / 2) - 30, y: MYVIEW.frame.minY + (tutorialText.frame.height / 2))
+        tutorialText.position = CGPoint(x: myScene.frame.maxX - (tutorialText.frame.width / 2) - 30, y: myScene.frame.minY + (tutorialText.frame.height / 2))
         addChild(tutorialText)
     }
 }

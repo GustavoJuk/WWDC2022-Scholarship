@@ -3,14 +3,14 @@ import SpriteKit
 
 struct ContentView: View {
     var gameScene: SKScene {
-        let gameScene = FirstScene(size: MYVIEW.frame.size)
+        let gameScene = FirstScene(size: myScene.frame.size)
         gameScene.scaleMode = .fill
         return gameScene
     }
     var body: some View {
         ZStack {
             SpriteView(scene: gameScene)
-                .frame(width: MYVIEW.frame.width, height: MYVIEW.frame.height)
+                .frame(width: myScene.frame.width, height: myScene.frame.height)
         }
         .ignoresSafeArea()
     }

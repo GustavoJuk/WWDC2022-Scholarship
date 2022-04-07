@@ -14,6 +14,7 @@ public class FirstScene: SKScene {
     private var title = SKLabelNode(fontNamed: "\(MAIN_FONT)")
     private var footer = SKLabelNode(fontNamed: "\(MAIN_FONT)")
     private var text = SKLabelNode(fontNamed: "\(MAIN_FONT)")
+    private var touchCount = 0
     
     public override init(size: CGSize) {
         super.init(size: size)
@@ -56,35 +57,36 @@ public class FirstScene: SKScene {
             if nextSceneButton.node.contains(location) {
                 nextSceneButton.node.setScale(1.25)
                 nextSceneButton.node.alpha = 1.0
+                touchCount += 1
             }
             
-            if touch.tapCount == 2 && nextSceneButton.node.contains(location) {
-                transition(nextScene: SecondScene(size: MYVIEW.frame.size), currentScene: self)
+            if touchCount == 2 && nextSceneButton.node.contains(location) {
+                transition(nextScene: SecondScene(size: myScene.frame.size), currentScene: self)
             }
         }
     }
     
     private func addTitleText() {
         title.text = "That's the human brain"
-        title.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY * 1.7)
+        title.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY * 1.7)
         title.fontSize = MAIN_TITLE_SIZE_FONT
         addChild(title)
     }
     
     private func addFooterText() {
         footer.text = "It is here where we process the main functions of the body and maintaining the health of this organ is extremely important."
-        footer.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY / 3)
+        footer.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY / 3)
         footer.fontSize = MAIN_BODY_SIZE_FONT
-        footer.preferredMaxLayoutWidth = MYVIEW.frame.size.width - 30
+        footer.preferredMaxLayoutWidth = myScene.frame.size.width - 30
         footer.numberOfLines = 2
         addChild(footer)
     }
     
     private func addText() {
         text.text = "Have you ever thought what could happen if mental health was not properly cared for and monitored?\n\nSo... Let's talk about Depression?"
-        text.position = CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY / 4)
+        text.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY / 4)
         text.fontSize = MAIN_BODY_SIZE_FONT
-        text.preferredMaxLayoutWidth = MYVIEW.frame.size.width - 30
+        text.preferredMaxLayoutWidth = myScene.frame.size.width - 30
         text.numberOfLines = 4
         text.alpha = 0
         addChild(text)
