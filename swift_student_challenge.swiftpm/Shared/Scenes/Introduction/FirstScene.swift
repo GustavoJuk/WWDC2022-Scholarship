@@ -41,6 +41,8 @@ public class FirstScene: SKScene {
                 brain.backBrainNode.run(moveUp)
                 brain.frontBrainNode.run(moveUp)
                 delay(moveUp.duration, closure: {
+                    self.title.removeFromParent()
+                    self.footer.removeFromParent()
                     self.text.run(fadeIn)
                 })
             }

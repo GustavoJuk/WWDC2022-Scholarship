@@ -50,7 +50,7 @@ public class ThirdMiniGameScene: SKScene {
             if sleepButton.node.contains(location) {
                 sleepButton.node.setScale(0.8)
                 sleepButton.node.alpha = 0.5
-                //TODO: Progress bar system
+                sleepGraphic.cropNode.maskNode?.run(SKAction.scaleX(to: 44, duration: 1.5))
             }
         }
     }
@@ -67,20 +67,28 @@ public class ThirdMiniGameScene: SKScene {
             if sleepButton.node.contains(location) {
                 sleepButton.node.setScale(1.0)
                 sleepButton.node.alpha = 1.0
+                sleepGraphic.cropNode.maskNode?.removeAllActions()
                 if sleepGraphic.cropNode.maskNode!.frame.maxX >= sleepGraphic.safeArea.frame.minX && sleepGraphic.cropNode.maskNode!.frame.maxX <= sleepGraphic.safeArea.frame.maxX {
-                    tutorialText.run(fadeOut)
-                    sleepButton.node.run(fadeOut)
-                    sleepGraphic.graphic.run(fadeOut)
-                    sleepGraphic.safeArea.run(fadeOut)
-                    sleepGraphic.graphBackground.run(fadeOut)
-                    delay(fadeOut.duration + 0.5, closure: {
-                        self.brain.backBrainNode.run(moveToCenter)
-                        self.brain.frontBrainNode.run(moveToCenter)
-                        self.brain.serotoninNode.run(moveToCenter)
-                        self.brain.dopamineNode.run(moveToCenter)
-                        self.brain.noradrenalineNode.run(moveToCenter)
-                        delay(moveToCenter.duration + 0.5, closure: {
-                            self.brain.noradrenalineNode.run(fadeAlphaUp)
+                    delay(0.5, closure: {
+                        self.tutorialText.run(fadeOut)
+                        self.sleepButton.node.run(fadeOut)
+                        self.sleepGraphic.graphic.run(fadeOut)
+                        self.sleepGraphic.safeArea.run(fadeOut)
+                        self.sleepGraphic.graphBackground.run(fadeOut)
+                        delay(fadeOut.duration + 0.5, closure: {
+                            self.tutorialText.removeFromParent()
+                            self.sleepButton.node.removeFromParent()
+                            self.sleepGraphic.graphic.removeFromParent()
+                            self.sleepGraphic.safeArea.removeFromParent()
+                            self.sleepGraphic.graphBackground.removeFromParent()
+                            self.brain.backBrainNode.run(moveToCenter)
+                            self.brain.frontBrainNode.run(moveToCenter)
+                            self.brain.serotoninNode.run(moveToCenter)
+                            self.brain.dopamineNode.run(moveToCenter)
+                            self.brain.noradrenalineNode.run(moveToCenter)
+                            delay(moveToCenter.duration + 0.5, closure: {
+                                self.brain.noradrenalineNode.run(fadeAlphaUp)
+                            })
                         })
                     })
                 } else {
@@ -125,6 +133,5 @@ public class ThirdMiniGameScene: SKScene {
     
     private func addGraphic() {
         sleepGraphic.addGraphic(skScene: self)
-        sleepGraphic.cropNode.maskNode?.xScale = 42
     }
 }

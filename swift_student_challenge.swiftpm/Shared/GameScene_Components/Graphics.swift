@@ -80,6 +80,7 @@ public class SleepGraphic: SKNode, Graph {
     public var safeArea = SKSpriteNode(color: .green, size: CGSize(width: MYVIEW.frame.width / 6, height: MYVIEW.frame.height / 10 - 25))
     public var graphBackground = SKSpriteNode(color: SLEEP_COLOR, size: CGSize(width: MYVIEW.frame.width - 100, height: MYVIEW.frame.height / 10))
     public var cropNode = SKCropNode()
+    public var initialXScaleValue = MYVIEW.frame.width / 50
     
     //Methods
     public func addGraphic(skScene: SKScene) {

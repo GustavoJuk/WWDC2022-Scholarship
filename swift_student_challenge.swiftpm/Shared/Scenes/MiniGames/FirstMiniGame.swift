@@ -17,7 +17,7 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
     private let secondBrain = SKSpriteNode(imageNamed: FULL_BRAIN_NODE_TX)
     private let nextSceneButton = NextSceneButton()
     private let exerciseButton = ExerciseButton()
-
+    
     public override func sceneDidLoad() {
         super.sceneDidLoad()
         self.backgroundColor = BACKGROUND_COLOR
@@ -31,7 +31,7 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
-        
+            
             if nextSceneButton.node.contains(location) {
                 nextSceneButton.node.setScale(0.9)
                 nextSceneButton.node.alpha = 0.5
@@ -44,28 +44,27 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
                 delay(fadeOut.duration, closure: {
                     self.title.removeFromParent()
                     self.text.removeFromParent()
-                    delay(fadeOut.duration, closure: {
-                        self.brain.backBrainNode.run(moveToSerotoninSide)
-                        self.brain.frontBrainNode.run(moveToSerotoninSide)
-                        self.brain.serotoninNode.run(moveToSerotoninSide)
-                        self.brain.dopamineNode.run(moveToSerotoninSide)
-                        self.brain.noradrenalineNode.run(moveToSerotoninSide)
-                        delay(moveToSerotoninSide.duration, closure: {
-                            self.brain.backBrainNode.run(scaleUp)
-                            self.brain.frontBrainNode.run(scaleUp)
-                            self.brain.serotoninNode.run(scaleUp)
-                            self.brain.dopamineNode.run(scaleUp)
-                            self.brain.noradrenalineNode.run(scaleUp)
-                            self.createTutorialText()
-                            delay(scaleUp.duration, closure: {
-                                self.tutorialText.run(fadeIn)
-                                self.addButtonNode()
-                                self.exerciseButton.node.run(fadeIn)
-                                self.addFullBrainNode()
-                                self.secondBrain.run(fadeIn)
-                                self.addFinishLine()
-                                self.finishLine.run(fadeIn)
-                            })
+                    self.nextSceneButton.node.removeFromParent()
+                    self.brain.backBrainNode.run(moveToSerotoninSide)
+                    self.brain.frontBrainNode.run(moveToSerotoninSide)
+                    self.brain.serotoninNode.run(moveToSerotoninSide)
+                    self.brain.dopamineNode.run(moveToSerotoninSide)
+                    self.brain.noradrenalineNode.run(moveToSerotoninSide)
+                    delay(moveToSerotoninSide.duration, closure: {
+                        self.brain.backBrainNode.run(scaleUp)
+                        self.brain.frontBrainNode.run(scaleUp)
+                        self.brain.serotoninNode.run(scaleUp)
+                        self.brain.dopamineNode.run(scaleUp)
+                        self.brain.noradrenalineNode.run(scaleUp)
+                        self.createTutorialText()
+                        delay(scaleUp.duration, closure: {
+                            self.tutorialText.run(fadeIn)
+                            self.addButtonNode()
+                            self.exerciseButton.node.run(fadeIn)
+                            self.addFullBrainNode()
+                            self.secondBrain.run(fadeIn)
+                            self.addFinishLine()
+                            self.finishLine.run(fadeIn)
                         })
                     })
                 })
@@ -95,9 +94,11 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
     
     public func didBegin(_ contact: SKPhysicsContact) {
         if contact.bodyA.node?.name == secondBrain.name {
-            secondBrain.physicsBody?.isDynamic = false
-            secondBrain.run(fadeOut)
-            finishLine.run(fadeOut)
+            delay(0.25, closure: {
+                self.secondBrain.physicsBody?.isDynamic = false
+                self.secondBrain.run(fadeOut)
+                self.finishLine.run(fadeOut)
+            })
             delay(fadeOut.duration + 0.5, closure: {
                 self.secondBrain.removeFromParent()
                 self.finishLine.removeFromParent()
@@ -106,17 +107,15 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
                 delay(fadeOut.duration, closure: {
                     self.exerciseButton.node.removeFromParent()
                     self.tutorialText.removeFromParent()
-                    delay(fadeOut.duration, closure: {
-                        self.brain.backBrainNode.run(moveToCenter)
-                        self.brain.frontBrainNode.run(moveToCenter)
-                        self.brain.serotoninNode.run(moveToCenter)
-                        self.brain.dopamineNode.run(moveToCenter)
-                        self.brain.noradrenalineNode.run(moveToCenter)
-                        delay(moveToCenter.duration + 0.5, closure: {
-                            self.brain.serotoninNode.run(fadeAlphaUp)
-                            delay(fadeAlphaUp.duration + 0.5, closure: {
-                                transition(nextScene: SecondMiniGameScene(size: MYVIEW.frame.size), currentScene: self)
-                            })
+                    self.brain.backBrainNode.run(moveToCenter)
+                    self.brain.frontBrainNode.run(moveToCenter)
+                    self.brain.serotoninNode.run(moveToCenter)
+                    self.brain.dopamineNode.run(moveToCenter)
+                    self.brain.noradrenalineNode.run(moveToCenter)
+                    delay(moveToCenter.duration + 0.5, closure: {
+                        self.brain.serotoninNode.run(fadeAlphaUp)
+                        delay(fadeAlphaUp.duration + 0.5, closure: {
+                            transition(nextScene: SecondMiniGameScene(size: MYVIEW.frame.size), currentScene: self)
                         })
                     })
                 })

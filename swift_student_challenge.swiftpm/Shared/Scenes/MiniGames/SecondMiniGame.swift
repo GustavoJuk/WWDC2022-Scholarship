@@ -53,6 +53,9 @@ public class SecondMiniGameScene: SKScene {
                     self.soda.node.run(fadeIn)
                     self.shelfTop.run(fadeIn)
                     self.shelfBottom.run(fadeIn)
+                    delay(fadeOut.duration, closure: {
+                        self.nextSceneButton.node.removeFromParent()
+                    })
                 })
             }
             
@@ -80,12 +83,9 @@ public class SecondMiniGameScene: SKScene {
     }
     
     private func correctOption(with node: SKNode) {
-        let moveToCenter = SKAction.move(to: CGPoint(x: MYVIEW.frame.midX, y: MYVIEW.frame.midY), duration: 0.5)
-        let fadeOut = SKAction.fadeOut(withDuration: 0.25)
-        let fadeHalfAlhpa = SKAction.fadeAlpha(by: 1.0, duration: 0.25)
-        
         node.run(fadeOut)
-        delay(1.0, closure: {
+        delay(fadeOut.duration + 0.5, closure: {
+            node.removeFromParent()
             self.tutorialText.run(fadeOut)
             self.bacon.node.run(fadeOut)
             self.chocolate.node.run(fadeOut)
@@ -96,14 +96,23 @@ public class SecondMiniGameScene: SKScene {
             self.shelfTop.run(fadeOut)
             self.shelfBottom.run(fadeOut)
             delay(fadeOut.duration, closure: {
+                self.tutorialText.removeFromParent()
+                self.bacon.node.removeFromParent()
+                self.chocolate.node.removeFromParent()
+                self.donut.node.removeFromParent()
+                self.eggs.node.removeFromParent()
+                self.fries.node.removeFromParent()
+                self.soda.node.removeFromParent()
+                self.shelfTop.removeFromParent()
+                self.shelfBottom.removeFromParent()
                 self.brain.backBrainNode.run(moveToCenter)
                 self.brain.frontBrainNode.run(moveToCenter)
                 self.brain.serotoninNode.run(moveToCenter)
                 self.brain.dopamineNode.run(moveToCenter)
                 self.brain.noradrenalineNode.run(moveToCenter)
                 delay(moveToCenter.duration + 0.5, closure: {
-                    self.brain.dopamineNode.run(fadeHalfAlhpa)
-                    delay(fadeHalfAlhpa.duration + 0.5, closure: {
+                    self.brain.dopamineNode.run(fadeAlphaInHalf)
+                    delay(fadeAlphaInHalf.duration + 0.5, closure: {
                         transition(nextScene: ThirdMiniGameScene(size: MYVIEW.frame.size), currentScene: self)
                     })
                 })
@@ -112,9 +121,7 @@ public class SecondMiniGameScene: SKScene {
     }
     
     private func wrongOption(with node: SKNode) {
-        let shake = SKAction.shake(initialPosition: node.position, duration: 0.5)
-        
-        node.run(shake)
+        node.run(SKAction.shake(initialPosition: node.position, duration: 0.5))
     }
     
     private func addAllBrainNodes() {
