@@ -22,7 +22,7 @@ public class ThirdMiniGameScene: SKScene {
         nextSceneButton.addButton(skScene: self)
         addTutorialText()
         sleepButton.addButton(skScene: self)
-        addGraphic()
+        sleepGraphic.addGraphic(skScene: self)
     }
     
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -50,7 +50,7 @@ public class ThirdMiniGameScene: SKScene {
             if sleepButton.node.contains(location) {
                 sleepButton.node.setScale(0.8)
                 sleepButton.node.alpha = 0.5
-                sleepGraphic.cropNode.maskNode?.run(SKAction.scaleX(to: 44, duration: 1.5))
+                sleepGraphic.cropNode.maskNode?.run(SKAction.scaleX(to: sleepGraphic.graphBackground.xScale / (sleepGraphic.graphBackground.xScale * 0.031), duration: 1.5))
             }
         }
     }
@@ -92,7 +92,7 @@ public class ThirdMiniGameScene: SKScene {
                         })
                     })
                 } else {
-                    sleepGraphic.cropNode.maskNode?.xScale = 10
+                    sleepGraphic.cropNode.maskNode?.xScale = sleepGraphic.graphBackground.xScale - (sleepGraphic.graphBackground.xScale * 0.1)
                 }
             }
         }
@@ -129,9 +129,5 @@ public class ThirdMiniGameScene: SKScene {
         tutorialText.fontSize = MAIN_BODY_SIZE_FONT
         tutorialText.position = CGPoint(x: MYVIEW.frame.maxX - (tutorialText.frame.width / 2) - 30, y: MYVIEW.frame.minY + (tutorialText.frame.height / 2))
         addChild(tutorialText)
-    }
-    
-    private func addGraphic() {
-        sleepGraphic.addGraphic(skScene: self)
     }
 }

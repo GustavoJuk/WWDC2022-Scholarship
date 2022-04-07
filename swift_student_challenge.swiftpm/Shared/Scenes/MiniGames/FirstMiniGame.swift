@@ -94,11 +94,9 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
     
     public func didBegin(_ contact: SKPhysicsContact) {
         if contact.bodyA.node?.name == secondBrain.name {
-            delay(0.25, closure: {
-                self.secondBrain.physicsBody?.isDynamic = false
-                self.secondBrain.run(fadeOut)
-                self.finishLine.run(fadeOut)
-            })
+            secondBrain.physicsBody?.isDynamic = false
+            secondBrain.run(fadeOut)
+            finishLine.run(fadeOut)
             delay(fadeOut.duration + 0.5, closure: {
                 self.secondBrain.removeFromParent()
                 self.finishLine.removeFromParent()
