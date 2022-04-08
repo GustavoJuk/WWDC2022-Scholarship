@@ -41,7 +41,7 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
             
             if exerciseButton.node.contains(location) {
                 exerciseButton.node.setScale(0.75)
-                secondBrain.physicsBody?.applyImpulse(CGVector(dx: secondBrain.frame.width / 8, dy: 0))
+                secondBrain.physicsBody?.applyImpulse(CGVector(dx: secondBrain.frame.width * 0.2, dy: 0))
             }
         }
     }
@@ -167,7 +167,7 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
         brain.addDopamine(skScene: self)
         brain.addNoradrenaline(skScene: self)
         
-        brain.backBrainNode.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY / 1.5)
+        brain.backBrainNode.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY * 0.6)
         brain.frontBrainNode.position = brain.backBrainNode.position
         brain.serotoninNode.position = brain.backBrainNode.position
         brain.dopamineNode.position = brain.backBrainNode.position

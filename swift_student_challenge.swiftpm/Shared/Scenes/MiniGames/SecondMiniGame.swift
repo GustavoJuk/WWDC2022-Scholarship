@@ -166,40 +166,40 @@ public class SecondMiniGameScene: SKScene {
     
     private func addFoodNodes() {
         //Top shelf
-        addTopShelf(at_X: myScene.frame.midX, at_Y: myScene.frame.midY / 1.5)
-        
+        addTopShelf(at_X: myScene.frame.midX, at_Y: myScene.frame.midY * 0.6)
+
         eggs.addFood(skScene: self)
         eggs.node.alpha = 0
-        eggs.node.position = CGPoint(x: shelfTop.frame.midX / 2, y: shelfTop.frame.midY)
-        
+        eggs.node.position = CGPoint(x: shelfTop.frame.midX * 0.5, y: shelfTop.frame.midY)
+
         fries.addFood(skScene: self)
         fries.node.alpha = 0
         fries.node.position = CGPoint(x: shelfTop.frame.midX, y: eggs.node.frame.minY)
-        
+
         soda.addFood(skScene: self)
         soda.node.alpha = 0
         soda.node.position = CGPoint(x: shelfTop.frame.midX * 1.5, y: eggs.node.frame.minY)
-        
+
         //Bottom shelf
-        addBottomShelf(at_X: myScene.frame.midX, at_Y: myScene.frame.midY / 4.5)
-        
+        addBottomShelf(at_X: myScene.frame.midX, at_Y: shelfTop.frame.minY - (shelfBottom.frame.width * 0.4))
+
         bacon.addFood(skScene: self)
         bacon.node.alpha = 0
-        bacon.node.position = CGPoint(x: shelfBottom.frame.midX / 2, y: shelfBottom.frame.midY)
-        
+        bacon.node.position = CGPoint(x: shelfBottom.frame.midX * 0.5, y: shelfBottom.frame.midY)
+
         donut.addFood(skScene: self)
         donut.node.alpha = 0
         donut.node.position = CGPoint(x: shelfBottom.frame.midX, y: bacon.node.frame.minY)
-        
+
         chocolate.addFood(skScene: self)
         chocolate.node.alpha = 0
-        chocolate.node.position = CGPoint(x: shelfBottom.frame.midX * 1.5, y: bacon.node.frame.minY)
+        chocolate.node.position = CGPoint(x: shelfBottom.frame.midX * 1.5, y: shelfBottom.frame.minY * 1.2)
     }
     
     private func addTopShelf(at_X xPosition: CGFloat, at_Y yPosition: CGFloat) {
         shelfTop.position = CGPoint(x: xPosition, y: yPosition)
         shelfTop.alpha = 0
-        shelfTop.scale(to: CGSize(width: myScene.frame.width / 1.5, height: myScene.frame.height / shelfTop.frame.height))
+        shelfTop.scale(to: CGSize(width: myScene.frame.width * 0.75, height: myScene.frame.height / shelfTop.frame.height))
         
         shelfTop.zPosition = -1
         addChild(shelfTop)
@@ -208,7 +208,7 @@ public class SecondMiniGameScene: SKScene {
     private func addBottomShelf(at_X xPosition: CGFloat, at_Y yPosition: CGFloat) {
         shelfBottom.position = CGPoint(x: xPosition, y: yPosition)
         shelfBottom.alpha = 0
-        shelfBottom.scale(to: CGSize(width: myScene.frame.width / 1.5, height: myScene.frame.height / shelfBottom.frame.height))
+        shelfBottom.scale(to: CGSize(width: myScene.frame.width * 0.75, height: myScene.frame.height / shelfBottom.frame.height))
         shelfBottom.zPosition = -1
         addChild(shelfBottom)
     }
