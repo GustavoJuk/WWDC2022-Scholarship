@@ -34,20 +34,6 @@ public class ThirdMiniGameScene: SKScene {
             if nextSceneButton.node.contains(location) {
                 nextSceneButton.node.setScale(0.9)
                 nextSceneButton.node.alpha = 0.5
-                brain.backBrainNode.run(moveToNoradrenalineSide)
-                brain.frontBrainNode.run(moveToNoradrenalineSide)
-                brain.serotoninNode.run(moveToNoradrenalineSide)
-                brain.dopamineNode.run(moveToNoradrenalineSide)
-                brain.noradrenalineNode.run(moveToNoradrenalineSide)
-                nextSceneButton.node.run(fadeOut)
-                delay(moveToNoradrenalineSide.duration, closure: {
-                    self.nextSceneButton.node.removeFromParent()
-                    self.tutorialText.run(fadeIn)
-                    self.sleepButton.node.run(fadeIn)
-                    self.sleepGraphic.graphic.run(fadeIn)
-                    self.sleepGraphic.safeArea.run(fadeAlphaInHalf)
-                    self.sleepGraphic.graphBackground.run(fadeAlphaInHalf)
-                })
             }
             
             if sleepButton.node.contains(location) {
@@ -65,13 +51,29 @@ public class ThirdMiniGameScene: SKScene {
             if nextSceneButton.node.contains(location) {
                 nextSceneButton.node.setScale(1.25)
                 nextSceneButton.node.alpha = 1.0
+                brain.backBrainNode.run(moveToNoradrenalineSide)
+                brain.frontBrainNode.run(moveToNoradrenalineSide)
+                brain.serotoninNode.run(moveToNoradrenalineSide)
+                brain.dopamineNode.run(moveToNoradrenalineSide)
+                brain.noradrenalineNode.run(moveToNoradrenalineSide)
+                brain.backBrainNode.run(unfocus)
+                brain.frontBrainNode.run(unfocus)
+                nextSceneButton.node.run(fadeOut)
+                delay(moveToNoradrenalineSide.duration, closure: {
+                    self.nextSceneButton.node.removeFromParent()
+                    self.tutorialText.run(fadeIn)
+                    self.sleepButton.node.run(fadeIn)
+                    self.sleepGraphic.graphic.run(fadeIn)
+                    self.sleepGraphic.safeArea.run(fadeAlphaInHalf)
+                    self.sleepGraphic.graphBackground.run(fadeAlphaInHalf)
+                })
             }
             
             if sleepButton.node.contains(location) {
                 sleepButton.node.setScale(1.0)
                 sleepButton.node.alpha = 1.0
                 sleepGraphic.cropNode.maskNode?.removeAllActions()
-                if sleepGraphic.cropNode.maskNode!.frame.maxX >= sleepGraphic.safeArea.frame.minX && sleepGraphic.cropNode.maskNode!.frame.maxX <= sleepGraphic.safeArea.frame.maxX {
+                if rightPosition(nodeMaxWidth: sleepGraphic.cropNode.maskNode!.frame.maxX) {
                     delay(0.5, closure: {
                         self.tutorialText.run(fadeOut)
                         self.sleepButton.node.run(fadeOut)
@@ -89,16 +91,25 @@ public class ThirdMiniGameScene: SKScene {
                             self.brain.serotoninNode.run(moveToCenter)
                             self.brain.dopamineNode.run(moveToCenter)
                             self.brain.noradrenalineNode.run(moveToCenter)
+                            self.brain.backBrainNode.run(focus)
+                            self.brain.frontBrainNode.run(focus)
                             delay(moveToCenter.duration + 0.5, closure: {
-                                self.brain.noradrenalineNode.run(fadeAlphaUp)
+                                self.brain.noradrenalineNode.run(fadeAlphaIn)
                             })
                         })
                     })
                 } else {
-                    sleepGraphic.cropNode.maskNode?.xScale = sleepGraphic.graphBackground.xScale - (sleepGraphic.graphBackground.xScale * 0.1)
+                    sleepGraphic.cropNode.maskNode?.run(SKAction.scaleX(to: sleepGraphic.graphBackground.xScale - (sleepGraphic.graphBackground.xScale * 0.1), duration: 0.5))
                 }
             }
         }
+    }
+    
+    private func rightPosition(nodeMaxWidth nodeMaxX: CGFloat) -> Bool {
+        if nodeMaxX >= sleepGraphic.safeArea.frame.minX && nodeMaxX <= sleepGraphic.safeArea.frame.maxX {
+            return true
+        }
+        return false
     }
     
     private func addAllBrainNodes() {
@@ -125,12 +136,12 @@ public class ThirdMiniGameScene: SKScene {
     }
     
     private func addTutorialText() {
-        tutorialText.text = "The last part is Bruno's Noradrenaline.\nHelp him getting a good amount of Sleep!"
+        tutorialText.text = "The last part is Bruno's Noradrenaline. Help him getting a good amount of Sleep!"
         tutorialText.alpha = 0
-        tutorialText.preferredMaxLayoutWidth = myScene.frame.size.width - 50
+        tutorialText.preferredMaxLayoutWidth = myScene.frame.size.width - 70
         tutorialText.numberOfLines = 2
         tutorialText.fontSize = MAIN_BODY_SIZE_FONT
-        tutorialText.position = CGPoint(x: myScene.frame.maxX - (tutorialText.frame.width / 2) - 30, y: myScene.frame.minY + (tutorialText.frame.height / 2))
+        tutorialText.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.maxY - (tutorialText.frame.height * 1.65))
         addChild(tutorialText)
     }
 }

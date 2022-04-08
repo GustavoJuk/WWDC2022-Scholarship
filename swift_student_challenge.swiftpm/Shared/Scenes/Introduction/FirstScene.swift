@@ -37,15 +37,6 @@ public class FirstScene: SKScene {
             if nextSceneButton.node.contains(location) {
                 nextSceneButton.node.setScale(0.9)
                 nextSceneButton.node.alpha = 0.5
-                title.run(fadeOut)
-                footer.run(fadeOut)
-                brain.backBrainNode.run(moveUp)
-                brain.frontBrainNode.run(moveUp)
-                delay(moveUp.duration, closure: {
-                    self.title.removeFromParent()
-                    self.footer.removeFromParent()
-                    self.text.run(fadeIn)
-                })
             }
         }
     }
@@ -55,9 +46,18 @@ public class FirstScene: SKScene {
             let location = touch.location(in: self)
 
             if nextSceneButton.node.contains(location) {
+                touchCount += 1
                 nextSceneButton.node.setScale(1.25)
                 nextSceneButton.node.alpha = 1.0
-                touchCount += 1
+                title.run(fadeOut)
+                footer.run(fadeOut)
+                brain.backBrainNode.run(moveUp)
+                brain.frontBrainNode.run(moveUp)
+                delay(moveUp.duration, closure: {
+                    self.title.removeFromParent()
+                    self.footer.removeFromParent()
+                    self.text.run(fadeIn)
+                })
             }
             
             if touchCount == 2 && nextSceneButton.node.contains(location) {
@@ -75,18 +75,18 @@ public class FirstScene: SKScene {
     
     private func addFooterText() {
         footer.text = "It is here where we process the main functions of the body and maintaining the health of this organ is extremely important."
-        footer.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY / 3)
+        footer.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY * 0.25)
         footer.fontSize = MAIN_BODY_SIZE_FONT
-        footer.preferredMaxLayoutWidth = myScene.frame.size.width - 30
+        footer.preferredMaxLayoutWidth = myScene.frame.size.width - 70
         footer.numberOfLines = 2
         addChild(footer)
     }
     
     private func addText() {
         text.text = "Have you ever thought what could happen if mental health was not properly cared for and monitored?\n\nSo... Let's talk about Depression?"
-        text.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY / 4)
+        text.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY * 0.25)
         text.fontSize = MAIN_BODY_SIZE_FONT
-        text.preferredMaxLayoutWidth = myScene.frame.size.width - 30
+        text.preferredMaxLayoutWidth = myScene.frame.size.width - 70
         text.numberOfLines = 4
         text.alpha = 0
         addChild(text)

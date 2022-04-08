@@ -76,21 +76,21 @@ public class SleepGraphic: SKNode, Graph {
     
     //Attributes
     public var title = SLEEP_TITLE_TEXT
-    public var graphic = SKSpriteNode(color: SLEEP_COLOR, size: CGSize(width: myScene.frame.width / 50, height: myScene.frame.height / 10 - 25))
-    public var safeArea = SKSpriteNode(color: .green, size: CGSize(width: myScene.frame.width / 6, height: myScene.frame.height / 10 - 25))
-    public var graphBackground = SKSpriteNode(color: SLEEP_COLOR, size: CGSize(width: myScene.frame.width - 100, height: myScene.frame.height / 10))
+    public var graphic = SKSpriteNode(color: SLEEP_COLOR, size: CGSize(width: myScene.frame.width * 0.25, height: myScene.frame.height * 0.25))
+    public var safeArea = SKSpriteNode(color: .green, size: CGSize(width: myScene.frame.width * 0.1, height: myScene.frame.height * 0.25))
+    public var graphBackground = SKSpriteNode(color: SLEEP_COLOR, size: CGSize(width: myScene.frame.width * 0.95, height: myScene.frame.height * 0.1))
     public var cropNode = SKCropNode()
     
     //Methods
     public func addGraphic(skScene: SKScene) {
-        graphBackground.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.maxY - (graphic.frame.height / 2) - 50)
+        graphBackground.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY * 1.25)
         graphBackground.alpha = 0
         graphBackground.zPosition = -2
-        graphic.position = CGPoint(x: graphBackground.frame.minX + (graphic.frame.width / 2) + 5, y: graphBackground.frame.midY)
+        graphic.position = CGPoint(x: graphBackground.frame.minX + (graphic.frame.height * 0.08), y: graphBackground.frame.midY)
         graphic.alpha = 0
         graphic.anchorPoint = CGPoint(x: 0.0, y: 0.5)
         graphic.size = CGSize(width: graphBackground.frame.width - (graphBackground.frame.width * 0.97), height: graphBackground.frame.height - (graphBackground.frame.height * 0.3))
-        safeArea.position = CGPoint(x: graphBackground.frame.maxX - safeArea.frame.height * 3, y: graphBackground.frame.midY)
+        safeArea.position = CGPoint(x: graphBackground.frame.maxX - safeArea.frame.height, y: graphBackground.frame.midY)
         safeArea.size.height = graphic.size.height
         safeArea.alpha = 0
         cropNode.maskNode = graphic

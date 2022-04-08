@@ -100,14 +100,16 @@ extension SKAction {
 }
 
 public let scaleUp = SKAction.scale(by: 2.0, duration: 0.25)
-public let scaleSerotoninDown = SKAction.scaleY(to: 0.5, duration: 1.0)
+public let scaleSerotoninDown = SKAction.scaleY(to: 0.4, duration: 1.0)
 public let scaleDopamineDown = SKAction.scaleY(to: 0.2, duration: 1.0)
 public let scaleNoradrenalineDown = SKAction.scaleY(to: 0.3, duration: 1.0)
 public let fadeOut = SKAction.fadeOut(withDuration: 0.25)
 public let fadeIn = SKAction.fadeIn(withDuration: 0.25)
-public let fadeAlphaUp = SKAction.fadeAlpha(to: 1.0, duration: 0.25)
+public let fadeAlphaIn = SKAction.fadeAlpha(to: 1.0, duration: 0.25)
 public let fadeAlphaInHalf = SKAction.fadeAlpha(by: 0.5, duration: 0.25)
 public let fadeAlphaOut = SKAction.fadeAlpha(to: 0.25, duration: 0.25)
+public let unfocus = SKAction.fadeAlpha(to: 0.25, duration: 1)
+public let focus = SKAction.fadeAlpha(to: 1, duration: 0.5)
 public let moveUp = SKAction.move(to: CGPoint(x: myScene.frame.midX, y: myScene.frame.midY + (myScene.frame.midY / 3)), duration: 0.5)
 public let moveToCenter = SKAction.move(to: CGPoint(x: myScene.frame.midX, y: myScene.frame.midY), duration: 0.5)
 public let moveToSerotoninSide = SKAction.move(to: CGPoint(x: myScene.frame.maxX - 10, y: myScene.frame.maxY - 70), duration: 0.75)

@@ -8,10 +8,7 @@ struct ContentView: View {
         return gameScene
     }
     var body: some View {
-        ZStack {
-            SpriteView(scene: gameScene)
-                .frame(width: myScene.frame.width, height: myScene.frame.height)
-        }
-        .ignoresSafeArea()
+        SpriteView(scene: gameScene)
+            .ignoresSafeArea()
     }
 }

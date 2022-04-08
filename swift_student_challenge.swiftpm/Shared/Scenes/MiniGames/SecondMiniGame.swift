@@ -40,26 +40,6 @@ public class SecondMiniGameScene: SKScene {
             if nextSceneButton.node.contains(location) {
                 nextSceneButton.node.setScale(0.9)
                 nextSceneButton.node.alpha = 0.5
-                brain.backBrainNode.run(moveToDopamineSide)
-                brain.frontBrainNode.run(moveToDopamineSide)
-                brain.serotoninNode.run(moveToDopamineSide)
-                brain.dopamineNode.run(moveToDopamineSide)
-                brain.noradrenalineNode.run(moveToDopamineSide)
-                delay(moveToDopamineSide.duration, closure: {
-                    self.nextSceneButton.node.run(fadeOut)
-                    self.tutorialText.run(fadeIn)
-                    self.bacon.node.run(fadeIn)
-                    self.chocolate.node.run(fadeIn)
-                    self.donut.node.run(fadeIn)
-                    self.eggs.node.run(fadeIn)
-                    self.fries.node.run(fadeIn)
-                    self.soda.node.run(fadeIn)
-                    self.shelfTop.run(fadeIn)
-                    self.shelfBottom.run(fadeIn)
-                    delay(fadeOut.duration, closure: {
-                        self.nextSceneButton.node.removeFromParent()
-                    })
-                })
             }
             
             switch clickedNode.first?.name {
@@ -81,6 +61,28 @@ public class SecondMiniGameScene: SKScene {
             if nextSceneButton.node.contains(location) {
                 nextSceneButton.node.setScale(1.25)
                 nextSceneButton.node.alpha = 1.0
+                brain.backBrainNode.run(moveToDopamineSide)
+                brain.frontBrainNode.run(moveToDopamineSide)
+                brain.serotoninNode.run(moveToDopamineSide)
+                brain.dopamineNode.run(moveToDopamineSide)
+                brain.noradrenalineNode.run(moveToDopamineSide)
+                brain.backBrainNode.run(unfocus)
+                brain.frontBrainNode.run(unfocus)
+                delay(moveToDopamineSide.duration, closure: {
+                    self.nextSceneButton.node.run(fadeOut)
+                    self.tutorialText.run(fadeIn)
+                    self.bacon.node.run(fadeIn)
+                    self.chocolate.node.run(fadeIn)
+                    self.donut.node.run(fadeIn)
+                    self.eggs.node.run(fadeIn)
+                    self.fries.node.run(fadeIn)
+                    self.soda.node.run(fadeIn)
+                    self.shelfTop.run(fadeIn)
+                    self.shelfBottom.run(fadeIn)
+                    delay(fadeOut.duration, closure: {
+                        self.nextSceneButton.node.removeFromParent()
+                    })
+                })
             }
         }
     }
@@ -113,6 +115,8 @@ public class SecondMiniGameScene: SKScene {
                 self.brain.serotoninNode.run(moveToCenter)
                 self.brain.dopamineNode.run(moveToCenter)
                 self.brain.noradrenalineNode.run(moveToCenter)
+                self.brain.backBrainNode.run(focus)
+                self.brain.frontBrainNode.run(focus)
                 delay(moveToCenter.duration + 0.5, closure: {
                     self.brain.dopamineNode.run(fadeIn)
                     delay(fadeIn.duration + 0.5, closure: {
@@ -153,10 +157,10 @@ public class SecondMiniGameScene: SKScene {
     private func addTutorialText() {
         tutorialText.text = "Now let's get the Dopamine that Bruno needs!\nHe must have a balanced Diet"
         tutorialText.alpha = 0
-        tutorialText.preferredMaxLayoutWidth = myScene.frame.size.width - 50
+        tutorialText.preferredMaxLayoutWidth = myScene.frame.size.width - 70
         tutorialText.numberOfLines = 2
         tutorialText.fontSize = MAIN_SUBTITLE_SIZE_FONT
-        tutorialText.position = CGPoint(x: (myScene.frame.midX * 1.35) - 30 , y: myScene.frame.midY * 1.5)
+        tutorialText.position = CGPoint(x: myScene.frame.maxX - (tutorialText.frame.width * 0.6), y: myScene.frame.maxY - (tutorialText.frame.height * 1.6))
         addChild(tutorialText)
     }
     
