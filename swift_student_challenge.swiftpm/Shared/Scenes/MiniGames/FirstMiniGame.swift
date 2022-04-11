@@ -135,6 +135,8 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
         secondBrain.scale(to: CGSize(width: myScene.frame.width * 0.2, height: myScene.frame.height * 0.2))
         secondBrain.position = CGPoint(x: myScene.frame.minX + secondBrain.size.width, y: myScene.frame.midY * 0.9)
         secondBrain.alpha = 0
+        secondBrain.scene?.scaleMode = .aspectFit
+        secondBrain.scene?.backgroundColor = .gray
         secondBrain.physicsBody = SKPhysicsBody(texture: secondBrain.texture!, size: secondBrain.size)
         secondBrain.physicsBody?.affectedByGravity = false
         secondBrain.physicsBody?.allowsRotation = false
@@ -176,14 +178,14 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
     
     private func createTitle() {
         title.text = "With this in mind, let's help Bruno?"
-        title.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY * 1.7)
+        title.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.maxY - (myScene.frame.height * 0.125))
         title.fontSize = MAIN_TITLE_SIZE_FONT
         addChild(title)
     }
     
     private func createText() {
         text.text = "Bruno has a serious depression history in his family and some of the symptoms manifested recently."
-        text.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY * 1.3)
+        text.position = CGPoint(x: myScene.frame.midX, y: title.frame.minY * 0.775)
         text.fontSize = MAIN_SUBTITLE_SIZE_FONT
         text.preferredMaxLayoutWidth = myScene.frame.size.width - 70
         text.numberOfLines = 2
@@ -192,11 +194,10 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
     
     private func createTutorialText() {
         tutorialText.text = "The level of Serotonin in Brunos's brains is very low!\nQuick! Help him by doing some Exercise"
+        tutorialText.position = CGPoint(x: myScene.frame.minX + (myScene.frame.width * 0.45), y: myScene.frame.maxY - (myScene.frame.height * 0.2))
         tutorialText.alpha = 0
-        tutorialText.preferredMaxLayoutWidth = myScene.frame.size.width - 50
         tutorialText.numberOfLines = 3
         tutorialText.fontSize = MAIN_BODY_SIZE_FONT
-        tutorialText.position = CGPoint(x: myScene.frame.minX + (tutorialText.frame.size.width * 0.6), y: myScene.frame.maxY - (brain.backBrainNode.frame.size.height * 0.45))
         addChild(tutorialText)
     }
 }

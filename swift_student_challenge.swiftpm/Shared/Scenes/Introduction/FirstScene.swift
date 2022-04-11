@@ -68,7 +68,7 @@ public class FirstScene: SKScene {
     
     private func addTitleText() {
         title.text = "That's the human brain"
-        title.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY * 1.7)
+        title.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.maxY - (myScene.frame.height * 0.125))
         title.fontSize = MAIN_TITLE_SIZE_FONT
         addChild(title)
     }

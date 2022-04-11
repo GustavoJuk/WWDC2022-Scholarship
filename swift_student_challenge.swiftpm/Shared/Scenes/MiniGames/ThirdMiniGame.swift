@@ -58,6 +58,7 @@ public class ThirdMiniGameScene: SKScene {
                 brain.noradrenalineNode.run(moveToNoradrenalineSide)
                 brain.backBrainNode.run(unfocus)
                 brain.frontBrainNode.run(unfocus)
+                brain.serotoninNode.run(unfocus)
                 nextSceneButton.node.run(fadeOut)
                 delay(moveToNoradrenalineSide.duration, closure: {
                     self.nextSceneButton.node.removeFromParent()
@@ -93,6 +94,7 @@ public class ThirdMiniGameScene: SKScene {
                             self.brain.noradrenalineNode.run(moveToCenter)
                             self.brain.backBrainNode.run(focus)
                             self.brain.frontBrainNode.run(focus)
+                            self.brain.serotoninNode.run(focus)
                             delay(moveToCenter.duration + 0.5, closure: {
                                 self.brain.noradrenalineNode.run(fadeAlphaIn)
                             })
@@ -141,7 +143,7 @@ public class ThirdMiniGameScene: SKScene {
         tutorialText.preferredMaxLayoutWidth = myScene.frame.size.width - 70
         tutorialText.numberOfLines = 2
         tutorialText.fontSize = MAIN_BODY_SIZE_FONT
-        tutorialText.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.maxY - (tutorialText.frame.height * 1.65))
+        tutorialText.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.maxY - (myScene.frame.height * 0.2))
         addChild(tutorialText)
     }
 }

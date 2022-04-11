@@ -159,8 +159,8 @@ public class SecondMiniGameScene: SKScene {
         tutorialText.alpha = 0
         tutorialText.preferredMaxLayoutWidth = myScene.frame.size.width - 70
         tutorialText.numberOfLines = 2
+        tutorialText.position = CGPoint(x: myScene.frame.maxX - (myScene.frame.width * 0.46), y: myScene.frame.maxY - (myScene.frame.height * 0.25))
         tutorialText.fontSize = MAIN_SUBTITLE_SIZE_FONT
-        tutorialText.position = CGPoint(x: myScene.frame.maxX - (tutorialText.frame.width * 0.6), y: myScene.frame.maxY - (tutorialText.frame.height * 1.6))
         addChild(tutorialText)
     }
     
@@ -181,7 +181,7 @@ public class SecondMiniGameScene: SKScene {
         soda.node.position = CGPoint(x: shelfTop.frame.midX * 1.5, y: eggs.node.frame.minY)
 
         //Bottom shelf
-        addBottomShelf(at_X: myScene.frame.midX, at_Y: shelfTop.frame.minY - (shelfBottom.frame.width * 0.4))
+        addBottomShelf(at_X: myScene.frame.midX, at_Y: shelfTop.frame.midY - (myScene.frame.height * 0.2))
 
         bacon.addFood(skScene: self)
         bacon.node.alpha = 0
