@@ -29,11 +29,11 @@ public class FirstScene: SKScene {
         addFooterText()
         addText()
     }
-
+    
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
-
+            
             if nextSceneButton.node.contains(location) {
                 nextSceneButton.node.setScale(0.9)
                 nextSceneButton.node.alpha = 0.5
@@ -44,7 +44,7 @@ public class FirstScene: SKScene {
     public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
-
+            
             if nextSceneButton.node.contains(location) {
                 touchCount += 1
                 nextSceneButton.node.setScale(1.25)
@@ -54,9 +54,13 @@ public class FirstScene: SKScene {
                 brain.backBrainNode.run(moveUp)
                 brain.frontBrainNode.run(moveUp)
                 delay(moveUp.duration, closure: {
-                    self.title.removeFromParent()
-                    self.footer.removeFromParent()
-                    self.text.run(fadeIn)
+                    self.brain.backBrainNode.run(scaleDown)
+                    self.brain.frontBrainNode.run(scaleDown)
+                    delay(scaleDown.duration, closure: {
+                        self.title.removeFromParent()
+                        self.footer.removeFromParent()
+                        self.text.run(fadeIn)
+                    })
                 })
             }
             
@@ -83,7 +87,7 @@ public class FirstScene: SKScene {
     }
     
     private func addText() {
-        text.text = "Have you ever thought what could happen if mental health was not properly cared for and monitored?\n\nSo... Let's talk about Depression?"
+        text.text = "Have you ever thought what could happen if mental health was not properly cared for and monitored?\n\nMaybe not! And in fact many people ignore their mental health until it becomes a more serious problem. So I wanted to draw attention to one of these problems: Depression!"
         text.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY * 0.25)
         text.fontSize = MAIN_BODY_SIZE_FONT
         text.preferredMaxLayoutWidth = myScene.frame.size.width - 70
