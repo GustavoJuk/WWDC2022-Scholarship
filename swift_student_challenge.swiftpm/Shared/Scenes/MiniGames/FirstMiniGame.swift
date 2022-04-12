@@ -130,6 +130,7 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    /// Constructor of the second brain
     private func addFullBrainNode() {
         secondBrain.name = FULL_BRAIN_NODE_TX
         secondBrain.scale(to: CGSize(width: myScene.frame.width * 0.2, height: myScene.frame.height * 0.2))
@@ -147,11 +148,13 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
         addChild(secondBrain)
     }
     
+    /// Constructor of the Exercise button
     private func addButtonNode() {
         exerciseButton.addButton(skScene: self)
         exerciseButton.alpha = 0
     }
     
+    /// Constructor of the finish line
     private func addFinishLine() {
         finishLine.name = "Finish line"
         finishLine.fillColor = .white
@@ -163,6 +166,7 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
         addChild(finishLine)
     }
     
+    /// Constructor of the first brain
     private func addAllBrainNodes() {
         brain.addBrain(skScene: self)
         brain.addSeratotin(skScene: self)
@@ -176,6 +180,7 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
         brain.noradrenalineNode.position = brain.backBrainNode.position
     }
     
+    /// Constructor of the title text
     private func createTitle() {
         title.text = "With this in mind, let's help Bruno?"
         title.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.maxY - (myScene.frame.height * 0.125))
@@ -183,6 +188,7 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
         addChild(title)
     }
     
+    /// Constructor of the introduction to mini game text
     private func createText() {
         text.text = "Bruno has a serious depression history in his family and some of the symptoms manifested recently."
         text.position = CGPoint(x: myScene.frame.midX, y: title.frame.minY * 0.775)
@@ -192,6 +198,7 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
         addChild(text)
     }
     
+    /// Constructor of the tutorial text
     private func createTutorialText() {
         tutorialText.text = "The level of Serotonin in Brunos's brains is very low!\nQuick! Help him by doing some Exercise"
         tutorialText.position = CGPoint(x: myScene.frame.minX + (myScene.frame.width * 0.45), y: myScene.frame.maxY - (myScene.frame.height * 0.2))

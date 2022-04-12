@@ -88,6 +88,8 @@ public class SecondMiniGameScene: SKScene {
         }
     }
     
+    /// This method verify if the clicked node is a healthy food and preforms the rest of the animations
+    /// - Parameter node: The food in witch will make the animation
     private func correctOption(with node: SKNode) {
         node.run(fadeOut)
         delay(duration: fadeOut.duration + 0.5, closure: {
@@ -129,10 +131,13 @@ public class SecondMiniGameScene: SKScene {
         })
     }
     
+    /// This methos verify if the clicked node is a unhealthy food and preforms the shake animation
+    /// - Parameter node: The food in witch will make the animation
     private func wrongOption(with node: SKNode) {
         node.run(SKAction.shake(initialPosition: node.position, duration: 0.5))
     }
     
+    /// Constructor of the brain
     private func addAllBrainNodes() {
         brain.addBrain(skScene: self)
         brain.addSeratotin(skScene: self)
@@ -156,6 +161,7 @@ public class SecondMiniGameScene: SKScene {
         brain.noradrenalineNode.position = brain.backBrainNode.position
     }
     
+    /// Constructor of the tutorial text
     private func addTutorialText() {
         tutorialText.text = "Now let's get the Dopamine that Bruno needs!\nHe must have a balanced Diet"
         tutorialText.alpha = 0
@@ -166,6 +172,7 @@ public class SecondMiniGameScene: SKScene {
         addChild(tutorialText)
     }
     
+    /// Constructor of the food
     private func addFoodNodes() {
         //Top shelf
         addTopShelf(at_X: myScene.frame.midX, at_Y: myScene.frame.midY * 0.6)
@@ -198,6 +205,7 @@ public class SecondMiniGameScene: SKScene {
         chocolate.node.position = CGPoint(x: shelfBottom.frame.midX * 1.5, y: shelfBottom.frame.minY * 1.2)
     }
     
+    /// Constructor of the first shelf
     private func addTopShelf(at_X xPosition: CGFloat, at_Y yPosition: CGFloat) {
         shelfTop.position = CGPoint(x: xPosition, y: yPosition)
         shelfTop.alpha = 0
@@ -207,6 +215,7 @@ public class SecondMiniGameScene: SKScene {
         addChild(shelfTop)
     }
     
+    /// Constructor of the second shelf
     private func addBottomShelf(at_X xPosition: CGFloat, at_Y yPosition: CGFloat) {
         shelfBottom.position = CGPoint(x: xPosition, y: yPosition)
         shelfBottom.alpha = 0

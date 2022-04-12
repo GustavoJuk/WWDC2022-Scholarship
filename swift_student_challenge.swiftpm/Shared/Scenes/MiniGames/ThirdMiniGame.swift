@@ -110,6 +110,9 @@ public class ThirdMiniGameScene: SKScene {
         }
     }
     
+    /// THis method will verify if the position of the maxX scale of the specific node is at the safe area
+    /// - Parameter nodeMaxX: The maxX axys of a node
+    /// - Returns: Returns a boolean
     private func rightPosition(nodeMaxWidth nodeMaxX: CGFloat) -> Bool {
         if nodeMaxX >= sleepGraphic.safeArea.frame.minX && nodeMaxX <= sleepGraphic.safeArea.frame.maxX {
             return true
@@ -117,6 +120,7 @@ public class ThirdMiniGameScene: SKScene {
         return false
     }
     
+    /// Constructor of the brain
     private func addAllBrainNodes() {
         brain.addBrain(skScene: self)
         brain.addSeratotin(skScene: self)
@@ -140,6 +144,7 @@ public class ThirdMiniGameScene: SKScene {
         brain.noradrenalineNode.position = brain.backBrainNode.position
     }
     
+    /// Constructor of the tutorial text
     private func addTutorialText() {
         tutorialText.text = "The last part is Bruno's Noradrenaline. Help him getting a good amount of Sleep!"
         tutorialText.alpha = 0

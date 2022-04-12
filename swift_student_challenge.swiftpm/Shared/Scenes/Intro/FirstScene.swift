@@ -72,6 +72,7 @@ public class FirstScene: SKScene {
         }
     }
     
+    /// Constructor of the title text
     private func addTitleText() {
         title.text = "That's the human brain"
         title.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.maxY - (myScene.frame.height * 0.125))
@@ -79,6 +80,7 @@ public class FirstScene: SKScene {
         addChild(title)
     }
     
+    /// Constructor of the footer text
     private func addFooterText() {
         footer.text = "It is here where we process the main functions of the body and maintaining the health of this organ is extremely important."
         footer.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY * 0.25)
@@ -88,6 +90,7 @@ public class FirstScene: SKScene {
         addChild(footer)
     }
     
+    /// Constructor of the context text
     private func addText() {
         callForAction.text = "Have you ever thought what could happen if mental health was not properly cared for and monitored?\n\nMaybe not! And in fact many people ignore their mental health until it becomes a more serious problem. So I wanted to draw attention to one of these problems: Depression!"
         callForAction.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY * 0.25)

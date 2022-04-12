@@ -20,6 +20,7 @@ public class LastScene: SKScene {
         addBrain()
     }
     
+    /// Constructor of the brain
     private func addBrain() {
         brain.addBrain(skScene: self)
         brain.addSeratotin(skScene: self)
@@ -45,6 +46,7 @@ public class LastScene: SKScene {
         brain.noradrenalineNode.alpha = 0.3
     }
     
+    /// Constructor of the outro text
     private func addOutroText() {
         outroText.text = "Thanks for playing!"
         outroText.fontSize = MAIN_TITLE_SIZE_FONT
