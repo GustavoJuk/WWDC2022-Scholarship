@@ -69,7 +69,7 @@ public class SecondMiniGameScene: SKScene {
                 brain.backBrainNode.run(unfocus)
                 brain.frontBrainNode.run(unfocus)
                 brain.serotoninNode.run(unfocus)
-                delay(moveToDopamineSide.duration, closure: {
+                delay(duration: moveToDopamineSide.duration, closure: {
                     self.nextSceneButton.node.run(fadeOut)
                     self.tutorialText.run(fadeIn)
                     self.bacon.node.run(fadeIn)
@@ -80,7 +80,7 @@ public class SecondMiniGameScene: SKScene {
                     self.soda.node.run(fadeIn)
                     self.shelfTop.run(fadeIn)
                     self.shelfBottom.run(fadeIn)
-                    delay(fadeOut.duration, closure: {
+                    delay(duration: fadeOut.duration, closure: {
                         self.nextSceneButton.node.removeFromParent()
                     })
                 })
@@ -90,7 +90,7 @@ public class SecondMiniGameScene: SKScene {
     
     private func correctOption(with node: SKNode) {
         node.run(fadeOut)
-        delay(fadeOut.duration + 0.5, closure: {
+        delay(duration: fadeOut.duration + 0.5, closure: {
             node.removeFromParent()
             self.tutorialText.run(fadeOut)
             self.bacon.node.run(fadeOut)
@@ -101,7 +101,7 @@ public class SecondMiniGameScene: SKScene {
             self.soda.node.run(fadeOut)
             self.shelfTop.run(fadeOut)
             self.shelfBottom.run(fadeOut)
-            delay(fadeOut.duration, closure: {
+            delay(duration: fadeOut.duration, closure: {
                 self.tutorialText.removeFromParent()
                 self.bacon.node.removeFromParent()
                 self.chocolate.node.removeFromParent()
@@ -119,9 +119,9 @@ public class SecondMiniGameScene: SKScene {
                 self.brain.backBrainNode.run(focus)
                 self.brain.frontBrainNode.run(focus)
                 self.brain.serotoninNode.run(focus)
-                delay(moveToCenter.duration + 0.5, closure: {
+                delay(duration: moveToCenter.duration + 0.5, closure: {
                     self.brain.dopamineNode.run(fadeIn)
-                    delay(fadeIn.duration + 0.5, closure: {
+                    delay(duration: fadeIn.duration + 0.5, closure: {
                         transition(nextScene: ThirdMiniGameScene(size: myScene.frame.size), currentScene: self)
                     })
                 })

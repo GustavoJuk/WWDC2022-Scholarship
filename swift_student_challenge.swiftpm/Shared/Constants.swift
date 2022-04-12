@@ -8,6 +8,10 @@
 import SpriteKit
 
 //SCENE TRANSITION
+/// This method creates a transition on the scene in witch is called
+/// - Parameters:
+///   - nextScene: The next scene
+///   - currentScene: The current scene
 public func transition(nextScene: SKScene, currentScene: SKScene) {
     currentScene.scene?.run(SKAction.fadeOut(withDuration: 1.5)) {
         currentScene.view?.presentScene(nextScene)
@@ -69,12 +73,17 @@ public var DIET_TITLE_TEXT = SKLabelNode(attributedText: NSAttributedString(stri
 public var SLEEP_TITLE_TEXT = SKLabelNode(attributedText: NSAttributedString(string: "Sleep", attributes: [.font: UIFont.systemFont(ofSize: MAIN_SUBTITLE_SIZE_FONT, weight: .bold), .foregroundColor: SLEEP_COLOR]))
 
 //Delay
-public func delay(_ delay: Double, closure: @escaping() -> ()) {
-    let test = DispatchTime.now() + delay
+/// This method serves to delay a block of codes
+/// - Parameters:
+///   - duration: The delay duration
+///   - closure: The block of code in witch will be delayed
+public func delay(duration: Double, closure: @escaping() -> ()) {
+    let test = DispatchTime.now() + duration
     DispatchQueue.main.asyncAfter(deadline: test, execute: closure)
 }
 
 //Collision Types
+/// This enum serves to define the collision type of the SKPhysics Body of the nodes
 public enum CollisionType: UInt32 {
     public typealias RawValue = UInt32
     
@@ -84,6 +93,13 @@ public enum CollisionType: UInt32 {
 
 //ANIMATIONS
 extension SKAction {
+    /// This is a custom SKAction in witch makes the node shake in a small arc formation
+    /// - Parameters:
+    ///   - initialPosition: The initial position in witch the node will start shaking
+    ///   - duration: The duration of the animation
+    ///   - amplitudeX: The amplitude of the x-axys
+    ///   - amplitudeY: The amplitude of the y-axys
+    /// - Returns: Returns the sequence of the animation positions
     class func shake(initialPosition:CGPoint, duration:Float, amplitudeX:Int = 12, amplitudeY:Int = 3) -> SKAction {
         let startingX = initialPosition.x
         let startingY = initialPosition.y

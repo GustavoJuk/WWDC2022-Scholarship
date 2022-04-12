@@ -55,10 +55,10 @@ public class FirstScene: SKScene {
                 footer.run(fadeOut)
                 brain.backBrainNode.run(moveUp)
                 brain.frontBrainNode.run(moveUp)
-                delay(moveUp.duration, closure: {
+                delay(duration: moveUp.duration, closure: {
                     self.brain.backBrainNode.run(scaleDown)
                     self.brain.frontBrainNode.run(scaleDown)
-                    delay(scaleDown.duration, closure: {
+                    delay(duration: scaleDown.duration, closure: {
                         self.title.removeFromParent()
                         self.footer.removeFromParent()
                         self.callForAction.run(fadeIn)

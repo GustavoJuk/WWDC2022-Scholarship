@@ -16,7 +16,7 @@ public class IntroScene: SKScene {
         self.scene?.run(SKAction.fadeIn(withDuration: 1.0))
         self.backgroundColor = BACKGROUND_COLOR
         addOutroText()
-        delay(10, closure: {
+        delay(duration: 10, closure: {
             transition(nextScene: FirstScene(size: myScene.frame.size), currentScene: self)
         })
     }

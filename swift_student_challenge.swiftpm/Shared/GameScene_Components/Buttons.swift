@@ -7,7 +7,7 @@
 
 import SpriteKit
 
-//TODO: Documentation
+/// Protocol containing the attributes and method necessary for a button in the scene
 public protocol ButtonNode: SKNode {
     var node: SKShapeNode { get set }
     var color: SKColor { get set }
@@ -15,9 +15,15 @@ public protocol ButtonNode: SKNode {
     func addButton(skScene: SKScene)
 }
 
+/// This class constructs the node where the player transits scenes
 public class NextSceneButton: SKNode {
+    
+    //Attributes
     public let node = SKSpriteNode(imageNamed: ARROW_BUTTON_NODE_TX)
     
+    //Methods
+    /// This method constructs the node of the Button in witch the player has to interect to change a scene
+    /// - Parameter skScene: Current scene in witch the node will initialize
     public func addButton(skScene: SKScene) {
         node.name = BUTTON_NODE_NM
         node.setScale(1.25)
@@ -26,10 +32,16 @@ public class NextSceneButton: SKNode {
     }
 }
 
+/// This class constructs the node where the player interects to play the first mini game
 public class ExerciseButton: SKNode, ButtonNode {
+    
+    //Attributes
     public var node: SKShapeNode = SKShapeNode(ellipseOf: CGSize(width: myScene.frame.height * 0.125, height: myScene.frame.height * 0.125))
     public var color: SKColor = EXERCISE_COLOR
 
+    //Methods
+    /// This method constructs the node in witch the player has to interect with
+    /// - Parameter skScene: Current scene in witch the node will initialize
     public func addButton(skScene: SKScene) {
         node.name = EXERCISE_BUTTON_NODE_NM
         node.position = CGPoint(x: myScene.frame.minX + (myScene.frame.midX * 0.3), y: myScene.frame.minY + (myScene.frame.midY * 0.3))
@@ -40,10 +52,16 @@ public class ExerciseButton: SKNode, ButtonNode {
     }
 }
 
+/// This class constructs the node where the player interects to play the third mini game
 public class SleepButton: SKNode, ButtonNode {
+    
+    //Attributes
     public var node: SKShapeNode = SKShapeNode(ellipseOf: CGSize(width: myScene.frame.height * 0.15, height: myScene.frame.height * 0.15))
     public var color: SKColor = SLEEP_COLOR
     
+    //Methos
+    /// This methos constructs the node in witch the player has to interect with
+    /// - Parameter skScene: Current scene in witch the node will initialize
     public func addButton(skScene: SKScene) {
         node.position = CGPoint(x: myScene.frame.maxX - (myScene.frame.midX * 0.3), y: myScene.frame.minY + (myScene.frame.midY * 0.3))
         node.name = SLEEP_BUTTON_NODE_NM

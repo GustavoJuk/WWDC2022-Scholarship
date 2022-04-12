@@ -60,7 +60,7 @@ public class ThirdMiniGameScene: SKScene {
                 brain.frontBrainNode.run(unfocus)
                 brain.serotoninNode.run(unfocus)
                 nextSceneButton.node.run(fadeOut)
-                delay(moveToNoradrenalineSide.duration, closure: {
+                delay(duration: moveToNoradrenalineSide.duration, closure: {
                     self.nextSceneButton.node.removeFromParent()
                     self.tutorialText.run(fadeIn)
                     self.sleepButton.node.run(fadeIn)
@@ -75,13 +75,13 @@ public class ThirdMiniGameScene: SKScene {
                 sleepButton.node.alpha = 1.0
                 sleepGraphic.cropNode.maskNode?.removeAllActions()
                 if rightPosition(nodeMaxWidth: sleepGraphic.cropNode.maskNode!.frame.maxX) {
-                    delay(0.5, closure: {
+                    delay(duration: 0.5, closure: {
                         self.tutorialText.run(fadeOut)
                         self.sleepButton.node.run(fadeOut)
                         self.sleepGraphic.graphic.run(fadeOut)
                         self.sleepGraphic.safeArea.run(fadeOut)
                         self.sleepGraphic.graphBackground.run(fadeOut)
-                        delay(fadeOut.duration + 0.5, closure: {
+                        delay(duration: fadeOut.duration + 0.5, closure: {
                             self.tutorialText.removeFromParent()
                             self.sleepButton.node.removeFromParent()
                             self.sleepGraphic.graphic.removeFromParent()
@@ -95,9 +95,9 @@ public class ThirdMiniGameScene: SKScene {
                             self.brain.backBrainNode.run(focus)
                             self.brain.frontBrainNode.run(focus)
                             self.brain.serotoninNode.run(focus)
-                            delay(moveToCenter.duration + 0.5, closure: {
+                            delay(duration: moveToCenter.duration + 0.5, closure: {
                                 self.brain.noradrenalineNode.run(fadeAlphaIn)
-                                delay(fadeAlphaIn.duration + 0.5, closure: {
+                                delay(duration: fadeAlphaIn.duration + 0.5, closure: {
                                     transition(nextScene: LastScene(size: myScene.frame.size), currentScene: self)
                                 })
                             })

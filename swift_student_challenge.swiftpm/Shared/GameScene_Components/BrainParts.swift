@@ -7,6 +7,7 @@
 
 import SpriteKit
 
+/// This is class constructs the nodes of the brain
 public class Brain: SKNode {
     
     //Attributes
@@ -17,6 +18,8 @@ public class Brain: SKNode {
     public var frontBrainNode = SKSpriteNode()
                 
     //Methods
+    /// This method constructs the brain view in the scene without the neurotransimitters
+    /// - Parameter skScene: Current scene in witch the node will initialize
     public func addBrain(skScene: SKScene) {
         backBrainNode = SKSpriteNode(imageNamed: BACK_BRAIN_NODE_TX)
         backBrainNode.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY * 1.15)
@@ -34,6 +37,8 @@ public class Brain: SKNode {
         skScene.addChild(self.frontBrainNode)
     }
     
+    /// This method constructs the Serotonin node in the scene
+    /// - Parameter skScene: Current scene in witch the node will initialize
     public func addSeratotin(skScene: SKScene) {
         serotoninNode = SKSpriteNode(imageNamed: SEROTONIN_NODE_TX)
         serotoninNode.position = backBrainNode.position
@@ -43,6 +48,8 @@ public class Brain: SKNode {
         skScene.addChild(self.serotoninNode)
     }
     
+    /// This method constructs the Dopamine node in the scene
+    /// - Parameter skScene: Current scene in witch the node will initialize
     public func addDopamine(skScene: SKScene) {
         dopamineNode = SKSpriteNode(imageNamed: DOPAMINE_NODE_TX)
         dopamineNode.position = backBrainNode.position
@@ -52,6 +59,8 @@ public class Brain: SKNode {
         skScene.addChild(self.dopamineNode)
     }
     
+    /// This method constructs the Noradrenaline node in the scene
+    /// - Parameter skScene: Current scene in witch the node will initialize
     public func addNoradrenaline(skScene: SKScene) {
         noradrenalineNode = SKSpriteNode(imageNamed: NORADRENALINE_NODE_TX)
         noradrenalineNode.position = backBrainNode.position

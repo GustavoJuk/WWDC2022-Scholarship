@@ -7,6 +7,7 @@
 
 import SpriteKit
 
+/// Protocol containing the attributes and method necessary for a graphic in the scene
 public protocol Graph: SKNode {
     var title: SKLabelNode { get set }
     var graphic: SKSpriteNode { get set }
@@ -14,6 +15,7 @@ public protocol Graph: SKNode {
     func addGraphic(skScene: SKScene)
 }
 
+/// This class constructs the graphic representing the level a neurothansimitter
 public class SerotoninGraphic: SKNode, Graph {
     
     //Attributes
@@ -21,12 +23,14 @@ public class SerotoninGraphic: SKNode, Graph {
     public var graphic = SKSpriteNode(color: SEROTONIN_COLOR, size: CGSize(width: myScene.frame.width / 12, height: myScene.frame.height / 2.5))
         
     //Methods
+    /// This method constructs the graphic
+    /// - Parameter skScene: Current scene in witch the nodes will initialize
     public func addGraphic(skScene: SKScene) {
         title.position = CGPoint(x: myScene.frame.minX + (graphic.frame.height / 1.5), y: myScene.frame.midY / 3)
         
         graphic.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         graphic.position = CGPoint(x: title.frame.midX, y: title.frame.maxY + (title.frame.height / 2))
-        delay(0.75, closure: {
+        delay(duration: 0.75, closure: {
             self.graphic.run(scaleSerotoninDown)
         })
         skScene.addChild(title)
@@ -34,6 +38,7 @@ public class SerotoninGraphic: SKNode, Graph {
     }
 }
 
+/// This class constructs the graphic representing the level a neurothansimitter
 public class DopamineGraphic: SKNode, Graph {
     
     //Attributes
@@ -41,11 +46,13 @@ public class DopamineGraphic: SKNode, Graph {
     public var graphic = SKSpriteNode(color: DOPAMINE_COLOR, size: CGSize(width: UIScreen.main.bounds.width / 12, height: UIScreen.main.bounds.height / 2.5))
         
     //Methods
+    /// This method constructs the graphic
+    /// - Parameter skScene: Current scene in witch the nodes will initialize
     public func addGraphic(skScene: SKScene) {
         title.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY / 3)
         graphic.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         graphic.position = CGPoint(x: title.frame.midX, y: title.frame.maxY + (title.frame.height / 2))
-        delay(0.75, closure: {
+        delay(duration: 0.75, closure: {
             self.graphic.run(scaleDopamineDown)
         })
         skScene.addChild(title)
@@ -53,6 +60,7 @@ public class DopamineGraphic: SKNode, Graph {
     }
 }
 
+/// This class constructs the graphic representing the level a neurothansimitter
 public class NoradrenalineGraphic: SKNode, Graph {
     
     //Attributes
@@ -60,11 +68,13 @@ public class NoradrenalineGraphic: SKNode, Graph {
     public var graphic = SKSpriteNode(color: NORADRENALINE_COLOR, size: CGSize(width: UIScreen.main.bounds.width / 12, height: UIScreen.main.bounds.height / 2.5))
     
     //Methods
+    /// This method constructs the graphic
+    /// - Parameter skScene: Current scene in witch the nodes will initialize
     public func addGraphic(skScene: SKScene) {
         title.position = CGPoint(x: myScene.frame.maxX - (graphic.frame.height / 1.5), y: myScene.frame.midY / 3)
         graphic.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         graphic.position = CGPoint(x: title.frame.midX, y: title.frame.maxY + (title.frame.height / 2))
-        delay(0.75, closure: {
+        delay(duration: 0.75, closure: {
             self.graphic.run(scaleNoradrenalineDown)
         })
         skScene.addChild(title)
@@ -72,6 +82,7 @@ public class NoradrenalineGraphic: SKNode, Graph {
     }
 }
 
+/// This class constructs the progress bar of the third mini game
 public class SleepGraphic: SKNode, Graph {
     
     //Attributes
@@ -82,6 +93,8 @@ public class SleepGraphic: SKNode, Graph {
     public var cropNode = SKCropNode()
     
     //Methods
+    /// This method constructs every element of the progress bar, including the background and the safe area
+    /// - Parameter skScene: Current scene in witch the nodes will initialize
     public func addGraphic(skScene: SKScene) {
         graphBackground.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY * 1.25)
         graphBackground.alpha = 0

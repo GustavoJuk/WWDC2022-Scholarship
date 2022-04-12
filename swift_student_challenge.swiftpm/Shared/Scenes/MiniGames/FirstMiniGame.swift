@@ -60,7 +60,7 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
                 title.run(fadeOut)
                 text.run(fadeOut)
                 nextSceneButton.node.run(fadeOut)
-                delay(fadeOut.duration + 0.5, closure: {
+                delay(duration: fadeOut.duration + 0.5, closure: {
                     self.title.removeFromParent()
                     self.text.removeFromParent()
                     self.nextSceneButton.node.removeFromParent()
@@ -69,7 +69,7 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
                     self.brain.serotoninNode.run(moveToSerotoninSide)
                     self.brain.dopamineNode.run(moveToSerotoninSide)
                     self.brain.noradrenalineNode.run(moveToSerotoninSide)
-                    delay(moveToSerotoninSide.duration, closure: {
+                    delay(duration: moveToSerotoninSide.duration, closure: {
                         self.brain.backBrainNode.run(unfocus)
                         self.brain.frontBrainNode.run(unfocus)
                         self.brain.serotoninNode.run(unfocus)
@@ -81,7 +81,7 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
                         self.brain.dopamineNode.run(scaleUp)
                         self.brain.noradrenalineNode.run(scaleUp)
                         self.createTutorialText()
-                        delay(scaleUp.duration, closure: {
+                        delay(duration: scaleUp.duration, closure: {
                             self.tutorialText.run(fadeIn)
                             self.addButtonNode()
                             self.exerciseButton.node.run(fadeIn)
@@ -104,12 +104,12 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
             secondBrain.physicsBody?.isDynamic = false
             secondBrain.run(fadeOut)
             finishLine.run(fadeOut)
-            delay(fadeOut.duration + 0.5, closure: {
+            delay(duration: fadeOut.duration + 0.5, closure: {
                 self.secondBrain.removeFromParent()
                 self.finishLine.removeFromParent()
                 self.exerciseButton.node.run(fadeOut)
                 self.tutorialText.run(fadeOut)
-                delay(fadeOut.duration, closure: {
+                delay(duration: fadeOut.duration, closure: {
                     self.exerciseButton.node.removeFromParent()
                     self.tutorialText.removeFromParent()
                     self.brain.backBrainNode.run(moveToCenter)
@@ -119,9 +119,9 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
                     self.brain.noradrenalineNode.run(moveToCenter)
                     self.brain.backBrainNode.run(focus)
                     self.brain.frontBrainNode.run(focus)
-                    delay(moveToCenter.duration + 0.5, closure: {
+                    delay(duration: moveToCenter.duration + 0.5, closure: {
                         self.brain.serotoninNode.run(fadeAlphaIn)
-                        delay(fadeAlphaIn.duration + 0.5, closure: {
+                        delay(duration: fadeAlphaIn.duration + 0.5, closure: {
                             transition(nextScene: SecondMiniGameScene(size: myScene.frame.size), currentScene: self)
                         })
                     })
