@@ -26,7 +26,7 @@ public class SerotoninGraphic: SKNode, Graph {
         
         graphic.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         graphic.position = CGPoint(x: title.frame.midX, y: title.frame.maxY + (title.frame.height / 2))
-        delay(0.5, closure: {
+        delay(0.75, closure: {
             self.graphic.run(scaleSerotoninDown)
         })
         skScene.addChild(title)
@@ -45,7 +45,7 @@ public class DopamineGraphic: SKNode, Graph {
         title.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY / 3)
         graphic.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         graphic.position = CGPoint(x: title.frame.midX, y: title.frame.maxY + (title.frame.height / 2))
-        delay(0.5, closure: {
+        delay(0.75, closure: {
             self.graphic.run(scaleDopamineDown)
         })
         skScene.addChild(title)
@@ -64,7 +64,7 @@ public class NoradrenalineGraphic: SKNode, Graph {
         title.position = CGPoint(x: myScene.frame.maxX - (graphic.frame.height / 1.5), y: myScene.frame.midY / 3)
         graphic.anchorPoint = CGPoint(x: 0.5, y: 0.0)
         graphic.position = CGPoint(x: title.frame.midX, y: title.frame.maxY + (title.frame.height / 2))
-        delay(0.5, closure: {
+        delay(0.75, closure: {
             self.graphic.run(scaleNoradrenalineDown)
         })
         skScene.addChild(title)

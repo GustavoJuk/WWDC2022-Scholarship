@@ -97,6 +97,9 @@ public class ThirdMiniGameScene: SKScene {
                             self.brain.serotoninNode.run(focus)
                             delay(moveToCenter.duration + 0.5, closure: {
                                 self.brain.noradrenalineNode.run(fadeAlphaIn)
+                                delay(fadeAlphaIn.duration + 0.5, closure: {
+                                    transition(nextScene: LastScene(size: myScene.frame.size), currentScene: self)
+                                })
                             })
                         })
                     })
@@ -120,7 +123,7 @@ public class ThirdMiniGameScene: SKScene {
         brain.addDopamine(skScene: self)
         brain.addNoradrenaline(skScene: self)
         
-        brain.backBrainNode.scale(to: CGSize(width: brain.backBrainNode.frame.width * 2.0, height: brain.backBrainNode.frame.height * 2.0))
+        brain.backBrainNode.scale(to: CGSize(width: myScene.frame.width * 0.75, height: myScene.frame.height * 0.75))
         brain.frontBrainNode.scale(to: CGSize(width: brain.backBrainNode.frame.width, height: brain.backBrainNode.frame.height))
         brain.serotoninNode.scale(to: CGSize(width: brain.backBrainNode.frame.width, height: brain.backBrainNode.frame.height))
         brain.dopamineNode.scale(to: CGSize(width: brain.backBrainNode.frame.width, height: brain.backBrainNode.frame.height))
@@ -140,7 +143,7 @@ public class ThirdMiniGameScene: SKScene {
     private func addTutorialText() {
         tutorialText.text = "The last part is Bruno's Noradrenaline. Help him getting a good amount of Sleep!"
         tutorialText.alpha = 0
-        tutorialText.preferredMaxLayoutWidth = myScene.frame.size.width - 70
+        tutorialText.preferredMaxLayoutWidth = myScene.frame.width - (myScene.frame.width * 0.1)
         tutorialText.numberOfLines = 2
         tutorialText.fontSize = MAIN_BODY_SIZE_FONT
         tutorialText.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.maxY - (myScene.frame.height * 0.2))

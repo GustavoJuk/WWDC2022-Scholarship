@@ -187,7 +187,7 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
         text.text = "Bruno has a serious depression history in his family and some of the symptoms manifested recently."
         text.position = CGPoint(x: myScene.frame.midX, y: title.frame.minY * 0.775)
         text.fontSize = MAIN_SUBTITLE_SIZE_FONT
-        text.preferredMaxLayoutWidth = myScene.frame.size.width - 70
+        text.preferredMaxLayoutWidth = myScene.frame.width - (myScene.frame.width * 0.1)
         text.numberOfLines = 2
         addChild(text)
     }

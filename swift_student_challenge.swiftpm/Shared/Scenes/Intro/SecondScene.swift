@@ -50,9 +50,10 @@ public class SecondScene: SKScene {
     
     private func addText() {
         article.text = "Much is discussed about depression and how terrible is... but, do you know what happens exactly?\n\nDepression is classified as a disease because of its symptoms, which affect not only the psychological area, but also the body, since chemical processes take place when a person feels this way.\n\nMost people have a misunderstanding about this issue because it is not a visible thing. Also the same people who judge the victims do not know what is going on inside their minds and bodies."
-        article.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY * 0.5)
+        article.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY)
         article.fontSize = MAIN_BODY_SIZE_FONT
-        article.preferredMaxLayoutWidth = myScene.frame.size.width - 70
+        article.preferredMaxLayoutWidth = myScene.frame.width - (myScene.frame.width * 0.1)
+        article.verticalAlignmentMode = .center
         article.numberOfLines = 10
         addChild(article)
     }
@@ -60,6 +61,4 @@ public class SecondScene: SKScene {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
 }

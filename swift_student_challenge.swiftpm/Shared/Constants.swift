@@ -9,7 +9,7 @@ import SpriteKit
 
 //SCENE TRANSITION
 public func transition(nextScene: SKScene, currentScene: SKScene) {
-    currentScene.scene?.run(SKAction.fadeOut(withDuration: 0.75)) {
+    currentScene.scene?.run(SKAction.fadeOut(withDuration: 1.5)) {
         currentScene.view?.presentScene(nextScene)
     }
 }
@@ -99,7 +99,7 @@ extension SKAction {
     }
 }
 
-public let scaleUp = SKAction.scale(by: 2.0, duration: 0.25)
+public let scaleUp = SKAction.scale(by: 1.5, duration: 0.25)
 public let scaleDown = SKAction.scale(by: 0.8, duration: 0.25)
 public let scaleSerotoninDown = SKAction.scaleY(to: 0.4, duration: 1.0)
 public let scaleDopamineDown = SKAction.scaleY(to: 0.2, duration: 1.0)
@@ -111,8 +111,8 @@ public let fadeAlphaInHalf = SKAction.fadeAlpha(by: 0.5, duration: 0.25)
 public let fadeAlphaOut = SKAction.fadeAlpha(to: 0.25, duration: 0.25)
 public let unfocus = SKAction.fadeAlpha(to: 0.25, duration: 1)
 public let focus = SKAction.fadeAlpha(to: 1, duration: 0.5)
-public let moveUp = SKAction.move(to: CGPoint(x: myScene.frame.midX, y: myScene.frame.maxY - (myScene.frame.height * 0.3)), duration: 0.5)
+public let moveUp = SKAction.move(to: CGPoint(x: myScene.frame.midX, y: myScene.frame.maxY - (myScene.frame.height * 0.25)), duration: 0.5)
 public let moveToCenter = SKAction.move(to: CGPoint(x: myScene.frame.midX, y: myScene.frame.midY), duration: 0.5)
-public let moveToSerotoninSide = SKAction.move(to: CGPoint(x: myScene.frame.maxX + (myScene.frame.width * 0.05), y: myScene.frame.maxY - (myScene.frame.height * 0.175)), duration: 0.75)
+public let moveToSerotoninSide = SKAction.move(to: CGPoint(x: myScene.frame.maxX + (myScene.frame.width * 0.025), y: myScene.frame.maxY - (myScene.frame.height * 0.16)), duration: 0.75)
 public let moveToDopamineSide = SKAction.move(to: CGPoint(x: myScene.frame.minX + (myScene.frame.width * 0.02), y: myScene.frame.maxY - (myScene.frame.height * 0.025)), duration: 0.75)
-public let moveToNoradrenalineSide = SKAction.move(to: CGPoint(x: myScene.frame.midX - (myScene.frame.width * 0.2), y: myScene.frame.midY - (myScene.frame.height * 0.6)), duration: 0.75)
+public let moveToNoradrenalineSide = SKAction.move(to: CGPoint(x: myScene.frame.midX - (myScene.frame.width * 0.275), y: myScene.frame.midY - (myScene.frame.height * 0.55)), duration: 0.75)

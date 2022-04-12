@@ -68,6 +68,7 @@ public class SecondMiniGameScene: SKScene {
                 brain.noradrenalineNode.run(moveToDopamineSide)
                 brain.backBrainNode.run(unfocus)
                 brain.frontBrainNode.run(unfocus)
+                brain.serotoninNode.run(unfocus)
                 delay(moveToDopamineSide.duration, closure: {
                     self.nextSceneButton.node.run(fadeOut)
                     self.tutorialText.run(fadeIn)
@@ -117,6 +118,7 @@ public class SecondMiniGameScene: SKScene {
                 self.brain.noradrenalineNode.run(moveToCenter)
                 self.brain.backBrainNode.run(focus)
                 self.brain.frontBrainNode.run(focus)
+                self.brain.serotoninNode.run(focus)
                 delay(moveToCenter.duration + 0.5, closure: {
                     self.brain.dopamineNode.run(fadeIn)
                     delay(fadeIn.duration + 0.5, closure: {
@@ -137,7 +139,7 @@ public class SecondMiniGameScene: SKScene {
         brain.addDopamine(skScene: self)
         brain.addNoradrenaline(skScene: self)
         
-        brain.backBrainNode.scale(to: CGSize(width: brain.backBrainNode.frame.width * 2.0, height: brain.backBrainNode.frame.height * 2.0))
+        brain.backBrainNode.scale(to: CGSize(width: myScene.frame.width * 0.75, height: myScene.frame.height * 0.75))
         brain.frontBrainNode.scale(to: CGSize(width: brain.backBrainNode.frame.width, height: brain.backBrainNode.frame.height))
         brain.serotoninNode.scale(to: CGSize(width: brain.backBrainNode.frame.width, height: brain.backBrainNode.frame.height))
         brain.dopamineNode.scale(to: CGSize(width: brain.backBrainNode.frame.width, height: brain.backBrainNode.frame.height))
@@ -157,7 +159,7 @@ public class SecondMiniGameScene: SKScene {
     private func addTutorialText() {
         tutorialText.text = "Now let's get the Dopamine that Bruno needs!\nHe must have a balanced Diet"
         tutorialText.alpha = 0
-        tutorialText.preferredMaxLayoutWidth = myScene.frame.size.width - 70
+        tutorialText.preferredMaxLayoutWidth = myScene.frame.width - (myScene.frame.width * 0.1)
         tutorialText.numberOfLines = 2
         tutorialText.position = CGPoint(x: myScene.frame.maxX - (myScene.frame.width * 0.46), y: myScene.frame.maxY - (myScene.frame.height * 0.25))
         tutorialText.fontSize = MAIN_SUBTITLE_SIZE_FONT
