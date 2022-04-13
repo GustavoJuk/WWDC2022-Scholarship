@@ -29,7 +29,6 @@ public class SecondMiniGameScene: SKScene {
         addAllBrainNodes()
         nextSceneButton.addButton(skScene: self)
         addTutorialText()
-        addFoodNodes()
     }
     
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -70,6 +69,7 @@ public class SecondMiniGameScene: SKScene {
                 brain.frontBrainNode.run(unfocus)
                 brain.serotoninNode.run(unfocus)
                 delay(duration: moveToDopamineSide.duration, closure: {
+                    self.addFoodNodes()
                     self.nextSceneButton.node.run(fadeOut)
                     self.tutorialText.run(fadeIn)
                     self.bacon.node.run(fadeIn)

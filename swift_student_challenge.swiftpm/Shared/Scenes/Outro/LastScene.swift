@@ -51,9 +51,7 @@ public class LastScene: SKScene {
         outroText.text = "Thanks for playing!"
         outroText.fontSize = MAIN_TITLE_SIZE_FONT
         outroText.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY)
-        outroText.preferredMaxLayoutWidth = myScene.frame.width - (myScene.frame.width * 0.1)
         outroText.verticalAlignmentMode = .center
-        outroText.numberOfLines = 4
         addChild(outroText)
     }
 }

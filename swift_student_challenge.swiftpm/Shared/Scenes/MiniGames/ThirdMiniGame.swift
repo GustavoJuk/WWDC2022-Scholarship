@@ -25,14 +25,12 @@ public class ThirdMiniGameScene: SKScene {
         addAllBrainNodes()
         nextSceneButton.addButton(skScene: self)
         addTutorialText()
-        sleepButton.addButton(skScene: self)
-        sleepGraphic.addGraphic(skScene: self)
     }
     
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
-
+            
             if nextSceneButton.node.contains(location) {
                 nextSceneButton.node.setScale(0.9)
                 nextSceneButton.node.alpha = 0.5
@@ -50,9 +48,11 @@ public class ThirdMiniGameScene: SKScene {
     public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
-
+            
             if nextSceneButton.node.contains(location) {
                 isMiniGameShowing = true
+                sleepButton.addButton(skScene: self)
+                sleepGraphic.addGraphic(skScene: self)
                 nextSceneButton.node.setScale(1.25)
                 nextSceneButton.node.alpha = 1.0
                 brain.backBrainNode.run(moveToNoradrenalineSide)
@@ -115,16 +115,18 @@ public class ThirdMiniGameScene: SKScene {
     }
     
     public override func update(_ currentTime: TimeInterval) {
-        if verifyPosition(nodeMaxWidth: sleepGraphic.cropNode.maskNode!.frame.maxX) {
-            sleepGraphic.safeArea.run(.fadeIn(withDuration: 0.1))
-        } else if isSleepButtonPressed {
-            sleepGraphic.safeArea.run(.fadeAlpha(to: 0.25, duration: 0.1))
-        } else if isMiniGameShowing && isSleepButtonPressed == false {
-            delay(duration: fadeIn.duration + moveToNoradrenalineSide.duration, closure: {
-                self.sleepGraphic.safeArea.run(.fadeAlpha(to: 0.25, duration: 0.1))
-            })
-        } else {
-            sleepGraphic.safeArea.run(.fadeAlpha(to: 0, duration: 0.1))
+        if let maxXPosition = sleepGraphic.cropNode.maskNode?.frame.maxX {
+            if verifyPosition(nodeMaxWidth: maxXPosition) {
+                sleepGraphic.safeArea.run(.fadeIn(withDuration: 0.1))
+            } else if isSleepButtonPressed {
+                sleepGraphic.safeArea.run(.fadeAlpha(to: 0.25, duration: 0.1))
+            } else if isMiniGameShowing && isSleepButtonPressed == false {
+                delay(duration: fadeIn.duration + moveToNoradrenalineSide.duration, closure: {
+                    self.sleepGraphic.safeArea.run(.fadeAlpha(to: 0.25, duration: 0.1))
+                })
+            } else {
+                sleepGraphic.safeArea.run(.fadeAlpha(to: 0, duration: 0.1))
+            }
         }
     }
     

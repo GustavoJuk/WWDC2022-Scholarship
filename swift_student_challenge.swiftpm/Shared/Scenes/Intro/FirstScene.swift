@@ -29,7 +29,7 @@ public class FirstScene: SKScene {
         nextSceneButton.addButton(skScene: self)
         addTitleText()
         addFooterText()
-        addText()
+        addContextText()
     }
     
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -91,7 +91,7 @@ public class FirstScene: SKScene {
     }
     
     /// Constructor of the context text
-    private func addText() {
+    private func addContextText() {
         callForAction.text = "Have you ever thought what could happen if mental health was not properly cared for and monitored?\n\nMaybe not! And in fact many people ignore their mental health until it becomes a more serious problem. So I wanted to draw attention to one of these problems: Depression!"
         callForAction.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY * 0.25)
         callForAction.fontSize = MAIN_BODY_SIZE_FONT
