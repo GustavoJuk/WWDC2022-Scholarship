@@ -144,7 +144,7 @@ public class SecondMiniGameScene: SKScene {
         brain.addDopamine(skScene: self)
         brain.addNoradrenaline(skScene: self)
         
-        brain.backBrainNode.scale(to: CGSize(width: myScene.frame.width * 0.75, height: myScene.frame.height * 0.75))
+        brain.backBrainNode.scale(to: CGSize(width: myScene.frame.width * 0.75 - (brain.backBrainNode.frame.width * 0.25), height: myScene.frame.height * 0.75))
         brain.frontBrainNode.scale(to: CGSize(width: brain.backBrainNode.frame.width, height: brain.backBrainNode.frame.height))
         brain.serotoninNode.scale(to: CGSize(width: brain.backBrainNode.frame.width, height: brain.backBrainNode.frame.height))
         brain.dopamineNode.scale(to: CGSize(width: brain.backBrainNode.frame.width, height: brain.backBrainNode.frame.height))

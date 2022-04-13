@@ -133,10 +133,9 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
     /// Constructor of the second brain
     private func addFullBrainNode() {
         secondBrain.name = FULL_BRAIN_NODE_TX
-        secondBrain.scale(to: CGSize(width: myScene.frame.width * 0.2, height: myScene.frame.height * 0.2))
+        secondBrain.scale(to: CGSize(width: myScene.frame.width * 0.2 - (secondBrain.frame.width * 0.15), height: myScene.frame.height * 0.2))
         secondBrain.position = CGPoint(x: myScene.frame.minX + secondBrain.size.width, y: myScene.frame.midY * 0.9)
         secondBrain.alpha = 0
-        secondBrain.scene?.scaleMode = .aspectFit
         secondBrain.scene?.backgroundColor = .gray
         secondBrain.physicsBody = SKPhysicsBody(texture: secondBrain.texture!, size: secondBrain.size)
         secondBrain.physicsBody?.affectedByGravity = false

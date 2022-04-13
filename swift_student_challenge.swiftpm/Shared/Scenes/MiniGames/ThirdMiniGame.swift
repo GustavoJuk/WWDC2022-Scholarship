@@ -14,6 +14,8 @@ public class ThirdMiniGameScene: SKScene {
     private let tutorialText = SKLabelNode(fontNamed: "\(MAIN_FONT)")
     private let sleepButton = SleepButton()
     private let sleepGraphic = SleepGraphic()
+    private var isSleepButtonPressed = false
+    private var isMiniGameShowing = false
     
     public override func didMove(to view: SKView) {
         super.didMove(to: view)
@@ -37,6 +39,7 @@ public class ThirdMiniGameScene: SKScene {
             }
             
             if sleepButton.node.contains(location) {
+                isSleepButtonPressed = true
                 sleepButton.node.setScale(0.8)
                 sleepButton.node.alpha = 0.5
                 sleepGraphic.cropNode.maskNode?.run(SKAction.scaleX(to: sleepGraphic.graphBackground.xScale / (sleepGraphic.graphBackground.xScale * 0.031), duration: 1.5))
@@ -49,6 +52,7 @@ public class ThirdMiniGameScene: SKScene {
             let location = touch.location(in: self)
 
             if nextSceneButton.node.contains(location) {
+                isMiniGameShowing = true
                 nextSceneButton.node.setScale(1.25)
                 nextSceneButton.node.alpha = 1.0
                 brain.backBrainNode.run(moveToNoradrenalineSide)
@@ -65,27 +69,27 @@ public class ThirdMiniGameScene: SKScene {
                     self.tutorialText.run(fadeIn)
                     self.sleepButton.node.run(fadeIn)
                     self.sleepGraphic.graphic.run(fadeIn)
-                    self.sleepGraphic.safeArea.run(fadeAlphaInHalf)
                     self.sleepGraphic.graphBackground.run(fadeAlphaInHalf)
                 })
             }
             
             if sleepButton.node.contains(location) {
+                isSleepButtonPressed = false
                 sleepButton.node.setScale(1.0)
                 sleepButton.node.alpha = 1.0
                 sleepGraphic.cropNode.maskNode?.removeAllActions()
-                if rightPosition(nodeMaxWidth: sleepGraphic.cropNode.maskNode!.frame.maxX) {
+                if verifyPosition(nodeMaxWidth: sleepGraphic.cropNode.maskNode!.frame.maxX) {
                     delay(duration: 0.5, closure: {
                         self.tutorialText.run(fadeOut)
                         self.sleepButton.node.run(fadeOut)
                         self.sleepGraphic.graphic.run(fadeOut)
-                        self.sleepGraphic.safeArea.run(fadeOut)
                         self.sleepGraphic.graphBackground.run(fadeOut)
+                        self.sleepGraphic.safeArea.removeFromParent()
+                        self.isMiniGameShowing = false
                         delay(duration: fadeOut.duration + 0.5, closure: {
                             self.tutorialText.removeFromParent()
                             self.sleepButton.node.removeFromParent()
                             self.sleepGraphic.graphic.removeFromParent()
-                            self.sleepGraphic.safeArea.removeFromParent()
                             self.sleepGraphic.graphBackground.removeFromParent()
                             self.brain.backBrainNode.run(moveToCenter)
                             self.brain.frontBrainNode.run(moveToCenter)
@@ -110,10 +114,24 @@ public class ThirdMiniGameScene: SKScene {
         }
     }
     
+    public override func update(_ currentTime: TimeInterval) {
+        if verifyPosition(nodeMaxWidth: sleepGraphic.cropNode.maskNode!.frame.maxX) {
+            sleepGraphic.safeArea.run(.fadeIn(withDuration: 0.1))
+        } else if isSleepButtonPressed {
+            sleepGraphic.safeArea.run(.fadeAlpha(to: 0.25, duration: 0.1))
+        } else if isMiniGameShowing && isSleepButtonPressed == false {
+            delay(duration: fadeIn.duration + moveToNoradrenalineSide.duration, closure: {
+                self.sleepGraphic.safeArea.run(.fadeAlpha(to: 0.25, duration: 0.1))
+            })
+        } else {
+            sleepGraphic.safeArea.run(.fadeAlpha(to: 0, duration: 0.1))
+        }
+    }
+    
     /// THis method will verify if the position of the maxX scale of the specific node is at the safe area
     /// - Parameter nodeMaxX: The maxX axys of a node
     /// - Returns: Returns a boolean
-    private func rightPosition(nodeMaxWidth nodeMaxX: CGFloat) -> Bool {
+    private func verifyPosition(nodeMaxWidth nodeMaxX: CGFloat) -> Bool {
         if nodeMaxX >= sleepGraphic.safeArea.frame.minX && nodeMaxX <= sleepGraphic.safeArea.frame.maxX {
             return true
         }
@@ -127,7 +145,7 @@ public class ThirdMiniGameScene: SKScene {
         brain.addDopamine(skScene: self)
         brain.addNoradrenaline(skScene: self)
         
-        brain.backBrainNode.scale(to: CGSize(width: myScene.frame.width * 0.75, height: myScene.frame.height * 0.75))
+        brain.backBrainNode.scale(to: CGSize(width: myScene.frame.width * 0.75 - (brain.backBrainNode.frame.width * 0.25), height: myScene.frame.height * 0.75))
         brain.frontBrainNode.scale(to: CGSize(width: brain.backBrainNode.frame.width, height: brain.backBrainNode.frame.height))
         brain.serotoninNode.scale(to: CGSize(width: brain.backBrainNode.frame.width, height: brain.backBrainNode.frame.height))
         brain.dopamineNode.scale(to: CGSize(width: brain.backBrainNode.frame.width, height: brain.backBrainNode.frame.height))
