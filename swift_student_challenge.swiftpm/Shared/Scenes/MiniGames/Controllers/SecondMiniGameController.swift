@@ -11,7 +11,7 @@ public class SecondMiniGameScene: SKScene {
     
     public let brain = Brain()
     public let nextSceneButton = NextSceneButton()
-    public let tutorialText = SKLabelNode(fontNamed: "\(MAIN_FONT)")
+    public let tutorialText = SKLabelNode()
     public let bacon = Bacon()
     public let chocolate = Chocolate()
     public let donut = Donut()

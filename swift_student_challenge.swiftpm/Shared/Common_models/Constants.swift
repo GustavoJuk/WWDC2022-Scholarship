@@ -59,18 +59,17 @@ public let HEALTHY_FOOD_NODE_NM = "Healthy food"
 public let UNHEALTHY_FOOD_NODE_NM = "Unhealthy food"
 
 //FONT
-public let MAIN_FONT = "SF Pro Text"
-public let MAIN_TITLE_SIZE_FONT: CGFloat = 50
-public let MAIN_SUBTITLE_SIZE_FONT: CGFloat = 40
-public let MAIN_BODY_SIZE_FONT: CGFloat = 35
+public let MAIN_DEFAULT_SIZE_FONT = UIFont.systemFont(ofSize: 40, weight: .semibold)
+public let MAIN_TITLE_SIZE_FONT = UIFont.systemFont(ofSize: 50, weight: .bold)
+public let MAIN_BODY_SIZE_FONT = UIFont.systemFont(ofSize: 35, weight: .semibold)
 
 //TEXT
-public var SEROTONIN_TITLE_TEXT = SKLabelNode(attributedText: NSAttributedString(string: "Serotonin", attributes: [.font: UIFont.systemFont(ofSize: MAIN_SUBTITLE_SIZE_FONT, weight: .bold), .foregroundColor: SEROTONIN_COLOR]))
-public var DOPAMINE_TITLE_TEXT = SKLabelNode(attributedText: NSAttributedString(string: "Dopamine", attributes: [.font: UIFont.systemFont(ofSize: MAIN_SUBTITLE_SIZE_FONT, weight: .bold), .foregroundColor: DOPAMINE_COLOR]))
-public var NORADRENALINE_TITLE_TEXT = SKLabelNode(attributedText: NSAttributedString(string: "Noradrenaline", attributes: [.font: UIFont.systemFont(ofSize: MAIN_SUBTITLE_SIZE_FONT, weight: .bold), .foregroundColor: NORADRENALINE_COLOR]))
-public var EXERCISE_TITLE_TEXT = SKLabelNode(attributedText: NSAttributedString(string: "Exercise", attributes: [.font: UIFont.systemFont(ofSize: MAIN_SUBTITLE_SIZE_FONT, weight: .bold), .foregroundColor: EXERCISE_COLOR]))
-public var DIET_TITLE_TEXT = SKLabelNode(attributedText: NSAttributedString(string: "Diet", attributes: [.font: UIFont.systemFont(ofSize: MAIN_SUBTITLE_SIZE_FONT, weight: .bold), .foregroundColor: DIET_COLOR]))
-public var SLEEP_TITLE_TEXT = SKLabelNode(attributedText: NSAttributedString(string: "Sleep", attributes: [.font: UIFont.systemFont(ofSize: MAIN_SUBTITLE_SIZE_FONT, weight: .bold), .foregroundColor: SLEEP_COLOR]))
+public var SEROTONIN_TITLE_TEXT = SKLabelNode(attributedText: NSAttributedString(string: "Serotonin", attributes: [.font: UIFont.systemFont(ofSize: 40, weight: .bold), .foregroundColor: SEROTONIN_COLOR]))
+public var DOPAMINE_TITLE_TEXT = SKLabelNode(attributedText: NSAttributedString(string: "Dopamine", attributes: [.font: UIFont.systemFont(ofSize: 40, weight: .bold), .foregroundColor: DOPAMINE_COLOR]))
+public var NORADRENALINE_TITLE_TEXT = SKLabelNode(attributedText: NSAttributedString(string: "Noradrenaline", attributes: [.font: UIFont.systemFont(ofSize: 40, weight: .bold), .foregroundColor: NORADRENALINE_COLOR]))
+public var EXERCISE_TITLE_TEXT = SKLabelNode(attributedText: NSAttributedString(string: "Exercise", attributes: [.font: UIFont.systemFont(ofSize: 40, weight: .bold), .foregroundColor: EXERCISE_COLOR]))
+public var DIET_TITLE_TEXT = SKLabelNode(attributedText: NSAttributedString(string: "Diet", attributes: [.font: UIFont.systemFont(ofSize: 40, weight: .bold), .foregroundColor: DIET_COLOR]))
+public var SLEEP_TITLE_TEXT = SKLabelNode(attributedText: NSAttributedString(string: "Sleep", attributes: [.font: UIFont.systemFont(ofSize: 40, weight: .bold), .foregroundColor: SLEEP_COLOR]))
 
 //Delay
 /// This method serves to delay a block of codes
@@ -132,3 +131,17 @@ public let moveToCenter = SKAction.move(to: CGPoint(x: myScene.frame.midX, y: my
 public let moveToSerotoninSide = SKAction.move(to: CGPoint(x: myScene.frame.maxX + (myScene.frame.width * 0.025), y: myScene.frame.maxY - (myScene.frame.height * 0.16)), duration: 0.75)
 public let moveToDopamineSide = SKAction.move(to: CGPoint(x: myScene.frame.minX + (myScene.frame.width * 0.02), y: myScene.frame.maxY - (myScene.frame.height * 0.025)), duration: 0.75)
 public let moveToNoradrenalineSide = SKAction.move(to: CGPoint(x: myScene.frame.midX - (myScene.frame.width * 0.275), y: myScene.frame.midY - (myScene.frame.height * 0.55)), duration: 0.75)
+
+//TEXTS
+public let INTRO_TEXT = "This interactive scene is NOT intended to treat people with depressive symptoms, only to draw attention to the problem, showing in a playful way a layoperson's view of what goes on behind the scenes in our heads."
+public let TITLE_TEXT = "That's the human brain"
+public let FOOTER_TEXT = "It is here where we process the main functions of the body and maintaining the health of this organ is extremely important."
+public let CALL_FOR_ACTION_TEXT = "Have you ever thought what could happen if mental health was not properly cared for and monitored?\n\nMaybe not! And in fact many people ignore their mental health until it becomes a more serious problem. So I wanted to draw attention to one of these problems: Depression!"
+public let ARTICLE_TEXT = "Much is discussed about depression and how terrible is... but, do you know what happens exactly?\n\nDepression is classified as a disease because of its symptoms, which affect not only the psychological area, but also the body, since chemical processes take place when a person feels this way.\n\nMost people have a misunderstanding about this issue because it is not a visible thing. Also the same people who judge the victims do not know what is going on inside their minds and bodies."
+public let CONTEXT_TEXT = "To sum up, what happens in the brain of a deprressed person is the decrease of the neurotransmitters witch are responsable to funcitons like humor regulation, sleep, motivation and energy."
+public let FIRST_GAME_TITLE_TEXT = "With this in mind, let's help Bruno?"
+public let FIRST_GAME_CONTEXT_TEXT = "Bruno has a serious depression history in his family and some of the symptoms manifested recently."
+public let FIRST_GAME_TUTORIAL_TEXT = "The level of Serotonin in Brunos's brains is very low!\nQuick! Help him by doing some Exercise"
+public let SECOND_GAME_TUTORIAL_TEXT = "Now let's get the Dopamine that Bruno needs!\nHe must have a balanced Diet"
+public let THIRD_GAME_TUTORIAL_TEXT = "The last part is Bruno's Noradrenaline. Help him getting a good amount of Sleep!"
+public let OUTRO_TEXT = "Thanks for playing!"

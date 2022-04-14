@@ -9,9 +9,9 @@ import SpriteKit
 
 public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
     
-    public let title = SKLabelNode(fontNamed: "\(MAIN_FONT)")
-    public let text = SKLabelNode(fontNamed: "\(MAIN_FONT)")
-    public let tutorialText = SKLabelNode(fontNamed: "\(MAIN_FONT)")
+    public let title = SKLabelNode(attributedText: NSAttributedString(string: FIRST_GAME_TITLE_TEXT, attributes: [.font: MAIN_TITLE_SIZE_FONT, .foregroundColor: SKColor.white]))
+    public let text = SKLabelNode(attributedText: NSAttributedString(string: FIRST_GAME_CONTEXT_TEXT, attributes: [.font: MAIN_DEFAULT_SIZE_FONT, .foregroundColor: SKColor.white]))
+    public let tutorialText = SKLabelNode()
     public let finishLine = SKShapeNode(rect: CGRect(origin: CGPoint(x: myScene.frame.maxX - (myScene.frame.midX * 0.275), y: myScene.frame.midY * 0.65), size: CGSize(width: myScene.bounds.width * 0.025, height: myScene.bounds.height * 0.25)))
     public let brain = Brain()
     public let secondBrain = SKSpriteNode(imageNamed: FULL_BRAIN_NODE_TX)

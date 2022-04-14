@@ -84,12 +84,14 @@ public extension SecondMiniGameScene {
     
     /// Constructor of the tutorial text
     func addTutorialText() {
-        tutorialText.text = "Now let's get the Dopamine that Bruno needs!\nHe must have a balanced Diet"
+        let mutableString = NSMutableAttributedString(attributedString: NSAttributedString(string: SECOND_GAME_TUTORIAL_TEXT, attributes: [.font: MAIN_DEFAULT_SIZE_FONT, .foregroundColor: SKColor.white]))
+        mutableString.addAttributes([.foregroundColor: DOPAMINE_COLOR], range: NSRange(location: 18, length: 8))
+        mutableString.addAttributes([.foregroundColor: DIET_COLOR], range: NSRange(location: 69, length: 4))
+        tutorialText.attributedText = mutableString
         tutorialText.alpha = 0
         tutorialText.preferredMaxLayoutWidth = myScene.frame.width - (myScene.frame.width * 0.1)
         tutorialText.numberOfLines = 2
         tutorialText.position = CGPoint(x: myScene.frame.maxX - (myScene.frame.width * 0.46), y: myScene.frame.maxY - (myScene.frame.height * 0.25))
-        tutorialText.fontSize = MAIN_SUBTITLE_SIZE_FONT
         addChild(tutorialText)
     }
     

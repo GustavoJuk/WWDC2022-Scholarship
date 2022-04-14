@@ -60,17 +60,13 @@ public extension FirstMiniGameScene {
     
     /// Constructor of the title text
     func createTitle() {
-        title.text = "With this in mind, let's help Bruno?"
         title.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.maxY - (myScene.frame.height * 0.125))
-        title.fontSize = MAIN_TITLE_SIZE_FONT
         addChild(title)
     }
     
     /// Constructor of the introduction to mini game text
     func createText() {
-        text.text = "Bruno has a serious depression history in his family and some of the symptoms manifested recently."
         text.position = CGPoint(x: myScene.frame.midX, y: title.frame.minY * 0.775)
-        text.fontSize = MAIN_SUBTITLE_SIZE_FONT
         text.preferredMaxLayoutWidth = myScene.frame.width - (myScene.frame.width * 0.1)
         text.numberOfLines = 2
         addChild(text)
@@ -78,11 +74,13 @@ public extension FirstMiniGameScene {
     
     /// Constructor of the tutorial text
     func createTutorialText() {
-        tutorialText.text = "The level of Serotonin in Brunos's brains is very low!\nQuick! Help him by doing some Exercise"
+        let mutableString = NSMutableAttributedString(attributedString: NSAttributedString(string: FIRST_GAME_TUTORIAL_TEXT, attributes: [.font: MAIN_DEFAULT_SIZE_FONT, .foregroundColor: SKColor.white]))
+        mutableString.addAttributes([.foregroundColor: SEROTONIN_COLOR], range: NSRange(location: 13, length: 9))
+        mutableString.addAttributes([.foregroundColor: EXERCISE_COLOR], range: NSRange(location: 85, length: 8))
+        tutorialText.attributedText = mutableString
         tutorialText.position = CGPoint(x: myScene.frame.minX + (myScene.frame.width * 0.45), y: myScene.frame.maxY - (myScene.frame.height * 0.2))
         tutorialText.alpha = 0
         tutorialText.numberOfLines = 3
-        tutorialText.fontSize = MAIN_BODY_SIZE_FONT
         addChild(tutorialText)
     }
 }

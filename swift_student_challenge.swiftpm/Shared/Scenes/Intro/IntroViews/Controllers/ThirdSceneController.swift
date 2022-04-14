@@ -9,7 +9,7 @@ import SpriteKit
 
 public class ThirdScene: SKScene {
     
-    public let article = SKLabelNode(fontNamed: "\(MAIN_FONT)")
+    public let article = SKLabelNode(attributedText: NSAttributedString(string: CONTEXT_TEXT, attributes: [.font: MAIN_BODY_SIZE_FONT, .foregroundColor: SKColor.white]))
     public let nextSceneButton = NextSceneButton()
     public let seratonin = SerotoninGraphic()
     public let dopamine = DopamineGraphic()

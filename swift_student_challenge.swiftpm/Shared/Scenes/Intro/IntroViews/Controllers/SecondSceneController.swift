@@ -9,7 +9,7 @@ import SpriteKit
 
 public class SecondScene: SKScene {
     
-    public var article = SKLabelNode(fontNamed: "\(MAIN_FONT)")
+    public var article = SKLabelNode(attributedText: NSAttributedString(string: ARTICLE_TEXT, attributes: [.font: MAIN_BODY_SIZE_FONT, .foregroundColor: SKColor.white]))
     public let nextSceneButton = NextSceneButton()
     
     public override init(size: CGSize) {

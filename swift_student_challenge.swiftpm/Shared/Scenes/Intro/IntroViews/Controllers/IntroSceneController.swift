@@ -8,7 +8,7 @@
 import SpriteKit
 
 public class IntroScene: SKScene {
-    public let introText = SKLabelNode(fontNamed: "\(MAIN_FONT)")
+    public let introText = SKLabelNode(attributedText: NSAttributedString(string: INTRO_TEXT, attributes: [.font: MAIN_DEFAULT_SIZE_FONT, .foregroundColor: SKColor.white]))
     
     public override func didMove(to view: SKView) {
         super.didMove(to: view)

@@ -11,9 +11,9 @@ public class FirstScene: SKScene {
     
     public var brain = Brain()
     public let nextSceneButton = NextSceneButton()
-    public var title = SKLabelNode(fontNamed: "\(MAIN_FONT)")
-    public var footer = SKLabelNode(fontNamed: "\(MAIN_FONT)")
-    public var callForAction = SKLabelNode(fontNamed: "\(MAIN_FONT)")
+    public var title = SKLabelNode(attributedText: NSAttributedString(string: TITLE_TEXT, attributes: [.font: MAIN_TITLE_SIZE_FONT, .foregroundColor: SKColor.white]))
+    public var footer = SKLabelNode(attributedText: NSAttributedString(string: FOOTER_TEXT, attributes: [.font: MAIN_BODY_SIZE_FONT, .foregroundColor: SKColor.white]))
+    public var callForAction = SKLabelNode(attributedText: NSAttributedString(string: CALL_FOR_ACTION_TEXT, attributes: [.font: MAIN_BODY_SIZE_FONT, .foregroundColor: SKColor.white]))
     public var touchCount = 0
     
     public override init(size: CGSize) {

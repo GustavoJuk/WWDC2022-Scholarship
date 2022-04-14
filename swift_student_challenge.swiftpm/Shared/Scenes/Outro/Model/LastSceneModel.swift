@@ -37,8 +37,6 @@ public extension LastScene {
     
     /// Constructor of the outro text
     func addOutroText() {
-        outroText.text = "Thanks for playing!"
-        outroText.fontSize = MAIN_TITLE_SIZE_FONT
         outroText.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY)
         outroText.verticalAlignmentMode = .center
         addChild(outroText)

@@ -11,7 +11,7 @@ public class ThirdMiniGameScene: SKScene {
     
     public let brain = Brain()
     public let nextSceneButton = NextSceneButton()
-    public let tutorialText = SKLabelNode(fontNamed: "\(MAIN_FONT)")
+    public let tutorialText = SKLabelNode()
     public let sleepButton = SleepButton()
     public let sleepGraphic = SleepProgressBar()
     public var isSleepButtonPressed = false

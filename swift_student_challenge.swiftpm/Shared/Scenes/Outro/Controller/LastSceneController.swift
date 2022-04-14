@@ -9,7 +9,7 @@ import SpriteKit
 
 public class LastScene: SKScene {
     
-    public let outroText = SKLabelNode(fontNamed: "\(MAIN_FONT)")
+    public let outroText = SKLabelNode(attributedText: NSAttributedString(string: OUTRO_TEXT, attributes: [.font: MAIN_TITLE_SIZE_FONT, .foregroundColor: SKColor.white]))
     public let brain = Brain()
     
     public override func didMove(to view: SKView) {
