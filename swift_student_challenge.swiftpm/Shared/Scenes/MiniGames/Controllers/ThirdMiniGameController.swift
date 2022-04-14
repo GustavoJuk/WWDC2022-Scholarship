@@ -13,7 +13,7 @@ public class ThirdMiniGameScene: SKScene {
     public let nextSceneButton = NextSceneButton()
     public let tutorialText = SKLabelNode(fontNamed: "\(MAIN_FONT)")
     public let sleepButton = SleepButton()
-    public let sleepGraphic = SleepGraphic()
+    public let sleepGraphic = SleepProgressBar()
     public var isSleepButtonPressed = false
     public var isMiniGameShowing = false
     
@@ -40,7 +40,7 @@ public class ThirdMiniGameScene: SKScene {
                 isSleepButtonPressed = true
                 sleepButton.node.setScale(0.8)
                 sleepButton.node.alpha = 0.5
-                sleepGraphic.cropNode.maskNode?.run(SKAction.scaleX(to: sleepGraphic.graphBackground.xScale / (sleepGraphic.graphBackground.xScale * 0.031), duration: 1.5))
+                sleepGraphic.cropNode.maskNode?.run(SKAction.scaleX(to: sleepGraphic.barBackground.xScale * 18.6, duration: 1.5))
             }
         }
     }
@@ -68,8 +68,8 @@ public class ThirdMiniGameScene: SKScene {
                     self.nextSceneButton.node.removeFromParent()
                     self.tutorialText.run(fadeIn)
                     self.sleepButton.node.run(fadeIn)
-                    self.sleepGraphic.graphic.run(fadeIn)
-                    self.sleepGraphic.graphBackground.run(fadeAlphaInHalf)
+                    self.sleepGraphic.progressBar.run(fadeIn)
+                    self.sleepGraphic.barBackground.run(fadeAlphaInHalf)
                 })
             }
             
@@ -82,15 +82,15 @@ public class ThirdMiniGameScene: SKScene {
                     delay(duration: 0.5, closure: {
                         self.tutorialText.run(fadeOut)
                         self.sleepButton.node.run(fadeOut)
-                        self.sleepGraphic.graphic.run(fadeOut)
-                        self.sleepGraphic.graphBackground.run(fadeOut)
+                        self.sleepGraphic.progressBar.run(fadeOut)
+                        self.sleepGraphic.barBackground.run(fadeOut)
                         self.sleepGraphic.safeArea.removeFromParent()
                         self.isMiniGameShowing = false
                         delay(duration: fadeOut.duration + 0.5, closure: {
                             self.tutorialText.removeFromParent()
                             self.sleepButton.node.removeFromParent()
-                            self.sleepGraphic.graphic.removeFromParent()
-                            self.sleepGraphic.graphBackground.removeFromParent()
+                            self.sleepGraphic.progressBar.removeFromParent()
+                            self.sleepGraphic.barBackground.removeFromParent()
                             self.brain.backBrainNode.run(moveToCenter)
                             self.brain.frontBrainNode.run(moveToCenter)
                             self.brain.serotoninNode.run(moveToCenter)
@@ -108,7 +108,7 @@ public class ThirdMiniGameScene: SKScene {
                         })
                     })
                 } else {
-                    sleepGraphic.cropNode.maskNode?.run(SKAction.scaleX(to: sleepGraphic.graphBackground.xScale - (sleepGraphic.graphBackground.xScale * 0.1), duration: 0.5))
+                    sleepGraphic.cropNode.maskNode?.run(SKAction.scaleX(to: sleepGraphic.barBackground.xScale - (sleepGraphic.barBackground.xScale * 0.1), duration: 0.5))
                 }
             }
         }
