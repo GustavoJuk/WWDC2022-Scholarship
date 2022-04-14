@@ -9,13 +9,13 @@ import SpriteKit
 
 public class ThirdMiniGameScene: SKScene {
     
-    private let brain = Brain()
-    private let nextSceneButton = NextSceneButton()
-    private let tutorialText = SKLabelNode(fontNamed: "\(MAIN_FONT)")
-    private let sleepButton = SleepButton()
-    private let sleepGraphic = SleepGraphic()
-    private var isSleepButtonPressed = false
-    private var isMiniGameShowing = false
+    public let brain = Brain()
+    public let nextSceneButton = NextSceneButton()
+    public let tutorialText = SKLabelNode(fontNamed: "\(MAIN_FONT)")
+    public let sleepButton = SleepButton()
+    public let sleepGraphic = SleepGraphic()
+    public var isSleepButtonPressed = false
+    public var isMiniGameShowing = false
     
     public override func didMove(to view: SKView) {
         super.didMove(to: view)
@@ -128,50 +128,5 @@ public class ThirdMiniGameScene: SKScene {
                 sleepGraphic.safeArea.run(.fadeAlpha(to: 0, duration: 0.1))
             }
         }
-    }
-    
-    /// THis method will verify if the position of the maxX scale of the specific node is at the safe area
-    /// - Parameter nodeMaxX: The maxX axys of a node
-    /// - Returns: Returns a boolean
-    private func verifyPosition(nodeMaxWidth nodeMaxX: CGFloat) -> Bool {
-        if nodeMaxX >= sleepGraphic.safeArea.frame.minX && nodeMaxX <= sleepGraphic.safeArea.frame.maxX {
-            return true
-        }
-        return false
-    }
-    
-    /// Constructor of the brain
-    private func addAllBrainNodes() {
-        brain.addBrain(skScene: self)
-        brain.addSeratotin(skScene: self)
-        brain.addDopamine(skScene: self)
-        brain.addNoradrenaline(skScene: self)
-        
-        brain.backBrainNode.scale(to: CGSize(width: myScene.frame.width * 0.75 - (brain.backBrainNode.frame.width * 0.25), height: myScene.frame.height * 0.75))
-        brain.frontBrainNode.scale(to: CGSize(width: brain.backBrainNode.frame.width, height: brain.backBrainNode.frame.height))
-        brain.serotoninNode.scale(to: CGSize(width: brain.backBrainNode.frame.width, height: brain.backBrainNode.frame.height))
-        brain.dopamineNode.scale(to: CGSize(width: brain.backBrainNode.frame.width, height: brain.backBrainNode.frame.height))
-        brain.noradrenalineNode.scale(to: CGSize(width: brain.backBrainNode.frame.width, height: brain.backBrainNode.frame.height))
-        
-        brain.serotoninNode.alpha = 1.0
-        brain.dopamineNode.alpha = 1.0
-        brain.noradrenalineNode.alpha = 0.25
-        
-        brain.backBrainNode.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.midY)
-        brain.frontBrainNode.position = brain.backBrainNode.position
-        brain.serotoninNode.position = brain.backBrainNode.position
-        brain.dopamineNode.position = brain.backBrainNode.position
-        brain.noradrenalineNode.position = brain.backBrainNode.position
-    }
-    
-    /// Constructor of the tutorial text
-    private func addTutorialText() {
-        tutorialText.text = "The last part is Bruno's Noradrenaline. Help him getting a good amount of Sleep!"
-        tutorialText.alpha = 0
-        tutorialText.preferredMaxLayoutWidth = myScene.frame.width - (myScene.frame.width * 0.1)
-        tutorialText.numberOfLines = 2
-        tutorialText.fontSize = MAIN_BODY_SIZE_FONT
-        tutorialText.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.maxY - (myScene.frame.height * 0.2))
-        addChild(tutorialText)
     }
 }

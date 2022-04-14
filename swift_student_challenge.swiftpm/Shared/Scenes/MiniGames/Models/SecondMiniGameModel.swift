@@ -1,96 +1,17 @@
 //
 //  File.swift
-//  swift_student_challenge
 //
-//  Created by Gustavo Juk Ferreira Cruz on 06/04/22.
+//
+//  Created by Gustavo Juk Ferreira Cruz on 14/04/22.
 //
 
 import SpriteKit
 
-public class SecondMiniGameScene: SKScene {
-    
-    private let brain = Brain()
-    private let nextSceneButton = NextSceneButton()
-    private let tutorialText = SKLabelNode(fontNamed: "\(MAIN_FONT)")
-    private let bacon = Bacon()
-    private let chocolate = Chocolate()
-    private let donut = Donut()
-    private let eggs = Eggs()
-    private let fries = Fries()
-    private let soda = Soda()
-    private let shelfTop = SKSpriteNode(imageNamed: SHELF_NODE_TX)
-    private let shelfBottom = SKSpriteNode(imageNamed: SHELF_NODE_TX)
-    
-    public override func didMove(to view: SKView) {
-        super.didMove(to: view)
-        self.alpha = 0
-        self.scene?.run(SKAction.fadeIn(withDuration: 0.75))
-        self.backgroundColor = BACKGROUND_COLOR
-        addAllBrainNodes()
-        nextSceneButton.addButton(skScene: self)
-        addTutorialText()
-    }
-    
-    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches {
-            let location = touch.location(in: self)
-            let clickedNode = self.nodes(at: location)
-
-            if nextSceneButton.node.contains(location) {
-                nextSceneButton.node.setScale(0.9)
-                nextSceneButton.node.alpha = 0.5
-            }
-            
-            switch clickedNode.first?.name {
-            case HEALTHY_FOOD_NODE_NM:
-                correctOption(with: clickedNode.first!)
-
-            case UNHEALTHY_FOOD_NODE_NM:
-                wrongOption(with: clickedNode.first!)
-
-            default: break
-            }
-        }
-    }
-    
-    public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches {
-            let location = touch.location(in: self)
-
-            if nextSceneButton.node.contains(location) {
-                nextSceneButton.node.setScale(1.25)
-                nextSceneButton.node.alpha = 1.0
-                brain.backBrainNode.run(moveToDopamineSide)
-                brain.frontBrainNode.run(moveToDopamineSide)
-                brain.serotoninNode.run(moveToDopamineSide)
-                brain.dopamineNode.run(moveToDopamineSide)
-                brain.noradrenalineNode.run(moveToDopamineSide)
-                brain.backBrainNode.run(unfocus)
-                brain.frontBrainNode.run(unfocus)
-                brain.serotoninNode.run(unfocus)
-                delay(duration: moveToDopamineSide.duration, closure: {
-                    self.addFoodNodes()
-                    self.nextSceneButton.node.run(fadeOut)
-                    self.tutorialText.run(fadeIn)
-                    self.bacon.node.run(fadeIn)
-                    self.chocolate.node.run(fadeIn)
-                    self.donut.node.run(fadeIn)
-                    self.eggs.node.run(fadeIn)
-                    self.fries.node.run(fadeIn)
-                    self.soda.node.run(fadeIn)
-                    self.shelfTop.run(fadeIn)
-                    self.shelfBottom.run(fadeIn)
-                    delay(duration: fadeOut.duration, closure: {
-                        self.nextSceneButton.node.removeFromParent()
-                    })
-                })
-            }
-        }
-    }
+public extension SecondMiniGameScene {
     
     /// This method verify if the clicked node is a healthy food and preforms the rest of the animations
     /// - Parameter node: The food in witch will make the animation
-    private func correctOption(with node: SKNode) {
+    func correctOption(with node: SKNode) {
         node.run(fadeOut)
         delay(duration: fadeOut.duration + 0.5, closure: {
             node.removeFromParent()
@@ -133,12 +54,12 @@ public class SecondMiniGameScene: SKScene {
     
     /// This methos verify if the clicked node is a unhealthy food and preforms the shake animation
     /// - Parameter node: The food in witch will make the animation
-    private func wrongOption(with node: SKNode) {
+    func wrongOption(with node: SKNode) {
         node.run(SKAction.shake(initialPosition: node.position, duration: 0.5))
     }
     
     /// Constructor of the brain
-    private func addAllBrainNodes() {
+    func addAllBrainNodes() {
         brain.addBrain(skScene: self)
         brain.addSeratotin(skScene: self)
         brain.addDopamine(skScene: self)
@@ -162,7 +83,7 @@ public class SecondMiniGameScene: SKScene {
     }
     
     /// Constructor of the tutorial text
-    private func addTutorialText() {
+    func addTutorialText() {
         tutorialText.text = "Now let's get the Dopamine that Bruno needs!\nHe must have a balanced Diet"
         tutorialText.alpha = 0
         tutorialText.preferredMaxLayoutWidth = myScene.frame.width - (myScene.frame.width * 0.1)
@@ -173,7 +94,8 @@ public class SecondMiniGameScene: SKScene {
     }
     
     /// Constructor of the food
-    private func addFoodNodes() {
+    func addFoodNodes() {
+        
         //Top shelf
         addTopShelf(at_X: myScene.frame.midX, at_Y: myScene.frame.midY * 0.6)
 
@@ -206,7 +128,7 @@ public class SecondMiniGameScene: SKScene {
     }
     
     /// Constructor of the first shelf
-    private func addTopShelf(at_X xPosition: CGFloat, at_Y yPosition: CGFloat) {
+    func addTopShelf(at_X xPosition: CGFloat, at_Y yPosition: CGFloat) {
         shelfTop.position = CGPoint(x: xPosition, y: yPosition)
         shelfTop.alpha = 0
         shelfTop.scale(to: CGSize(width: myScene.frame.width * 0.75, height: myScene.frame.height / shelfTop.frame.height))
@@ -216,7 +138,7 @@ public class SecondMiniGameScene: SKScene {
     }
     
     /// Constructor of the second shelf
-    private func addBottomShelf(at_X xPosition: CGFloat, at_Y yPosition: CGFloat) {
+    func addBottomShelf(at_X xPosition: CGFloat, at_Y yPosition: CGFloat) {
         shelfBottom.position = CGPoint(x: xPosition, y: yPosition)
         shelfBottom.alpha = 0
         shelfBottom.scale(to: CGSize(width: myScene.frame.width * 0.75, height: myScene.frame.height / shelfBottom.frame.height))
