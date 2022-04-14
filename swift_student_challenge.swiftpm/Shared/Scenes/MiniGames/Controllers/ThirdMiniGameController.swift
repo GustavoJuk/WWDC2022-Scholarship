@@ -40,7 +40,7 @@ public class ThirdMiniGameScene: SKScene {
                 isSleepButtonPressed = true
                 sleepButton.node.setScale(0.8)
                 sleepButton.node.alpha = 0.5
-                sleepGraphic.cropNode.maskNode?.run(SKAction.scaleX(to: sleepGraphic.barBackground.xScale * 18.6, duration: 1.5))
+                sleepGraphic.progressBar.run(SKAction.scaleX(to: sleepGraphic.barBackground.xScale / (sleepGraphic.barBackground.xScale * 0.031), duration: 1.5))
             }
         }
     }
@@ -77,8 +77,8 @@ public class ThirdMiniGameScene: SKScene {
                 isSleepButtonPressed = false
                 sleepButton.node.setScale(1.0)
                 sleepButton.node.alpha = 1.0
-                sleepGraphic.cropNode.maskNode?.removeAllActions()
-                if verifyPosition(nodeMaxWidth: sleepGraphic.cropNode.maskNode!.frame.maxX) {
+                sleepGraphic.progressBar.removeAllActions()
+                if verifyPosition(nodeMaxWidth: sleepGraphic.progressBar.frame.maxX) {
                     delay(duration: 0.5, closure: {
                         self.tutorialText.run(fadeOut)
                         self.sleepButton.node.run(fadeOut)
@@ -108,25 +108,23 @@ public class ThirdMiniGameScene: SKScene {
                         })
                     })
                 } else {
-                    sleepGraphic.cropNode.maskNode?.run(SKAction.scaleX(to: sleepGraphic.barBackground.xScale - (sleepGraphic.barBackground.xScale * 0.1), duration: 0.5))
+                    sleepGraphic.progressBar.run(SKAction.scaleX(to: sleepGraphic.barBackground.xScale - (sleepGraphic.barBackground.xScale * 0.1), duration: 0.5))
                 }
             }
         }
     }
     
     public override func update(_ currentTime: TimeInterval) {
-        if let maxXPosition = sleepGraphic.cropNode.maskNode?.frame.maxX {
-            if verifyPosition(nodeMaxWidth: maxXPosition) {
-                sleepGraphic.safeArea.run(.fadeIn(withDuration: 0.1))
-            } else if isSleepButtonPressed {
-                sleepGraphic.safeArea.run(.fadeAlpha(to: 0.25, duration: 0.1))
-            } else if isMiniGameShowing && isSleepButtonPressed == false {
-                delay(duration: fadeIn.duration + moveToNoradrenalineSide.duration, closure: {
-                    self.sleepGraphic.safeArea.run(.fadeAlpha(to: 0.25, duration: 0.1))
-                })
-            } else {
-                sleepGraphic.safeArea.run(.fadeAlpha(to: 0, duration: 0.1))
-            }
+        if verifyPosition(nodeMaxWidth: sleepGraphic.progressBar.frame.maxX) {
+            sleepGraphic.safeArea.run(.fadeIn(withDuration: 0.1))
+        } else if isSleepButtonPressed {
+            sleepGraphic.safeArea.run(.fadeAlpha(to: 0.25, duration: 0.1))
+        } else if isMiniGameShowing && isSleepButtonPressed == false {
+            delay(duration: fadeIn.duration + moveToNoradrenalineSide.duration, closure: {
+                self.sleepGraphic.safeArea.run(.fadeAlpha(to: 0.25, duration: 0.1))
+            })
+        } else {
+            sleepGraphic.safeArea.run(.fadeAlpha(to: 0, duration: 0.1))
         }
     }
 }
