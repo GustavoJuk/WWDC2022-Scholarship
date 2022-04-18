@@ -99,7 +99,7 @@ extension SKAction {
     ///   - amplitudeX: The amplitude of the x-axys
     ///   - amplitudeY: The amplitude of the y-axys
     /// - Returns: Returns the sequence of the animation positions
-    class func shake(initialPosition:CGPoint, duration:Float, amplitudeX:Int, amplitudeY:Int) -> SKAction {
+    class func shake(initialPosition:CGPoint, duration:Float = 0.5, amplitudeX:Int = Int(myScene.frame.width * 0.02), amplitudeY:Int = Int(myScene.frame.height * 0.015)) -> SKAction {
         let startingX = initialPosition.x
         let startingY = initialPosition.y
         let numberOfShakes = duration / 0.015

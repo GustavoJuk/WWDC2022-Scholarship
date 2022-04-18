@@ -55,7 +55,7 @@ public extension SecondMiniGameScene {
     /// This methos verify if the clicked node is a unhealthy food and preforms the shake animation
     /// - Parameter node: The food in witch will make the animation
     func wrongOption(with node: SKNode) {
-        node.run(SKAction.shake(initialPosition: node.position, duration: 0.5, amplitudeX: 20, amplitudeY: 6))
+        node.run(SKAction.shake(initialPosition: node.position))
     }
     
     /// Constructor of the brain
