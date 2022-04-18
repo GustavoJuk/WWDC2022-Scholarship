@@ -51,19 +51,21 @@ public class FirstScene: SKScene {
                 touchCount += 1
                 nextSceneButton.node.setScale(1.25)
                 nextSceneButton.node.alpha = 1.0
-                title.run(fadeOut)
-                footer.run(fadeOut)
-                brain.backBrainNode.run(moveUp)
-                brain.frontBrainNode.run(moveUp)
-                delay(duration: moveUp.duration, closure: {
-                    self.brain.backBrainNode.run(scaleDown)
-                    self.brain.frontBrainNode.run(scaleDown)
-                    delay(duration: scaleDown.duration, closure: {
-                        self.title.removeFromParent()
-                        self.footer.removeFromParent()
-                        self.callForAction.run(fadeIn)
+                if touchCount == 1 {
+                    title.run(fadeOut)
+                    footer.run(fadeOut)
+                    brain.backBrainNode.run(moveUp)
+                    brain.frontBrainNode.run(moveUp)
+                    delay(duration: moveUp.duration, closure: {
+                        self.brain.backBrainNode.run(scaleDown)
+                        self.brain.frontBrainNode.run(scaleDown)
+                        delay(duration: scaleDown.duration, closure: {
+                            self.title.removeFromParent()
+                            self.footer.removeFromParent()
+                            self.callForAction.run(fadeIn)
+                        })
                     })
-                })
+                }
             }
             
             if touchCount == 2 && nextSceneButton.node.contains(location) {
