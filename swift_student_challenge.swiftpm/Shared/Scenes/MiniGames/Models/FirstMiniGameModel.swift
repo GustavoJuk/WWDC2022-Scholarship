@@ -74,10 +74,10 @@ public extension FirstMiniGameScene {
     
     /// Constructor of the tutorial text
     func createTutorialText() {
-        let mutableString = NSMutableAttributedString(attributedString: NSAttributedString(string: FIRST_GAME_TUTORIAL_TEXT, attributes: [.font: MAIN_DEFAULT_SIZE_FONT, .foregroundColor: SKColor.white]))
-        mutableString.addAttributes([.foregroundColor: SEROTONIN_COLOR], range: NSRange(location: 13, length: 9))
-        mutableString.addAttributes([.foregroundColor: EXERCISE_COLOR], range: NSRange(location: 85, length: 8))
-        tutorialText.attributedText = mutableString
+        let attributedText = NSMutableAttributedString(attributedString: NSAttributedString(string: FIRST_GAME_TUTORIAL_TEXT, attributes: [.font: MAIN_DEFAULT_SIZE_FONT, .foregroundColor: SKColor.white]))
+        attributedText.addAttributes([.foregroundColor: SEROTONIN_COLOR], range: attributedText.mutableString.range(of: "Serotonin"))
+        attributedText.addAttributes([.foregroundColor: EXERCISE_COLOR], range: attributedText.mutableString.range(of: "Exercise"))
+        tutorialText.attributedText = attributedText
         tutorialText.position = CGPoint(x: myScene.frame.minX + (myScene.frame.width * 0.45), y: myScene.frame.maxY - (myScene.frame.height * 0.2))
         tutorialText.alpha = 0
         tutorialText.numberOfLines = 3

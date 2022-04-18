@@ -55,7 +55,7 @@ public extension SecondMiniGameScene {
     /// This methos verify if the clicked node is a unhealthy food and preforms the shake animation
     /// - Parameter node: The food in witch will make the animation
     func wrongOption(with node: SKNode) {
-        node.run(SKAction.shake(initialPosition: node.position, duration: 0.5))
+        node.run(SKAction.shake(initialPosition: node.position, duration: 0.5, amplitudeX: 20, amplitudeY: 6))
     }
     
     /// Constructor of the brain
@@ -84,10 +84,10 @@ public extension SecondMiniGameScene {
     
     /// Constructor of the tutorial text
     func addTutorialText() {
-        let mutableString = NSMutableAttributedString(attributedString: NSAttributedString(string: SECOND_GAME_TUTORIAL_TEXT, attributes: [.font: MAIN_DEFAULT_SIZE_FONT, .foregroundColor: SKColor.white]))
-        mutableString.addAttributes([.foregroundColor: DOPAMINE_COLOR], range: NSRange(location: 18, length: 8))
-        mutableString.addAttributes([.foregroundColor: DIET_COLOR], range: NSRange(location: 69, length: 4))
-        tutorialText.attributedText = mutableString
+        let attributedText = NSMutableAttributedString(attributedString: NSAttributedString(string: SECOND_GAME_TUTORIAL_TEXT, attributes: [.font: MAIN_DEFAULT_SIZE_FONT, .foregroundColor: SKColor.white]))
+        attributedText.addAttributes([.foregroundColor: DOPAMINE_COLOR], range: attributedText.mutableString.range(of: "Dopamine"))
+        attributedText.addAttributes([.foregroundColor: DIET_COLOR], range: attributedText.mutableString.range(of: "Diet"))
+        tutorialText.attributedText = attributedText
         tutorialText.alpha = 0
         tutorialText.preferredMaxLayoutWidth = myScene.frame.width - (myScene.frame.width * 0.1)
         tutorialText.numberOfLines = 2

@@ -30,7 +30,7 @@ public class SecondScene: SKScene {
             let location = touch.location(in: self)
 
             if nextSceneButton.node.contains(location) {
-                nextSceneButton.node.setScale(0.9)
+                nextSceneButton.node.setScale(1.2)
                 nextSceneButton.node.alpha = 0.5
             }
         }

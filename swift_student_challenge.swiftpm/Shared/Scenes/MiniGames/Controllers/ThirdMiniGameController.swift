@@ -32,13 +32,13 @@ public class ThirdMiniGameScene: SKScene {
             let location = touch.location(in: self)
             
             if nextSceneButton.node.contains(location) {
-                nextSceneButton.node.setScale(0.9)
+                nextSceneButton.node.setScale(1.2)
                 nextSceneButton.node.alpha = 0.5
             }
             
             if sleepButton.node.contains(location) {
                 isSleepButtonPressed = true
-                sleepButton.node.setScale(0.8)
+                sleepButton.node.setScale(0.95)
                 sleepButton.node.alpha = 0.5
                 sleepGraphic.progressBar.run(SKAction.scaleX(to: sleepGraphic.barBackground.xScale / (sleepGraphic.barBackground.xScale * 0.031), duration: 1.5))
             }
@@ -63,6 +63,7 @@ public class ThirdMiniGameScene: SKScene {
                 brain.backBrainNode.run(unfocus)
                 brain.frontBrainNode.run(unfocus)
                 brain.serotoninNode.run(unfocus)
+                brain.dopamineNode.run(unfocus)
                 nextSceneButton.node.run(fadeOut)
                 delay(duration: moveToNoradrenalineSide.duration, closure: {
                     self.nextSceneButton.node.removeFromParent()
@@ -99,6 +100,7 @@ public class ThirdMiniGameScene: SKScene {
                             self.brain.backBrainNode.run(focus)
                             self.brain.frontBrainNode.run(focus)
                             self.brain.serotoninNode.run(focus)
+                            self.brain.dopamineNode.run(focus)
                             delay(duration: moveToCenter.duration + 0.5, closure: {
                                 self.brain.noradrenalineNode.run(fadeAlphaIn)
                                 delay(duration: fadeAlphaIn.duration + 0.5, closure: {

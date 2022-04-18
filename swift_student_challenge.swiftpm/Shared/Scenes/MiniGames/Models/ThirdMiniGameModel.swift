@@ -45,10 +45,10 @@ extension ThirdMiniGameScene {
     
     /// Constructor of the tutorial text
     func addTutorialText() {
-        let mutableString = NSMutableAttributedString(attributedString: NSAttributedString(string: THIRD_GAME_TUTORIAL_TEXT, attributes: [.font: MAIN_DEFAULT_SIZE_FONT, .foregroundColor: SKColor.white]))
-        mutableString.addAttributes([.foregroundColor: NORADRENALINE_COLOR], range: NSRange(location: 25, length: 13))
-        mutableString.addAttributes([.foregroundColor: SLEEP_COLOR], range: NSRange(location: 74, length: 5))
-        tutorialText.attributedText = mutableString
+        let attributedText = NSMutableAttributedString(attributedString: NSAttributedString(string: THIRD_GAME_TUTORIAL_TEXT, attributes: [.font: MAIN_DEFAULT_SIZE_FONT, .foregroundColor: SKColor.white]))
+        attributedText.addAttributes([.foregroundColor: NORADRENALINE_COLOR], range: attributedText.mutableString.range(of: "Noradrenaline"))
+        attributedText.addAttributes([.foregroundColor: SLEEP_COLOR], range: attributedText.mutableString.range(of: "Sleep"))
+        tutorialText.attributedText = attributedText
         tutorialText.alpha = 0
         tutorialText.preferredMaxLayoutWidth = myScene.frame.width - (myScene.frame.width * 0.1)
         tutorialText.numberOfLines = 2

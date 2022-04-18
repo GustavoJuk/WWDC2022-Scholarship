@@ -35,12 +35,13 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
             let location = touch.location(in: self)
             
             if nextSceneButton.node.contains(location) {
-                nextSceneButton.node.setScale(0.9)
+                nextSceneButton.node.setScale(1.2)
                 nextSceneButton.node.alpha = 0.5
             }
             
             if exerciseButton.node.contains(location) {
-                exerciseButton.node.setScale(0.75)
+                exerciseButton.node.setScale(0.95)
+                exerciseButton.node.alpha = 0.5
                 secondBrain.physicsBody?.applyImpulse(CGVector(dx: secondBrain.frame.width * 0.2, dy: 0))
             }
         }
@@ -95,6 +96,7 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
             }
             if exerciseButton.node.contains(location) {
                 exerciseButton.node.setScale(1.0)
+                exerciseButton.node.alpha = 1.0
             }
         }
     }

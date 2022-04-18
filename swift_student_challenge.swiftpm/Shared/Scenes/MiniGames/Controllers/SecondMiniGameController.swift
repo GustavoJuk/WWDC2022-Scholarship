@@ -37,18 +37,14 @@ public class SecondMiniGameScene: SKScene {
             let clickedNode = self.nodes(at: location)
 
             if nextSceneButton.node.contains(location) {
-                nextSceneButton.node.setScale(0.9)
+                nextSceneButton.node.setScale(1.2)
                 nextSceneButton.node.alpha = 0.5
             }
             
-            switch clickedNode.first?.name {
-            case HEALTHY_FOOD_NODE_NM:
+            if clickedNode.first?.name == HEALTHY_FOOD_NODE_NM {
                 correctOption(with: clickedNode.first!)
-
-            case UNHEALTHY_FOOD_NODE_NM:
+            } else if clickedNode.first?.name == UNHEALTHY_FOOD_NODE_NM {
                 wrongOption(with: clickedNode.first!)
-
-            default: break
             }
         }
     }

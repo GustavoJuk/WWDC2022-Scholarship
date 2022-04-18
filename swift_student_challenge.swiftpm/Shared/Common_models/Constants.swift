@@ -23,12 +23,12 @@ public let myScene = SKView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bound
 
 //COLORS
 public let BACKGROUND_COLOR = SKColor(red: 0 / 255, green: 169 / 255, blue: 159 / 255, alpha: 1)
-public let SEROTONIN_COLOR = SKColor(red: 255 / 255, green: 184 / 255, blue: 0 / 255, alpha: 1)
-public let DOPAMINE_COLOR = SKColor(red: 216 / 255, green: 71 / 255, blue: 0 / 255, alpha: 1)
+public let SEROTONIN_COLOR = SKColor(red: 200 / 255, green: 0 / 255, blue: 104 / 255, alpha: 1)
+public let DOPAMINE_COLOR = SKColor(red: 187 / 255, green: 62 / 255, blue: 0 / 255, alpha: 1)
 public let NORADRENALINE_COLOR = SKColor(red: 8 / 255, green: 85 / 255, blue: 201 / 255, alpha: 1)
-public let EXERCISE_COLOR = SKColor(red: 121 / 255, green: 19 / 255, blue: 207 / 255, alpha: 1)
-public let DIET_COLOR = SKColor(red: 0, green: 130 / 255, blue: 121 / 255, alpha: 1)
-public let SLEEP_COLOR = SKColor(red: 213 / 255, green: 140 / 255, blue: 72 / 255, alpha: 1)
+public let EXERCISE_COLOR = SKColor(red: 122 / 255, green: 0 / 255, blue: 63 / 255, alpha: 1)
+public let DIET_COLOR = SKColor(red: 99 / 255, green: 33 / 255, blue: 0 / 255, alpha: 1)
+public let SLEEP_COLOR = SKColor(red: 2 / 255, green: 51 / 255, blue: 125 / 255, alpha: 1)
 
 //GAME COMPONENTS TEXTURES
 public let BACK_BRAIN_NODE_TX = "scene_components/Brain/backBrain"
@@ -99,7 +99,7 @@ extension SKAction {
     ///   - amplitudeX: The amplitude of the x-axys
     ///   - amplitudeY: The amplitude of the y-axys
     /// - Returns: Returns the sequence of the animation positions
-    class func shake(initialPosition:CGPoint, duration:Float, amplitudeX:Int = 12, amplitudeY:Int = 3) -> SKAction {
+    class func shake(initialPosition:CGPoint, duration:Float, amplitudeX:Int, amplitudeY:Int) -> SKAction {
         let startingX = initialPosition.x
         let startingY = initialPosition.y
         let numberOfShakes = duration / 0.015
@@ -138,10 +138,10 @@ public let TITLE_TEXT = "That's the human brain"
 public let FOOTER_TEXT = "It is here where we process the main functions of the body and maintaining the health of this organ is extremely important."
 public let CALL_FOR_ACTION_TEXT = "Have you ever thought what could happen if mental health was not properly cared for and monitored?\n\nMaybe not! And in fact many people ignore their mental health until it becomes a more serious problem. So I wanted to draw attention to one of these problems: Depression!"
 public let ARTICLE_TEXT = "Much is discussed about depression and how terrible is... but, do you know what happens exactly?\n\nDepression is classified as a disease because of its symptoms, which affect not only the psychological area, but also the body, since chemical processes take place when a person feels this way.\n\nMost people have a misunderstanding about this issue because it is not a visible thing. Also the same people who judge the victims do not know what is going on inside their minds and bodies."
-public let CONTEXT_TEXT = "To sum up, what happens in the brain of a deprressed person is the decrease of the neurotransmitters witch are responsable to funcitons like humor regulation, sleep, motivation and energy."
+public let CONTEXT_TEXT = "To sum up, what happens in the brain of a depressed person is the decrease of the neurotransmitters witch are responsable to funcitons like humor regulation, sleep, motivation and energy."
 public let FIRST_GAME_TITLE_TEXT = "With this in mind, let's help Bruno?"
 public let FIRST_GAME_CONTEXT_TEXT = "Bruno has a serious depression history in his family and some of the symptoms manifested recently."
-public let FIRST_GAME_TUTORIAL_TEXT = "The level of Serotonin in Brunos's brains is very low!\nQuick! Help him by doing some Exercise"
-public let SECOND_GAME_TUTORIAL_TEXT = "Now let's get the Dopamine that Bruno needs!\nHe must have a balanced Diet"
+public let FIRST_GAME_TUTORIAL_TEXT = "The level of Serotonin in Brunos's brains is very low!\nQuick! Help him by doing some Exercise!"
+public let SECOND_GAME_TUTORIAL_TEXT = "Now let's get the Dopamine that Bruno needs!\nHe must have a balanced Diet!"
 public let THIRD_GAME_TUTORIAL_TEXT = "The last part is Bruno's Noradrenaline. Help him getting a good amount of Sleep!"
 public let OUTRO_TEXT = "Thanks for playing!"
