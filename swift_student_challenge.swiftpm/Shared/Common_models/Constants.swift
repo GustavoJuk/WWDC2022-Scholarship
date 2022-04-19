@@ -45,6 +45,7 @@ public let EGGS_NODE_TX = "scene_components/Food/eggs"
 public let FRIES_NODE_TX = "scene_components/Food/fries"
 public let SODA_NODE_TX = "scene_components/Food/soda"
 public let ARROW_BUTTON_NODE_TX = "scene_components/arrow"
+public let FINISH_LINE_NODE_TX = "scene_components/finishLine"
 
 //NODE NAMES
 public let BUTTON_NODE_NM = "Next page"
@@ -145,3 +146,5 @@ public let FIRST_GAME_TUTORIAL_TEXT = "The level of Serotonin in Brunos's brains
 public let SECOND_GAME_TUTORIAL_TEXT = "Now let's get the Dopamine that Bruno needs!\nHe must have a balanced Diet!"
 public let THIRD_GAME_TUTORIAL_TEXT = "The last part is Bruno's Noradrenaline. Help him getting a good amount of Sleep!"
 public let OUTRO_TEXT = "Thanks for playing!"
+
+//TODO: SOUNDS

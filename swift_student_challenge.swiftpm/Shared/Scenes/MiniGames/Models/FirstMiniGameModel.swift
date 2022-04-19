@@ -34,10 +34,9 @@ public extension FirstMiniGameScene {
     
     /// Constructor of the finish line
     func addFinishLine() {
-        finishLine = SKShapeNode(rectOf: CGSize(width: myScene.bounds.width * 0.025, height: myScene.bounds.height * 0.25), cornerRadius: myScene.frame.height * 0.0075)
-        finishLine.position = CGPoint(x: myScene.frame.maxX - (myScene.frame.midX * 0.275), y: secondBrain.position.y)
+        finishLine.scale(to: CGSize(width: myScene.frame.width * 0.2125 - (finishLine.frame.height * 0.7875), height: myScene.frame.height * 0.3))
+        finishLine.position = CGPoint(x: myScene.frame.maxX - (myScene.frame.midX * 0.3), y: secondBrain.position.y)
         finishLine.name = "Finish line"
-        finishLine.fillColor = .white
         finishLine.physicsBody = SKPhysicsBody(rectangleOf: finishLine.frame.size)
         finishLine.physicsBody?.allowsRotation = false
         finishLine.physicsBody?.affectedByGravity = false

@@ -12,9 +12,9 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
     public let title = SKLabelNode(attributedText: NSAttributedString(string: FIRST_GAME_TITLE_TEXT, attributes: [.font: MAIN_TITLE_SIZE_FONT, .foregroundColor: SKColor.white]))
     public let text = SKLabelNode(attributedText: NSAttributedString(string: FIRST_GAME_CONTEXT_TEXT, attributes: [.font: MAIN_DEFAULT_SIZE_FONT, .foregroundColor: SKColor.white]))
     public let tutorialText = SKLabelNode()
-    public var finishLine = SKShapeNode()
     public let brain = Brain()
     public let secondBrain = SKSpriteNode(imageNamed: FULL_BRAIN_NODE_TX)
+    public var finishLine = SKSpriteNode(imageNamed: FINISH_LINE_NODE_TX)
     public let nextSceneButton = NextSceneButton()
     public let exerciseButton = ExerciseButton()
     
