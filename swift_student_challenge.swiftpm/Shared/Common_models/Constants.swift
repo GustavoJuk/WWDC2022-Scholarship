@@ -115,7 +115,7 @@ extension SKAction {
 }
 
 public let scaleUp = SKAction.scale(by: 1.5, duration: 0.25)
-public let scaleDown = SKAction.scale(by: 0.8, duration: 0.25)
+public let scaleDown = SKAction.scale(by: 0.8, duration: 0.5)
 public let scaleSerotoninDown = SKAction.scaleY(to: 0.25, duration: 1.5)
 public let scaleDopamineDown = SKAction.scaleY(to: 0.1, duration: 1.5)
 public let scaleNoradrenalineDown = SKAction.scaleY(to: 0.15, duration: 1.5)

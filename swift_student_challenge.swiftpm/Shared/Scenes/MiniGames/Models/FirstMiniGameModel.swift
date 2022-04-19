@@ -13,7 +13,7 @@ public extension FirstMiniGameScene {
     func addFullBrainNode() {
         secondBrain.name = FULL_BRAIN_NODE_TX
         secondBrain.scale(to: CGSize(width: myScene.frame.width * 0.2 - (secondBrain.frame.width * 0.15), height: myScene.frame.height * 0.2))
-        secondBrain.position = CGPoint(x: myScene.frame.minX + secondBrain.size.width, y: exerciseButton.node.frame.maxY * 1.6)
+        secondBrain.position = CGPoint(x: myScene.frame.minX + secondBrain.size.width, y: myScene.frame.midY * 1.2)
         secondBrain.alpha = 0
         secondBrain.scene?.backgroundColor = .gray
         secondBrain.physicsBody = SKPhysicsBody(texture: secondBrain.texture!, size: secondBrain.size)
@@ -76,13 +76,14 @@ public extension FirstMiniGameScene {
     
     /// Constructor of the tutorial text
     func createTutorialText() {
-        let attributedText = NSMutableAttributedString(attributedString: NSAttributedString(string: FIRST_GAME_TUTORIAL_TEXT, attributes: [.font: MAIN_DEFAULT_SIZE_FONT, .foregroundColor: SKColor.white]))
+        let attributedText = NSMutableAttributedString(attributedString: NSAttributedString(string: FIRST_GAME_TUTORIAL_TEXT, attributes: [.font: MAIN_BODY_SIZE_FONT, .foregroundColor: SKColor.white]))
         attributedText.addAttributes([.foregroundColor: SEROTONIN_COLOR], range: attributedText.mutableString.range(of: "Serotonin"))
         attributedText.addAttributes([.foregroundColor: EXERCISE_COLOR], range: attributedText.mutableString.range(of: "Exercise"))
         tutorialText.attributedText = attributedText
         tutorialText.position = CGPoint(x: myScene.frame.minX + (myScene.frame.width * 0.45), y: myScene.frame.maxY - (myScene.frame.height * 0.2))
         tutorialText.alpha = 0
         tutorialText.numberOfLines = 3
+        tutorialText.preferredMaxLayoutWidth = myScene.frame.width - 70
         addChild(tutorialText)
     }
 }
