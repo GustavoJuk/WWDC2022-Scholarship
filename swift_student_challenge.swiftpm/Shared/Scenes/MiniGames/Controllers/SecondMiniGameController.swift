@@ -37,6 +37,8 @@ public class SecondMiniGameScene: SKScene {
             let clickedNode = self.nodes(at: location)
 
             if nextSceneButton.node.contains(location) {
+                generatorMedium.prepare()
+                generatorMedium.impactOccurred()
                 nextSceneButton.node.setScale(1.2)
                 nextSceneButton.node.alpha = 0.5
             }

@@ -35,11 +35,15 @@ public class FirstMiniGameScene: SKScene, SKPhysicsContactDelegate {
             let location = touch.location(in: self)
             
             if nextSceneButton.node.contains(location) {
+                generatorMedium.prepare()
+                generatorMedium.impactOccurred()
                 nextSceneButton.node.setScale(1.2)
                 nextSceneButton.node.alpha = 0.5
             }
             
             if exerciseButton.node.contains(location) {
+                generatorMedium.prepare()
+                generatorMedium.impactOccurred()
                 exerciseButton.node.setScale(0.95)
                 exerciseButton.node.alpha = 0.5
                 secondBrain.physicsBody?.applyImpulse(CGVector(dx: secondBrain.frame.width * 0.2, dy: 0))

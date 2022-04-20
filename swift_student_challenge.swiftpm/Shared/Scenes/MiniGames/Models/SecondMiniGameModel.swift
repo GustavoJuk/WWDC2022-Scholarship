@@ -13,6 +13,13 @@ public extension SecondMiniGameScene {
     /// - Parameter node: The food in witch will make the animation
     func correctOption(with node: SKNode) {
         node.run(fadeOut)
+        
+        generatorHeavy.prepare()
+        generatorHeavy.impactOccurred()
+        
+        sound = SKAction.playSoundFileNamed(AudioNames.SECOND_MG_RIGHT_OPTION.rawValue, waitForCompletion: false)
+        run(sound)
+        
         delay(duration: fadeOut.duration + 0.5, closure: {
             node.removeFromParent()
             self.tutorialText.run(fadeOut)
@@ -56,6 +63,12 @@ public extension SecondMiniGameScene {
     /// - Parameter node: The food in witch will make the animation
     func wrongOption(with node: SKNode) {
         node.run(SKAction.shake(initialPosition: node.position))
+        
+        generatorHeavy.prepare()
+        generatorHeavy.impactOccurred()
+        
+        sound = SKAction.playSoundFileNamed(AudioNames.SECOND_MG_WRONG_OPTION.rawValue, waitForCompletion: false)
+        run(sound)
     }
     
     /// Constructor of the brain

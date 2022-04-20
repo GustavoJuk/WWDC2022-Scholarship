@@ -32,12 +32,16 @@ public class ThirdMiniGameScene: SKScene {
             let location = touch.location(in: self)
             
             if nextSceneButton.node.contains(location) {
+                generatorMedium.prepare()
+                generatorMedium.impactOccurred()
                 nextSceneButton.node.setScale(1.2)
                 nextSceneButton.node.alpha = 0.5
             }
             
             if sleepButton.node.contains(location) {
                 isSleepButtonPressed = true
+                generatorHeavy.prepare()
+                generatorHeavy.impactOccurred()
                 sleepButton.node.setScale(0.95)
                 sleepButton.node.alpha = 0.5
                 sleepGraphic.progressBar.run(SKAction.scaleX(to: sleepGraphic.barBackground.xScale / (sleepGraphic.barBackground.xScale * 0.031), duration: 1.5))

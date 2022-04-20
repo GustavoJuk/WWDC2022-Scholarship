@@ -6,6 +6,7 @@
 //
 
 import SpriteKit
+import AVKit
 
 //SCENE TRANSITION
 /// This method creates a transition on the scene in witch is called
@@ -139,7 +140,7 @@ public let TITLE_TEXT = "That's the human brain"
 public let FOOTER_TEXT = "It is here where we process the main functions of the body and maintaining the health of this organ is extremely important."
 public let CALL_FOR_ACTION_TEXT = "Have you ever thought what could happen if mental health was not properly cared for and monitored?\n\nMaybe not! And in fact many people ignore their mental health until it becomes a more serious problem. So I wanted to draw attention to one of these problems: Depression!"
 public let ARTICLE_TEXT = "Much is discussed about depression and how terrible is... but, do you know what happens exactly?\n\nDepression is classified as a disease because of its symptoms, which affect not only the psychological area, but also the body, since chemical processes take place when a person feels this way.\n\nMost people have a misunderstanding about this issue because it is not a visible thing. Also the same people who judge the victims do not know what is going on inside their minds and bodies."
-public let CONTEXT_TEXT = "To sum up, what happens in the brain of a depressed person is the decrease of the neurotransmitters witch are responsable to funcitons like humor regulation, sleep, motivation and energy."
+public let CONTEXT_TEXT = "To sum up, what happens in the brain of a depressed person is the decrease of the neurotransmitters witch are responsable to funcitons like mood regulation, sleep, motivation and energy."
 public let FIRST_GAME_TITLE_TEXT = "With this in mind, let's help Bruno?"
 public let FIRST_GAME_CONTEXT_TEXT = "Bruno has a serious depression history in his family and some of the symptoms manifested recently."
 public let FIRST_GAME_TUTORIAL_TEXT = "The level of Serotonin in Brunos's brains is very low!\nQuick! Help him by doing some Exercise!"
@@ -147,4 +148,15 @@ public let SECOND_GAME_TUTORIAL_TEXT = "Now let's get the Dopamine that Bruno ne
 public let THIRD_GAME_TUTORIAL_TEXT = "The last part is Bruno's Noradrenaline. Help him getting a good amount of Sleep!"
 public let OUTRO_TEXT = "Thanks for playing!"
 
-//TODO: SOUNDS
+//SOUNDS
+public var sound = SKAction()
+public enum AudioNames: String {
+    //MARK: CREDITS = https://www.zapsplat.com/music/game-error-tone-7/
+    case SECOND_MG_WRONG_OPTION = "second_mg_wrongOption.mp3"
+    //MARK: CREDITS = https://www.zapsplat.com/music/person-eating-toast-crunch-and-chew/
+    case SECOND_MG_RIGHT_OPTION = "second_mg_rightOption.m4a"
+}
+
+//HAPTIC FEEDBACK
+public let generatorHeavy = UIImpactFeedbackGenerator(style: .heavy)
+public let generatorMedium = UIImpactFeedbackGenerator(style: .medium)
