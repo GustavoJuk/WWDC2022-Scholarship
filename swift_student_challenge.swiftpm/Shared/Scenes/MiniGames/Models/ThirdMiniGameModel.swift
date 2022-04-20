@@ -58,12 +58,14 @@ extension ThirdMiniGameScene {
         addChild(tutorialText)
     }
     
+    /// Animation of the increase effect on the sleep progress bar and growing sound effect
     func progressGrow() {
         sleepGraphic.progressBar.run(SKAction.scaleX(to: sleepGraphic.barBackground.xScale / (sleepGraphic.barBackground.xScale * 0.031), duration: 0.8))
         sound = SKAction.playSoundFileNamed(AudioNames.THIRD_MG_GROW_EFFECT.rawValue, waitForCompletion: false)
         sleepGraphic.progressBar.run(sound, withKey: AudioNames.THIRD_MG_GROW_EFFECT.rawValue)
     }
     
+    /// Animation of the decrease effect on the sleep progress bar and decrease sound effect
     func progressDecrease() {
         sleepGraphic.progressBar.run(SKAction.scaleX(to: sleepGraphic.barBackground.xScale - (sleepGraphic.barBackground.xScale * 0.1), duration: 0.5))
         sound = SKAction.playSoundFileNamed(AudioNames.THIRD_MG_DECREASE_EFFECT.rawValue, waitForCompletion: false)

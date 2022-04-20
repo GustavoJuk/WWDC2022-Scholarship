@@ -150,6 +150,7 @@ public let OUTRO_TEXT = "Thanks for playing!"
 
 //SOUNDS
 public var sound = SKAction()
+/// This enum refers to the audio files
 public enum AudioNames: String {
     //MARK: CREDITS = https://www.zapsplat.com/music/game-error-tone-7/
     case SECOND_MG_WRONG_OPTION = "second_mg_wrongOption.mp3"
