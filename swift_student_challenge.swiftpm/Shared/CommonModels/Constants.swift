@@ -6,7 +6,6 @@
 //
 
 import SpriteKit
-import AVKit
 
 //SCENE TRANSITION
 /// This method creates a transition on the scene in witch is called
