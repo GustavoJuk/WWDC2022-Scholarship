@@ -44,7 +44,7 @@ public class ThirdMiniGameScene: SKScene {
                 generatorHeavy.impactOccurred()
                 sleepButton.node.setScale(0.95)
                 sleepButton.node.alpha = 0.5
-                sleepGraphic.progressBar.run(SKAction.scaleX(to: sleepGraphic.barBackground.xScale / (sleepGraphic.barBackground.xScale * 0.031), duration: 1.5))
+                progressGrow()
             }
         }
     }
@@ -114,7 +114,7 @@ public class ThirdMiniGameScene: SKScene {
                         })
                     })
                 } else {
-                    sleepGraphic.progressBar.run(SKAction.scaleX(to: sleepGraphic.barBackground.xScale - (sleepGraphic.barBackground.xScale * 0.1), duration: 0.5))
+                    progressDecrease()
                 }
             }
         }

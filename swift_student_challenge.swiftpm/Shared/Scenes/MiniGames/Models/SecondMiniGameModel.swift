@@ -18,7 +18,7 @@ public extension SecondMiniGameScene {
         generatorHeavy.impactOccurred()
         
         sound = SKAction.playSoundFileNamed(AudioNames.SECOND_MG_RIGHT_OPTION.rawValue, waitForCompletion: false)
-        run(sound)
+        node.run(sound)
         
         delay(duration: fadeOut.duration + 0.5, closure: {
             node.removeFromParent()
@@ -62,13 +62,13 @@ public extension SecondMiniGameScene {
     /// This methos verify if the clicked node is a unhealthy food and preforms the shake animation
     /// - Parameter node: The food in witch will make the animation
     func wrongOption(with node: SKNode) {
-        node.run(SKAction.shake(initialPosition: node.position))
+        node.run(SKAction.shake(initialPosition: node.position, duration: 0.5))
         
         generatorHeavy.prepare()
         generatorHeavy.impactOccurred()
         
         sound = SKAction.playSoundFileNamed(AudioNames.SECOND_MG_WRONG_OPTION.rawValue, waitForCompletion: false)
-        run(sound)
+        node.run(sound)
     }
     
     /// Constructor of the brain

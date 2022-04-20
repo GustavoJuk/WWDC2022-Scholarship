@@ -24,9 +24,9 @@ public let myScene = SKView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bound
 
 //COLORS
 public let BACKGROUND_COLOR = SKColor(red: 0 / 255, green: 169 / 255, blue: 159 / 255, alpha: 1)
-public let SEROTONIN_COLOR = SKColor(red: 200 / 255, green: 0 / 255, blue: 104 / 255, alpha: 1)
-public let DOPAMINE_COLOR = SKColor(red: 187 / 255, green: 62 / 255, blue: 0 / 255, alpha: 1)
-public let NORADRENALINE_COLOR = SKColor(red: 8 / 255, green: 85 / 255, blue: 201 / 255, alpha: 1)
+public let SEROTONIN_COLOR = SKColor(red: 231 / 255, green: 0 / 255, blue: 138 / 255, alpha: 1)
+public let DOPAMINE_COLOR = SKColor(red: 168 / 255, green: 62 / 255, blue: 0 / 255, alpha: 1)
+public let NORADRENALINE_COLOR = SKColor(red: 0 / 255, green: 95 / 255, blue: 237 / 255, alpha: 1)
 public let EXERCISE_COLOR = SKColor(red: 122 / 255, green: 0 / 255, blue: 63 / 255, alpha: 1)
 public let DIET_COLOR = SKColor(red: 99 / 255, green: 33 / 255, blue: 0 / 255, alpha: 1)
 public let SLEEP_COLOR = SKColor(red: 2 / 255, green: 51 / 255, blue: 125 / 255, alpha: 1)
@@ -101,7 +101,7 @@ extension SKAction {
     ///   - amplitudeX: The amplitude of the x-axys
     ///   - amplitudeY: The amplitude of the y-axys
     /// - Returns: Returns the sequence of the animation positions
-    class func shake(initialPosition:CGPoint, duration:Float = 0.5, amplitudeX:Int = Int(myScene.frame.width * 0.02), amplitudeY:Int = Int(myScene.frame.height * 0.015)) -> SKAction {
+    class func shake(initialPosition:CGPoint, duration:Float, amplitudeX:Int = Int(myScene.frame.width * 0.02), amplitudeY:Int = Int(myScene.frame.height * 0.015)) -> SKAction {
         let startingX = initialPosition.x
         let startingY = initialPosition.y
         let numberOfShakes = duration / 0.015
@@ -128,7 +128,7 @@ public let fadeAlphaInHalf = SKAction.fadeAlpha(by: 0.5, duration: 0.25)
 public let fadeAlphaOut = SKAction.fadeAlpha(to: 0.25, duration: 0.25)
 public let unfocus = SKAction.fadeAlpha(to: 0.25, duration: 0.5)
 public let focus = SKAction.fadeAlpha(to: 1, duration: 0.5)
-public let moveUp = SKAction.move(to: CGPoint(x: myScene.frame.midX, y: myScene.frame.maxY - (myScene.frame.height * 0.25)), duration: 0.5)
+public let moveUp = SKAction.move(to: CGPoint(x: myScene.frame.midX, y: myScene.frame.midY * 1.4), duration: 0.5)
 public let moveToCenter = SKAction.move(to: CGPoint(x: myScene.frame.midX, y: myScene.frame.midY), duration: 0.5)
 public let moveToSerotoninSide = SKAction.move(to: CGPoint(x: myScene.frame.maxX + (myScene.frame.width * 0.025), y: myScene.frame.maxY - (myScene.frame.height * 0.16)), duration: 0.75)
 public let moveToDopamineSide = SKAction.move(to: CGPoint(x: myScene.frame.minX + (myScene.frame.width * 0.02), y: myScene.frame.maxY - (myScene.frame.height * 0.025)), duration: 0.75)
@@ -155,6 +155,10 @@ public enum AudioNames: String {
     case SECOND_MG_WRONG_OPTION = "second_mg_wrongOption.mp3"
     //MARK: CREDITS = https://www.zapsplat.com/music/person-eating-toast-crunch-and-chew/
     case SECOND_MG_RIGHT_OPTION = "second_mg_rightOption.m4a"
+    //MARK: CREDITS = https://www.zapsplat.com/music/cartoon-grow-expand-increase-whistle-2/
+    case THIRD_MG_GROW_EFFECT = "third_mg_grow.mp3"
+    //MARK: CREDITS = https://www.zapsplat.com/music/cartoon-falling-whistle-fast/
+    case THIRD_MG_DECREASE_EFFECT = "third_mg_decrease.mp3"
 }
 
 //HAPTIC FEEDBACK

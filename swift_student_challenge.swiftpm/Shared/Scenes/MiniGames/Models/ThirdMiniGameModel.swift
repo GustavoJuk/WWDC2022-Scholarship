@@ -6,6 +6,8 @@
 //
 
 import SpriteKit
+import SwiftUI
+import AVFAudio
 
 extension ThirdMiniGameScene {
     
@@ -54,5 +56,17 @@ extension ThirdMiniGameScene {
         tutorialText.numberOfLines = 2
         tutorialText.position = CGPoint(x: myScene.frame.midX, y: myScene.frame.maxY - (myScene.frame.height * 0.2))
         addChild(tutorialText)
+    }
+    
+    func progressGrow() {
+        sleepGraphic.progressBar.run(SKAction.scaleX(to: sleepGraphic.barBackground.xScale / (sleepGraphic.barBackground.xScale * 0.031), duration: 0.8))
+        sound = SKAction.playSoundFileNamed(AudioNames.THIRD_MG_GROW_EFFECT.rawValue, waitForCompletion: false)
+        sleepGraphic.progressBar.run(sound, withKey: AudioNames.THIRD_MG_GROW_EFFECT.rawValue)
+    }
+    
+    func progressDecrease() {
+        sleepGraphic.progressBar.run(SKAction.scaleX(to: sleepGraphic.barBackground.xScale - (sleepGraphic.barBackground.xScale * 0.1), duration: 0.5))
+        sound = SKAction.playSoundFileNamed(AudioNames.THIRD_MG_DECREASE_EFFECT.rawValue, waitForCompletion: false)
+        sleepGraphic.progressBar.run(sound, withKey: AudioNames.THIRD_MG_DECREASE_EFFECT.rawValue)
     }
 }
